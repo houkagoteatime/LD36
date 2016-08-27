@@ -11,6 +11,7 @@ public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
 	private Player player;
+	public static final float AGGRO_RANGE = 14f;
 	
 	/**
 	 *States that the enemy should be in
@@ -76,8 +77,22 @@ public class Enemy extends Entity{
 		this.player = player;
 	}
 	
+	/**
+	 * @return true if the player is within the aggro range
+	 */
 	public boolean isPlayerNearby() {
-		return false;
+		float distance = pythagoreanize(player.getPosition().x - getPosition().x, player.getPosition().y - getPosition().y);
+		return Math.abs(distance) <= AGGRO_RANGE;
+	}
+	
+	/**
+	 * @param side1 the first side of the triangle(not the hypotenuse)
+	 * @param side2 the second side of the triangle(not the hypotenuse)
+	 * @return the length of the hypotenuse
+	 * Tribute to Gal Egozi who invented this word
+	 */
+	public float pythagoreanize(float side1, float side2) {
+		return (float)Math.sqrt((double)(Math.pow(side1, 2)) + Math.pow(side1, 2));
 	}
 	
 	/**
@@ -110,7 +125,6 @@ public class Enemy extends Entity{
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
 		
 	}
 	

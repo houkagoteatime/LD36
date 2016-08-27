@@ -2,6 +2,7 @@ package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
@@ -19,6 +20,15 @@ public class Player extends Entity{
 	
 	public Player(int health, int damage, Sprite sprite, TiledMapTileLayer collisionLayer) {
 		super(health, damage, PLAYER_SPEED, sprite);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#spawn(int, int)
+	 */
+	@Override
+	public void spawn(int xPos, int yPos) {
+		super.spawn(xPos, yPos);
+		setBounds(new Rectangle(xPos, yPos, sprite.getWidth() - 20, sprite.getHeight() - 20));
 	}
 
 	@Override
