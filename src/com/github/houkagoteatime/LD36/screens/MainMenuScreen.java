@@ -13,7 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
+import com.github.houkagoteatime.LD36.Assets;
+import com.github.houkagoteatime.LD36.AudioManager;
 import com.github.houkagoteatime.LD36.LD36Game;
 
 
@@ -29,15 +30,16 @@ public class MainMenuScreen implements Screen{
 	private TextButton actualRefresh;
 	private Sprite background;
 	private TextureAtlas atlas;
-	private static boolean comp = false;
-	
+	private AudioManager manager;
 	public MainMenuScreen(LD36Game game) {
 		this.game = game;
-		
+		manager = new AudioManager();
 	}
 	
 	@Override
 	public void show() {
+		Assets.load();
+		Assets.manager.finishLoading();
 		background = new Sprite(new Texture(Gdx.files.internal("assets/pictures/mainscreen.jpg")));
 		background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		atlas = new TextureAtlas(Gdx.files.internal("assets/data/uiskin.atlas"));
@@ -99,6 +101,7 @@ public class MainMenuScreen implements Screen{
 			}
 			
 		});
+		manager.playMusic("assets/music/Ho-kago Tea Time - U&I.mp3");
 	}
 	
 	@Override

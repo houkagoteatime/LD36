@@ -1,9 +1,11 @@
 package com.github.houkagoteatime.LD36.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
+import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.levels.Level;
@@ -44,7 +46,7 @@ public class GameScreen implements Screen{
 	 * @param player center the camera around player
 	 */
 	public void updateCam(Player player) {
-		
+		PlayerInputProcessor proc = new PlayerInputProcessor(player);
 		//cam zoom shouldn't be changed much, should make a seperate function to change it
 		float effectiveViewportWidth = cam.viewportWidth * cam.zoom;
         float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
