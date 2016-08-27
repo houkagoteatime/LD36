@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player extends Entity{
 	
-	public static final int PLAYER_SPEED = 10;
+	public static final int PLAYER_SPEED = 500;
 	
 	private int health;
 	private boolean dead = false;
@@ -18,6 +18,7 @@ public class Player extends Entity{
 	
 	public Player(int health, int damage, Sprite sprite, TiledMapTileLayer collisionLayer) {
 		super(health, damage, PLAYER_SPEED, sprite);
+		this.collisionLayer = collisionLayer;
 	}
 
 	/* (non-Javadoc)

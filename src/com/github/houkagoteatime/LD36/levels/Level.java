@@ -8,8 +8,10 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public abstract class Level {
 	
@@ -30,6 +32,8 @@ public abstract class Level {
 
 	private Player player;
 	private ArrayList<Enemy> enemies;
+	private ArrayList<Projectile> projectiles;
+	private PlayerInputProcessor proc;
 	
 	public Level(String path) {
 		this.tiledMap  = new TmxMapLoader().load(path);
@@ -39,6 +43,8 @@ public abstract class Level {
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
 		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
+		projectiles = new ArrayList<>();
+		proc = new PlayerInputProcessor(player);
 	}
 	
 	/**
@@ -47,8 +53,8 @@ public abstract class Level {
 	public abstract void spawnEnemies();
 
 	public void update(float dt) {
-		
-		
+		proc.queryInput();
+		player.update(dt);
 	}
 	
 	public void calcMapProperties(MapProperties mapProp) {
@@ -82,10 +88,13 @@ public abstract class Level {
 		return enemies;
 	}
 	
-	/*public ArrayList<Projectiles> getProjectiles() {
+	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
-	}*/
+	}
 	
+	public void addProjectile(Projectile proj) {
+		projectiles.add(proj);
+	}
 
 	public TiledMap getTiledMap() {
 		return tiledMap;

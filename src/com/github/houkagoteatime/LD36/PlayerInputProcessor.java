@@ -24,7 +24,7 @@ public class PlayerInputProcessor {
 
 			if(Gdx.input.isKeyPressed(Input.Keys.A)) {
 				player.rotate(-45);
-				player.move(-Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER, -Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER);
+				player.move(-Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER, Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER);
 				
 			} else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
 				player.rotate(45);

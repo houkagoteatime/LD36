@@ -1,7 +1,8 @@
-package com.github.houkagoteatime.LD36.Weapons;
+package com.github.houkagoteatime.LD36.weapons;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.github.houkagoteatime.LD36.levels.Level;
 
 public abstract class Projectile {
 	private float xPosition, yPosition;
@@ -10,6 +11,7 @@ public abstract class Projectile {
 	public static final int SPEED = 20;
 	private Rectangle bounds;
 	private Sprite sprite;
+	private Level level;
 	
 	/**
 	 * @param sprite the sprite
@@ -32,5 +34,8 @@ public abstract class Projectile {
 		xPosition += Math.signum(Math.cos(angle)) * SPEED * dt;
 		yPosition += Math.signum(Math.sin(yPosition)) * SPEED * dt;
 	}
-
+	
+	public void spawn(Level level) {
+		this.level = level;
+	}
 }

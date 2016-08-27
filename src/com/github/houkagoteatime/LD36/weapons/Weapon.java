@@ -1,4 +1,4 @@
-package com.github.houkagoteatime.LD36.Weapons;
+package com.github.houkagoteatime.LD36.weapons;
 
 public interface Weapon {
 	
