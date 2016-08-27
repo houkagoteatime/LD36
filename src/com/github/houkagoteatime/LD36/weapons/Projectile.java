@@ -26,7 +26,6 @@ public abstract class Projectile{
 		this.yPosition = yPosition;
 		this.startXPosition = xPosition;
 		this.startyPosition = yPosition; 
-		System.out.print(startXPosition + "" + startyPosition);
 		this.angle = angle;
 		this.damage = damage;
 		this.sprite = sprite;
@@ -41,8 +40,6 @@ public abstract class Projectile{
 
 	public boolean isOutOfRange() {
 		if(pythagoreanize(xPosition - startXPosition, yPosition - startyPosition) > range) {
-			System.out.println(pythagoreanize(xPosition - startXPosition, yPosition - startyPosition) > range);
-
 			return true;
 		}
 		return false;

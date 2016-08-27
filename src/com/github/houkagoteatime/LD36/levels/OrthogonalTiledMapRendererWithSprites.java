@@ -14,14 +14,12 @@ import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRenderer {
-    private List<Entity> entitys;
     private int drawSpritesAfterLayer = 1;
     private Level level;
 
     public OrthogonalTiledMapRendererWithSprites(TiledMap map, Level level) {
         super(map);
         this.level = level;
-        entitys = new ArrayList<Entity>();
     }
 
     @Override

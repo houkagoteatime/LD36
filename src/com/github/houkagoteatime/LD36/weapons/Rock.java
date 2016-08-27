@@ -12,7 +12,7 @@ public class Rock implements Weapon{
 	private Level level;
 	public static final float RANGE = 200;
 	public Rock(Entity owner, Level level) {
-		rockProjectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/rock.png")));
+		rockProjectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/rockproj.png")));
 		this.owner = owner;
 		this.level = level;
 	}
