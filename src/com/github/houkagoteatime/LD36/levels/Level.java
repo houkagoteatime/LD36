@@ -6,17 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 
 public abstract class Level {
 	
 	private TiledMap tiledMap;
-	private TiledMapRenderer tiledMapRenderer;
+	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
 	
 	public MapProperties mapProp;
 	public int mapWidth;
@@ -26,18 +23,17 @@ public abstract class Level {
 	public int mapPixelWidth;
 	public int mapPixelHeight;
 	    
-	private PlayerInputProcessor proc;
+
 	private Player player;
 	private ArrayList<Enemy> enemies;
 	
 	public Level(String path) {
-		setTiledMap(path);
-		setTiledMapRenderer(tiledMap);
-		setMapProperties(tiledMap);
+		this.tiledMap  = new TmxMapLoader().load(path);
+		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap);
+		this.mapProp = tiledMap.getProperties();
 		calcMapProperties(mapProp);
-		enemies = new ArrayList<Enemy>();
-		player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
-		proc = new PlayerInputProcessor(player);
+		this.enemies = new ArrayList<Enemy>();
+		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
 	}
 	
 	/**
@@ -46,8 +42,8 @@ public abstract class Level {
 	public abstract void spawnEnemies();
 
 	public void update(float dt) {
-		proc.queryInput();
-		player.update(dt);
+		
+		
 	}
 	
 	public void calcMapProperties(MapProperties mapProp) {
@@ -86,26 +82,12 @@ public abstract class Level {
 		return tiledMap;
 	}
 	
-	public void setTiledMap(String path) {
-		tiledMap  = new TmxMapLoader().load(path);
-	}
-	
-	public TiledMapRenderer getTiledMapRenderer() {
+	public OrthogonalTiledMapRendererWithSprites getTiledMapRenderer() {
 		return tiledMapRenderer;
 	}
 	
-
 	public MapProperties getMapProperties() {
 		return mapProp;
 		
-	}
-	
-
-	public void setMapProperties(TiledMap tiledMap) {
-		mapProp = tiledMap.getProperties();
-	}
-	
-	public void setTiledMapRenderer(TiledMap tiledMap) {
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 	}
 }

@@ -3,7 +3,6 @@ package com.github.houkagoteatime.LD36.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
@@ -11,20 +10,16 @@ import com.github.houkagoteatime.LD36.levels.Level;
 
 public class GameScreen implements Screen{
 
-
     private OrthographicCamera cam;
-	private SpriteBatch sb;
 	private Level level;
 	private Game game;
 	
 	public GameScreen(Game game) {
 		this.game = game;
-		sb = new SpriteBatch();
 		cam = new OrthographicCamera(500, 500);
 	}
 	
-	public GameScreen(SpriteBatch batch) {
-		sb = batch;
+	public GameScreen() {
 		cam = new OrthographicCamera(500, 500);
 	}
 	
@@ -38,14 +33,11 @@ public class GameScreen implements Screen{
 		updateCam(level.getPlayer());
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
-        level.getTiledMapRenderer().render();
-        sb.begin();
 		for(Enemy enemy : level.getEnemies()){
-			sb.draw(enemy.getSprite(), enemy.getPosition().x, enemy.getPosition().y);
+			level.getTiledMapRenderer().addEntity(enemy);
 		}
-		
-		sb.draw(level.getPlayer().getSprite(), level.getPlayer().getPosition().x, level.getPlayer().getPosition().x);
-		sb.end();	
+		level.getTiledMapRenderer().addEntity(level.getPlayer());
+        level.getTiledMapRenderer().render();
 	}
 	
 	/**
@@ -66,7 +58,7 @@ public class GameScreen implements Screen{
 	
 	@Override
 	public void dispose() {
-		sb.dispose();
+		
 	}
 
 	@Override
