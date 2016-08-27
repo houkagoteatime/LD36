@@ -2,10 +2,6 @@ package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	/**
 	 * game objects that interact with each other should inherit this
 	 */
@@ -13,13 +9,9 @@ import com.badlogic.gdx.math.Vector2;
 		protected Sprite sprite;
 		private int health;
 		private int damage;
-<<<<<<< Updated upstream
-		private int xPosition,yPosition;
-=======
 		private int speed;
 		private float xPosition,yPosition, xMovement, yMovement;
 		
->>>>>>> Stashed changes
 		private boolean dead = false;
 		
 		/**Constructor for entity
