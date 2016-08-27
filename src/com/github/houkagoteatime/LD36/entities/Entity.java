@@ -2,7 +2,10 @@ package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	/**
 	 * game objects that interact with each other should inherit this
 	 */
@@ -10,7 +13,13 @@ import com.badlogic.gdx.math.Vector2;
 		protected Sprite sprite;
 		private int health;
 		private int damage;
+<<<<<<< Updated upstream
 		private int xPosition,yPosition;
+=======
+		private int speed;
+		private float xPosition,yPosition, xMovement, yMovement;
+		
+>>>>>>> Stashed changes
 		private boolean dead = false;
 		
 		/**Constructor for entity
@@ -30,15 +39,56 @@ import com.badlogic.gdx.math.Vector2;
 		 * @param moveY how much the sprite should move relative to its y position
 		 */
 		public void move(float moveX, float moveY) {
-			
+			xMovement = moveX;
+			yMovement = moveY;
 		}
 
 		/**Update the entity
 		 * @param deltaTime the amount of time that has passed
 		 */
 		public void update(float deltaTime) {
+			//kill the entity
+			if(health == 0)
+				dead = true;
 			
+			//determine direction of movement
+			int directionX = (int)Math.signum(xMovement);
+			int directionY = (int)Math.signum(yMovement);
+			//calculate how much the entity needs to move based on speed
+			float xCalculatedMovement = calculateMovement(speed, deltaTime, directionX);
+			float yCalculatedMovement = calculateMovement(speed, deltaTime, directionY);
+			
+			//move the positions
+			xPosition += updateMovement(xMovement, xCalculatedMovement);
+			yPosition += updateMovement(yMovement, yCalculatedMovement);
+			
+			//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
+			xMovement = updateMovement(xMovement, xCalculatedMovement) == xMovement ? 0 : xMovement - xCalculatedMovement;
+			yMovement = updateMovement(yMovement, yCalculatedMovement) == yMovement ? 0 : yMovement - yCalculatedMovement;
 
+		}
+		
+		/**
+		 * @param actualMovement how much the entity actually needs to move
+		 * @param calculatedMovement movement based on entities speed
+		 * @return actualMovement if the amount to move is less than calculatedMovement to avoid overshooting
+		 */
+		public float updateMovement(float actualMovement, float calculatedMovement) {
+			if(Math.abs(actualMovement) < Math.abs(calculatedMovement)) {
+				return actualMovement;
+			} else {
+				return calculatedMovement;
+			}
+		}
+		
+		/**
+		 * @param speed
+		 * @param deltaTime
+		 * @param direction
+		 * @return how much the entity should move based on speed, time, and direction
+		 */
+		public float calculateMovement(float speed, float deltaTime, int direction) {
+			return speed * direction * deltaTime;
 		}
 		
 		/**
