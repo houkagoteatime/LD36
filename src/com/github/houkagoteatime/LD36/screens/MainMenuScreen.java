@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.github.houkagoteatime.LD36.LD36Game;
 
 
@@ -24,8 +25,12 @@ public class MainMenuScreen implements Screen{
 	private Table table;
 	private TextButton start;
 	private TextButton quit;
+	private TextButton refresh;
+	private TextButton actualRefresh;
 	private Sprite background;
 	private TextureAtlas atlas;
+	private static boolean comp = false;
+	
 	public MainMenuScreen(LD36Game game) {
 		this.game = game;
 		
@@ -39,9 +44,22 @@ public class MainMenuScreen implements Screen{
 		skin = new Skin(Gdx.files.internal("assets/data/uiskin.json"),atlas);
 		stage = new Stage();
 		table = new Table(skin);
-		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
+		table.setWidth(Gdx.graphics.getWidth());
+		table.setPosition(0, Gdx.graphics.getHeight());
 		start = new TextButton("New Game", skin);
+		quit = new TextButton("End Game", skin);
+		refresh = new TextButton("Refresh", skin);
+		actualRefresh = new TextButton("Random button", skin);
+
+		table.padTop(500);
+		table.add(start).padBottom(30);
+		table.row();
+		table.add(quit).padBottom(30);
+		table.row();
+		table.add(refresh).padBottom(30);
+		table.row();
+		table.add(actualRefresh);
+		stage.addActor(table);
 		start.addListener(new ClickListener() {
 
 			/* (non-Javadoc)
@@ -49,20 +67,37 @@ public class MainMenuScreen implements Screen{
 			 */
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				start.setText("Done");
+				game.setScreen(new GameScreen(game));
+				dispose();
+			}
+			
+		});
+		quit.addListener(new ClickListener() {
+
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.scenes.scene2d.utils.ClickListener#clicked(com.badlogic.gdx.scenes.scene2d.InputEvent, float, float)
+			 */
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
 				dispose();
 				Gdx.app.exit();
 			}
 			
 		});
-		quit = new TextButton("End Game", skin);
-		table.padTop(30);
-		table.add(start).padBottom(30);
-		table.row();
-		table.add(quit);
-		stage.addActor(table);
-		start.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 		Gdx.input.setInputProcessor(stage);
+		
+		actualRefresh.addListener(new ClickListener() {
+
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.scenes.scene2d.utils.ClickListener#clicked(com.badlogic.gdx.scenes.scene2d.InputEvent, float, float)
+			 */
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.setScreen(new MainMenuScreen(game));
+				dispose();
+			}
+			
+		});
 	}
 	
 	@Override
