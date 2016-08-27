@@ -3,6 +3,7 @@ package com.github.houkagoteatime.LD36.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -101,7 +102,8 @@ public class MainMenuScreen implements Screen{
 			}
 			
 		});
-		manager.playMusic("assets/music/Ho-kago Tea Time - U&I.mp3");
+		//manager.playMusic("assets/music/Ho-kago Tea Time - U&I.mp3");
+		manager.playMusic("assets/music/Yume Miru Kusuri - Girls Are Made of Frosting Cake.mp3");
 	}
 	
 	@Override
