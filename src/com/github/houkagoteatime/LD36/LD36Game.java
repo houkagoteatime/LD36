@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.github.houkagoteatime.LD36.screens.MainMenuScreen;
 
 public class LD36Game extends Game{
 	
@@ -14,7 +15,7 @@ public class LD36Game extends Game{
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Harambe 2: Origin Stories";
 		config.width = 600;
-		config.height = 1000;
+		config.height = 800;
 		new LwjglApplication(new LD36Game(), config);
 	}
 	
@@ -22,6 +23,7 @@ public class LD36Game extends Game{
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		setScreen(new MainMenuScreen(this));
 	}
 	
 	/**

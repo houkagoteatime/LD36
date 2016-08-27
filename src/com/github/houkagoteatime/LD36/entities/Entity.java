@@ -1,6 +1,7 @@
 package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 	/**
 	 * game objects that interact with each other should inherit this
@@ -9,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 		protected Sprite sprite;
 		private int health;
 		private int damage;
-		
+		private int xPosition,yPosition;
 		private boolean dead = false;
 		
 		/**Constructor for entity
@@ -88,5 +89,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 		 */
 		public boolean isDead() {
 			return dead;
+		}
+		
+		public Vector2 getPosition() {
+			return new Vector2(xPosition, yPosition);
 		}
 }
