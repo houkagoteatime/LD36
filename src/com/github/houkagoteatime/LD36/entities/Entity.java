@@ -1,15 +1,17 @@
 package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 	/**
 	 * game objects that interact with each other should inherit this
 	 */
-	public abstract class Entity {
+	public abstract class Entity implements Spawnable{
 		protected Sprite sprite;
 		private int health;
 		private int damage;
 		private int speed;
+		private Rectangle bounds;
 		private float xPosition,yPosition, xMovement, yMovement;
 		public static final float DIAG_MULTIPLIER = (float)Math.sqrt(2)/2;
 		private boolean dead = false;
@@ -27,6 +29,29 @@ import com.badlogic.gdx.math.Vector2;
 			sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		}
 		
+		/**
+		 * @return the bounds
+		 */
+		public Rectangle getBounds() {
+			return bounds;
+		}
+
+		/**
+		 * @param bounds the bounds to set
+		 */
+		public void setBounds(Rectangle bounds) {
+			this.bounds = bounds;
+		}
+
+		/* (non-Javadoc)
+		 * @see com.github.houkagoteatime.LD36.entities.Spawnable#spawn(int, int)
+		 */
+		@Override
+		public void spawn(int xPos, int yPos) {
+			this.xPosition = xPos;
+			this.yPosition = yPos;
+		}
+
 		/**
 		 * @param moveX how much the sprite should move relative to its x position
 		 * @param moveY how much the sprite should move relative to its y position
