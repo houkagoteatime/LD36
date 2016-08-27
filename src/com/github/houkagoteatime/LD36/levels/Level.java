@@ -37,7 +37,7 @@ public abstract class Level {
 	
 	public Level(String path) {
 		this.tiledMap  = new TmxMapLoader().load(path);
-		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap);
+		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap, this);
 		this.mapProp = tiledMap.getProperties();
 		this.wallLayer = (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 		calcMapProperties(mapProp);
@@ -55,6 +55,13 @@ public abstract class Level {
 	public void update(float dt) {
 		proc.queryInput();
 		player.update(dt);
+		for(int i = 0; i < getEnemies().size(); i++) {
+			if(!getEnemies().get(i).isDead()) {
+				getEnemies().get(i).update(dt);
+			} else {
+				getEnemies().remove(i);
+			}
+		}
 	}
 	
 	public void calcMapProperties(MapProperties mapProp) {
@@ -86,6 +93,10 @@ public abstract class Level {
 	
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
+	}
+	
+	public void addEnemies(Enemy e) {
+		enemies.add(e);
 	}
 	
 	public ArrayList<Projectile> getProjectiles() {

@@ -44,8 +44,6 @@ public class Player extends Entity{
 		float xCalculatedMovement = calculateMovement(PLAYER_SPEED, deltaTime, directionX);
 		float yCalculatedMovement = calculateMovement(PLAYER_SPEED, deltaTime, directionY);
 		
-		System.out.println("Calc Move: " + xCalculatedMovement + " " + yCalculatedMovement);
-		
 		//save old position before the collision
 		float oldX = this.getxPosition();
 		float oldY = this.getyPosition();
@@ -54,11 +52,9 @@ public class Player extends Entity{
 		boolean collideX = false;
 		boolean collideY = false;
 
-		//System.out.println(directionX + " " + directionY);
 		this.setxPosition(this.getxPosition() + updateMovement(this.getxMovement(), xCalculatedMovement));
 		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
-		System.out.println("pos" + this.getxPosition() + " " + this.getyPosition());
-		
+	
 		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 		this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
 		if(directionX < 0) {
@@ -68,7 +64,6 @@ public class Player extends Entity{
 		}
 		
 		if(collideX) {
-			System.out.println(" X COLLIDE");
 			setxPosition(oldX);
 			setxMovement(0);
 			move(0,PLAYER_SPEED/4);
@@ -85,7 +80,6 @@ public class Player extends Entity{
 			collideY = collidesBottom();
 		}
 		if(collideY) {
-			System.out.println("Y COLLIDE");
 			setyPosition(oldY);
 			move(PLAYER_SPEED/4,0);
 		}

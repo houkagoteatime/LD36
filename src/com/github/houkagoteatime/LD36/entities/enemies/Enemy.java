@@ -1,5 +1,6 @@
 package com.github.houkagoteatime.LD36.entities.enemies;
 
+import com.badlogic.gdx.ai.fsm.DefaultStateMachine;
 import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.msg.Telegram;
@@ -11,7 +12,7 @@ public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
 	private Player player;
-	public static final float AGGRO_RANGE = 14f;
+	public static final float AGGRO_RANGE = 60f;
 	
 	/**
 	 *States that the enemy should be in
@@ -75,8 +76,18 @@ public class Enemy extends Entity{
 	public Enemy(int health, int damage, Sprite sprite, int speed, Player player) {
 		super(health, damage, speed, sprite);
 		this.player = player;
+		this.stateMachine = new DefaultStateMachine<Enemy, EnemyState>(this, EnemyState.SLEEP);
 	}
 	
+	@Override
+	public void update(float dt) {
+		if(this.isPlayerNearby()) {
+			this.setHealth(getHealth() - 1);
+		}
+		super.update(dt);
+		//does not actually stop moving if player exits aggro range, but instead continues the position where player was last aggroed
+		this.stateMachine.update();
+	}
 	/**
 	 * @return true if the player is within the aggro range
 	 */
@@ -92,7 +103,7 @@ public class Enemy extends Entity{
 	 * Tribute to Gal Egozi who invented this word
 	 */
 	public float pythagoreanize(float side1, float side2) {
-		return (float)Math.sqrt((double)(Math.pow(side1, 2)) + Math.pow(side1, 2));
+		return (float)Math.sqrt((double)(Math.pow(side1, 2)) + Math.pow(side2, 2));
 	}
 	
 	/**

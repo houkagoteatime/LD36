@@ -19,8 +19,7 @@ public class GameScreen implements Screen{
 		this.game = game;
 		cam = new OrthographicCamera(500, 500);
 		level = new Level1();
-		level.getTiledMapRenderer().addEntity(level.getPlayer());
-
+		
 	}
 	
 	public GameScreen() {
@@ -37,9 +36,6 @@ public class GameScreen implements Screen{
 		updateCam(level.getPlayer());
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
-		for(Enemy enemy : level.getEnemies()){
-			level.getTiledMapRenderer().addEntity(enemy);
-		}
         level.getTiledMapRenderer().render();
 	}
 	

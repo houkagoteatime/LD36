@@ -6,6 +6,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.github.houkagoteatime.LD36.entities.Entity;
+import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.entities.enemies.Enemy.EnemyState;
+import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +16,12 @@ import java.util.List;
 public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRenderer {
     private List<Entity> entitys;
     private int drawSpritesAfterLayer = 1;
+    private Level level;
 
-    public OrthogonalTiledMapRendererWithSprites(TiledMap map) {
+    public OrthogonalTiledMapRendererWithSprites(TiledMap map, Level level) {
         super(map);
+        this.level = level;
         entitys = new ArrayList<Entity>();
-       
-    }
-
-    public void addEntity(Entity entity){
-        entitys.add(entity);
     }
 
     @Override
@@ -34,8 +34,15 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
                     renderTileLayer((TiledMapTileLayer)layer);
                     currentLayer++;
                     if(currentLayer == drawSpritesAfterLayer){
-                        for(Entity entity: entitys) {
-                        	this.getBatch().draw(entity.getSprite(), entity.getPosition().x, entity.getPosition().y);
+                    	//draw player
+                    	this.getBatch().draw(level.getPlayer().getSprite(), level.getPlayer().getPosition().x, level.getPlayer().getPosition().y);
+                    	//draw enemies
+                        for(Enemy enemy: level.getEnemies()) {
+                        	this.getBatch().draw(enemy.getSprite(), enemy.getPosition().x, enemy.getPosition().y);
+                        }
+                        //draw projectiles
+                        for(Projectile projectile: level.getProjectiles()) {
+                        	//
                         }
                     }
                 } else {
