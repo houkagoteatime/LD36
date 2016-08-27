@@ -2,6 +2,7 @@ package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -56,43 +57,20 @@ public class Player extends Entity{
 		//System.out.println(directionX + " " + directionY);
 		this.setxPosition(this.getxPosition() + updateMovement(this.getxMovement(), xCalculatedMovement));
 		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
-
 		System.out.println("pos" + this.getxPosition() + " " + this.getyPosition());
 		
 		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 		this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
-		if(directionX == -1) {
-			//debug();
-			System.out.println("X-");
-			//top left
-			collideX = collisionLayer.getCell((int)(getxPosition() / tileWidth), (int)((getyPosition() + this.getSprite().getHeight()) /tileHeight)).getTile().getProperties().containsKey("b");
-		
-			//middle left
-			if(!collideX)
-			collideX = collisionLayer.getCell((int)(getxPosition() / tileWidth), (int)((getyPosition() + this.getSprite().getHeight()/2) /tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//bottom left
-			if(!collideX)
-			collideX = collisionLayer.getCell((int)(getxPosition() / tileWidth), (int)(getyPosition()/tileHeight)).getTile().getProperties().containsKey("b");
-			
-		} else if(directionX == 1) {
-
-			System.out.println("X+");
-			//top right
-			collideX = collisionLayer.getCell((int)((getxPosition())/tileWidth),(int)((getyPosition() + this.getSprite().getHeight())/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//middle right
-			if(!collideX)
-			collideX = collisionLayer.getCell((int)((getxPosition())/tileWidth),(int)((getyPosition() + this.getSprite().getHeight()/2)/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//bottom right
-			if(!collideX)
-			collideX = collisionLayer.getCell((int)((getxPosition())/tileWidth),(int)((getyPosition())/tileHeight)).getTile().getProperties().containsKey("b");
+		if(directionX < 0) {
+			collideX = collidesLeft();
+		} else if(directionX > 0) {
+			collideX = collidesRight();
 		}
 		
 		if(collideX) {
 			System.out.println(" X COLLIDE");
 			setxPosition(oldX);
+			setxMovement(0);
 			move(0,PLAYER_SPEED/4);
 		}
 
@@ -101,35 +79,10 @@ public class Player extends Entity{
 		
 		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
 		
-		if(directionY == -1) {
-
-			System.out.println("Y-");
-			//bottomLeft
-			collideY = collisionLayer.getCell((int)((getxPosition())/tileWidth),(int)((getyPosition())/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//bottomMiddle
-			if(!collideY)
-			collideY = collisionLayer.getCell((int)((getxPosition() + this.getSprite().getWidth()/2)/tileWidth),(int)((getyPosition())/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//bottomRight
-			if(!collideY)
-				collideY = collisionLayer.getCell((int)((getxPosition() + this.getSprite().getWidth())/tileWidth),(int)((getyPosition())/tileHeight)).getTile().getProperties().containsKey("b");
-				
-		} else if(directionY == 1) {
-
-			System.out.println("Y+");
-			//topLeft
-			collideY = collisionLayer.getCell((int)((getxPosition() + this.getSprite().getWidth())/tileWidth),(int)((getyPosition() + this.getSprite().getHeight())/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			
-			//topMiddle
-			if(!collideY)
-				collideY = collisionLayer.getCell((int)((getxPosition() + this.getSprite().getWidth()/2)/tileWidth),(int)((getyPosition() + this.getSprite().getHeight()/2)/tileHeight)).getTile().getProperties().containsKey("b");
-			
-			//topRight
-			if(!collideY)
-				collideY = collisionLayer.getCell((int)((getxPosition() + this.getSprite().getWidth())/tileWidth),(int)((getyPosition() + this.getSprite().getHeight())/tileHeight)).getTile().getProperties().containsKey("b");
-			
+		if(directionY > 0) {
+			collideY = collidesTop();
+		} else if(directionY < 0) {
+			collideY = collidesBottom();
 		}
 		if(collideY) {
 			System.out.println("Y COLLIDE");
@@ -147,6 +100,42 @@ public class Player extends Entity{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private boolean isCellBlocked(float x, float y) {
+		Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+		if(cell == null)
+			return true;
+		return cell.getTile() != null && cell.getTile().getProperties().containsKey("b");
+	}
+
+	public boolean collidesRight() {
+		for(float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2)
+			if(isCellBlocked(getxPosition() + getWidth(), getyPosition() + step))
+				return true;
+		return false;
+	}
+
+	public boolean collidesLeft() {
+		for(float step = 0; step < getHeight(); step += collisionLayer.getTileHeight() / 2)
+			if(isCellBlocked(getxPosition(), getyPosition() + step))
+				return true;
+		return false;
+	}
+
+	public boolean collidesTop() {
+		for(float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2)
+			if(isCellBlocked(getxPosition() + step, getyPosition() + getHeight()))
+				return true;
+		return false;
+
+	}
+
+	public boolean collidesBottom() {
+		for(float step = 0; step < getWidth(); step += collisionLayer.getTileWidth() / 2)
+			if(isCellBlocked(getxPosition() + step, getyPosition()))
+				return true;
+		return false;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.github.houkagoteatime.LD36.entities.Entity#rotate(float)
@@ -156,6 +145,12 @@ public class Player extends Entity{
 		sprite.setRotation(degrees);
 	}
 
+	public float getWidth() {
+		return sprite.getWidth();
+	}
 	
+	public float getHeight() {
+		return sprite.getHeight();
+	}
 
 }
