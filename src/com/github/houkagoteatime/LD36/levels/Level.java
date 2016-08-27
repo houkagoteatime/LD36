@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
@@ -24,6 +25,8 @@ public abstract class Level {
 	public int mapPixelHeight;
 	    
 
+	public static final int WALL_LAYER = 0;
+
 	private Player player;
 	private ArrayList<Enemy> enemies;
 	
@@ -33,7 +36,7 @@ public abstract class Level {
 		this.mapProp = tiledMap.getProperties();
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
+		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), getWallLayer(tiledMap));
 	}
 	
 	/**
@@ -59,6 +62,10 @@ public abstract class Level {
 	
 	public void dispose() {
 		
+	}
+	
+	public TiledMapTileLayer getWallLayer(TiledMap tiledMap) {
+		return (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 	}
 	
 	public Player getPlayer() {
