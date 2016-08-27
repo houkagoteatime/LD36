@@ -29,7 +29,6 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
         beginRender();
         int currentLayer = 0;
         for (MapLayer layer : map.getLayers()) {
-        	renderTileLayer((TiledMapTileLayer)layer);
             if (layer.isVisible()) {
                 if (layer instanceof TiledMapTileLayer) {
                     renderTileLayer((TiledMapTileLayer)layer);
