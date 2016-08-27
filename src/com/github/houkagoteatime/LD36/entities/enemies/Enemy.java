@@ -63,14 +63,16 @@ public class Enemy extends Entity{
 		}
 		
 	}
+
 	/**
 	 * @param health health of the enemy
 	 * @param damage how much damage it does
 	 * @param sprite the enemy sprite
+	 * @param speed the speed
 	 * @param player the player playing the game
 	 */
-	public Enemy(int health, int damage, Sprite sprite, Player player) {
-		super(health, damage, sprite);
+	public Enemy(int health, int damage, Sprite sprite, int speed, Player player) {
+		super(health, damage, speed, sprite);
 		this.player = player;
 	}
 	
@@ -104,6 +106,12 @@ public class Enemy extends Entity{
 	 */
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

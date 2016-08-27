@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 		private int damage;
 		private int speed;
 		private float xPosition,yPosition, xMovement, yMovement;
-		
+		public static final float DIAG_MULTIPLIER = (float)Math.sqrt(2)/2;
 		private boolean dead = false;
 		
 		/**Constructor for entity
@@ -19,10 +19,11 @@ import com.badlogic.gdx.math.Vector2;
 		 * @param damage how much damage it does
 		 * @param sprite the sprite that is being used
 		 */
-		public Entity(int health, int damage, Sprite sprite) {
+		public Entity(int health, int damage, int speed, Sprite sprite) {
 			this.sprite = sprite;
 			this.health = health;
 			this.damage = damage;
+			this.speed = speed;
 			sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		}
 		
@@ -34,7 +35,9 @@ import com.badlogic.gdx.math.Vector2;
 			xMovement = moveX;
 			yMovement = moveY;
 		}
-
+		
+		public abstract void attack();
+		
 		/**Update the entity
 		 * @param deltaTime the amount of time that has passed
 		 */
@@ -57,7 +60,8 @@ import com.badlogic.gdx.math.Vector2;
 			//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 			xMovement = updateMovement(xMovement, xCalculatedMovement) == xMovement ? 0 : xMovement - xCalculatedMovement;
 			yMovement = updateMovement(yMovement, yCalculatedMovement) == yMovement ? 0 : yMovement - yCalculatedMovement;
-
+			
+			
 		}
 		
 		/**
@@ -125,6 +129,13 @@ import com.badlogic.gdx.math.Vector2;
 		public void setDamage(int damage) {
 			this.damage = damage;
 		}
+		
+		/**
+		 * @param degrees the degrees to rotate
+		 */
+		public void rotate(float degrees) {
+			sprite.rotate(degrees);
+		}
 
 		/**
 		 * @return is dead
@@ -133,6 +144,27 @@ import com.badlogic.gdx.math.Vector2;
 			return dead;
 		}
 		
+		/**
+		 * @return the speed
+		 */
+		public int getSpeed() {
+			return speed;
+		}
+
+		/**
+		 * @param speed the speed to set
+		 */
+		public void setSpeed(int speed) {
+			this.speed = speed;
+		}
+
+		/**
+		 * @param dead the dead to set
+		 */
+		public void setDead(boolean dead) {
+			this.dead = dead;
+		}
+
 		public Vector2 getPosition() {
 			return new Vector2(xPosition, yPosition);
 		}

@@ -86,6 +86,7 @@ public class MainMenuScreen implements Screen{
 		});
 		Gdx.input.setInputProcessor(stage);
 		
+		//this is the most ghetto fix ever, the listener for this button is where the refresh button is which does nothing
 		actualRefresh.addListener(new ClickListener() {
 
 			/* (non-Javadoc)

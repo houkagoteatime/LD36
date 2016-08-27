@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 
@@ -25,7 +26,7 @@ public abstract class Level {
 	public int mapPixelWidth;
 	public int mapPixelHeight;
 	    
-
+	private PlayerInputProcessor proc;
 	private Player player;
 	private ArrayList<Enemy> enemies;
 	
@@ -36,6 +37,7 @@ public abstract class Level {
 		calcMapProperties(mapProp);
 		enemies = new ArrayList<Enemy>();
 		player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
+		proc = new PlayerInputProcessor(player);
 	}
 	
 	/**
@@ -44,8 +46,8 @@ public abstract class Level {
 	public abstract void spawnEnemies();
 
 	public void update(float dt) {
-		
-		
+		proc.queryInput();
+		player.update(dt);
 	}
 	
 	public void calcMapProperties(MapProperties mapProp) {
