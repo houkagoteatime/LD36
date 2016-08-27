@@ -3,6 +3,7 @@ package com.github.houkagoteatime.LD36.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.github.houkagoteatime.LD36.levels.Level;
 	/**
 	 * game objects that interact with each other should inherit this
 	 */
@@ -15,13 +16,15 @@ import com.badlogic.gdx.math.Vector2;
 		private float xPosition,yPosition, xMovement, yMovement;
 		public static final float DIAG_MULTIPLIER = (float)Math.sqrt(2)/2;
 		private boolean dead = false;
+		private Level level;
 		
 		/**Constructor for entity
 		 * @param health how much health it has
 		 * @param damage how much damage it does
 		 * @param sprite the sprite that is being used
 		 */
-		public Entity(int health, int damage, int speed, Sprite sprite) {
+		public Entity(Level level, int health, int damage, int speed, Sprite sprite) {
+			this.level = level;
 			this.sprite = sprite;
 			this.health = health;
 			this.damage = damage;
@@ -112,6 +115,20 @@ import com.badlogic.gdx.math.Vector2;
 			return speed * direction * deltaTime;
 		}
 		
+		/**
+		 * @return the level
+		 */
+		public Level getLevel() {
+			return level;
+		}
+
+		/**
+		 * @param level the level to set
+		 */
+		public void setLevel(Level level) {
+			this.level = level;
+		}
+
 		/**
 		 * @return the sprite
 		 */

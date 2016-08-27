@@ -1,6 +1,7 @@
 package com.github.houkagoteatime.LD36.levels;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -42,7 +43,7 @@ public abstract class Level {
 		this.wallLayer = (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
+		this.player = new Player(this, 100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 	}
@@ -53,6 +54,14 @@ public abstract class Level {
 	public abstract void spawnEnemies();
 
 	public void update(float dt) {
+		Iterator<Projectile> projectileIterator = projectiles.iterator();
+		while(projectileIterator.hasNext()) {
+			Projectile p = projectileIterator.next();
+			if(p.isOutOfRange())
+				projectileIterator.remove();
+			else
+				p.update(dt);
+		}
 		proc.queryInput();
 		player.update(dt);
 		for(int i = 0; i < getEnemies().size(); i++) {
@@ -106,7 +115,10 @@ public abstract class Level {
 	public void addProjectile(Projectile proj) {
 		projectiles.add(proj);
 	}
-
+	
+	public void removeProjectile(Projectile proj) {
+		projectiles.remove(proj);
+	}
 	public TiledMap getTiledMap() {
 		return tiledMap;
 	}

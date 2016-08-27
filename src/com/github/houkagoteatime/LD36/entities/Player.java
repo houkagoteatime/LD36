@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
+import com.github.houkagoteatime.LD36.levels.Level;
+import com.github.houkagoteatime.LD36.weapons.Rock;
+import com.github.houkagoteatime.LD36.weapons.Weapon;
 
 /**
  *
@@ -14,12 +17,17 @@ public class Player extends Entity{
 	
 	private int health;
 	private boolean dead = false;
+	private Weapon wep;
+	public static final float HEIGHT = 30;
+	public static final float WIDTH = 30;
 	
 	private TiledMapTileLayer collisionLayer;
 	
-	public Player(int health, int damage, Sprite sprite, TiledMapTileLayer collisionLayer) {
-		super(health, damage, PLAYER_SPEED, sprite);
+	public Player(Level level, int health, int damage, Sprite sprite, TiledMapTileLayer collisionLayer) {
+		super(level, health, damage, PLAYER_SPEED, sprite);
 		this.collisionLayer = collisionLayer;
+		wep = new Rock(this, level);
+		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 
 	/* (non-Javadoc)
@@ -47,14 +55,11 @@ public class Player extends Entity{
 		//save old position before the collision
 		float oldX = this.getxPosition();
 		float oldY = this.getyPosition();
-		float tileWidth = collisionLayer.getTileWidth();
-		float tileHeight = collisionLayer.getTileHeight();
 		boolean collideX = false;
 		boolean collideY = false;
 
 		this.setxPosition(this.getxPosition() + updateMovement(this.getxMovement(), xCalculatedMovement));
 		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
-	
 		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 		this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
 		if(directionX < 0) {
@@ -69,8 +74,6 @@ public class Player extends Entity{
 			move(0,PLAYER_SPEED/4);
 		}
 
-		//getyPosition() += updateMovement(this.getyMovement(), yCalculatedMovement);
-		//this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
 		
 		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
 		
@@ -83,16 +86,12 @@ public class Player extends Entity{
 			setyPosition(oldY);
 			move(PLAYER_SPEED/4,0);
 		}
-		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
-		//this.getxMovement() = updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement;
-		//this.getyMovement() = updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement;
 		
 	}
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-		
+		wep.attack(sprite.getRotation());
 	}
 	
 	private boolean isCellBlocked(float x, float y) {

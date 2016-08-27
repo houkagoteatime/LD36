@@ -7,6 +7,7 @@ import com.badlogic.gdx.ai.msg.Telegram;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
+import com.github.houkagoteatime.LD36.levels.Level;
 
 public class Enemy extends Entity{
 
@@ -73,8 +74,8 @@ public class Enemy extends Entity{
 	 * @param speed the speed
 	 * @param player the player playing the game
 	 */
-	public Enemy(int health, int damage, Sprite sprite, int speed, Player player) {
-		super(health, damage, speed, sprite);
+	public Enemy(Level level, int health, int damage, Sprite sprite, int speed, Player player) {
+		super(level, health, damage, speed, sprite);
 		this.player = player;
 		this.stateMachine = new DefaultStateMachine<Enemy, EnemyState>(this, EnemyState.SLEEP);
 	}

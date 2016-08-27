@@ -1,13 +1,16 @@
 package com.github.houkagoteatime.LD36.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.levels.Level1;
+import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public class GameScreen implements Screen{
 
@@ -20,6 +23,7 @@ public class GameScreen implements Screen{
 		cam = new OrthographicCamera(500, 500);
 		level = new Level1();
 		
+		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 	}
 	
 	public GameScreen() {
@@ -31,11 +35,12 @@ public class GameScreen implements Screen{
 	 */
 	@Override
 	public void render(float dt) {
-		
+		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 		level.update(dt);
 		updateCam(level.getPlayer());
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
+		
         level.getTiledMapRenderer().render();
 	}
 	

@@ -50,7 +50,11 @@ public class PlayerInputProcessor {
 		} else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
 			player.rotate(90);
 			player.move(Player.PLAYER_SPEED, 0);
+		} else {
+			player.move(0, 0);
 		}
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+			player.attack();
 	}
 
 }
