@@ -1,10 +1,13 @@
 package com.github.houkagoteatime.LD36.weapons;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.github.houkagoteatime.LD36.levels.Level;
 
 public abstract class Projectile{
+	private boolean isFriendly;
 	private float xPosition, yPosition;
 	private float startXPosition, startyPosition;
 	private float angle;
@@ -14,6 +17,8 @@ public abstract class Projectile{
 	private Sprite sprite;
 	private Level level;
 	private float range;
+	private TiledMapTileLayer collisionLayer;
+	private boolean collide;
 	/**
 	 * @param sprite the sprite
 	 * @param damage the amount of damage
@@ -21,25 +26,40 @@ public abstract class Projectile{
 	 * @param yPosition the y position of the projectile
 	 * @param angle the angle of the projectile
 	 */
-	public Projectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range) {
+	public Projectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range, boolean isFriendly, TiledMapTileLayer collisionLayer) {
+
+		this.collisionLayer = collisionLayer;
+		this.isFriendly = isFriendly;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.startXPosition = xPosition;
 		this.startyPosition = yPosition; 
+		//System.out.print(startXPosition + "" + startyPosition);
 		this.angle = angle;
 		this.damage = damage;
 		this.sprite = sprite;
+		
 		bounds = new Rectangle(xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
 		this.range = range;
 	}
 
-	public void update(float dt) {
+	/*public void update(float dt) {
+
+		updateBounds();
 		xPosition += Math.sin(Math.toRadians(angle)) * SPEED * dt;
 		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
-	}
+	}*/
 
+	public void updateBounds() {
+		bounds = new Rectangle(xPosition, yPosition, xPosition + sprite.getWidth() * 0.25f, yPosition +sprite.getHeight() * 0.25f);
+	}
+	
+	public Rectangle getBounds() {
+		return bounds;
+	}
 	public boolean isOutOfRange() {
 		if(pythagoreanize(xPosition - startXPosition, yPosition - startyPosition) > range) {
+			//System.out.println(pythagoreanize(xPosition - startXPosition, yPosition - startyPosition) > range);
 			return true;
 		}
 		return false;
@@ -71,6 +91,11 @@ public abstract class Projectile{
 		return xPosition;
 	}
 
+
+	
+	public boolean getCollide() {
+		return collide;
+	}
 	/**
 	 * @param xPosition the xPosition to set
 	 */
@@ -105,5 +130,77 @@ public abstract class Projectile{
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
 	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
 
+	private boolean isCellBlocked(float x, float y) {
+		Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
+		if(cell == null)
+			return true;
+		return cell.getTile() != null && cell.getTile().getProperties().containsKey("b");
+	}
+
+	public boolean collidesRight() {
+		for(float step = 0; step < sprite.getHeight(); step += collisionLayer.getTileHeight() / 2)
+			if(isCellBlocked(getxPosition() + sprite.getWidth(), getyPosition() + step))
+				return true;
+		return false;
+	}
+
+	public boolean collidesLeft() {
+		for(float step = 0; step < sprite.getHeight(); step += collisionLayer.getTileHeight() / 2)
+			if(isCellBlocked(getxPosition(), getyPosition() + step))
+				return true;
+		return false;
+	}
+
+	public boolean collidesTop() {
+		for(float step = 0; step < sprite.getWidth(); step += collisionLayer.getTileWidth() / 2)
+			if(isCellBlocked(getxPosition() + step, getyPosition() + sprite.getHeight()))
+				return true;
+		return false;
+
+	}
+
+	public boolean collidesBottom() {
+		for(float step = 0; step < sprite.getWidth(); step += collisionLayer.getTileWidth() / 2)
+			if(isCellBlocked(getxPosition() + step, getyPosition()))
+				return true;
+		return false;
+	}
+	
+	public void update(float dt) {
+		
+		updateBounds();
+		xPosition += Math.sin(Math.toRadians(angle)) * SPEED * dt;
+		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
+		boolean collideX = false;
+		boolean collideY = false;
+		
+		if(Math.sin(Math.toRadians(angle)) * SPEED * dt < 0) {
+			collideX = collidesLeft();
+		} else if(Math.sin(Math.toRadians(angle)) * SPEED * dt > 0) {
+			collideX = collidesRight();
+		}
+		
+		if(collideX) {
+			collide = true;
+		}
+		
+		if(Math.cos(Math.toRadians(angle)) * SPEED * dt> 0) {
+			collideY = collidesTop();
+		} else if(Math.cos(Math.toRadians(angle)) * SPEED * dt < 0) {
+			collideY = collidesBottom();
+		}
+		if(collideY) {
+			collide = true;
+		}
+		
+	}
 }

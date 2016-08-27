@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
@@ -53,22 +55,54 @@ public abstract class Level {
 	 */
 	public abstract void spawnEnemies();
 
+	public void handlePlayerProjectileCollision(float dt) {
+		for(int i = 0; i < projectiles.size(); i++) {
+			Projectile p = projectiles.get(i);
+			for(Enemy e: enemies) {
+				/*Rectangle bullet = new Rectangle(
+						p.getxPosition(), 
+						p.getyPosition(), 
+						p.getxPosition() + p.getSprite().getWidth(), 
+						p.getyPosition() + p.getSprite().getY());
+				Rectangle enemy = new Rectangle(
+						e.getxPosition(), 
+						e.getyPosition(), 
+						e.getxPosition() + e.getSprite().getWidth(), 
+						e.getyPosition() + e.getSprite().getY());
+				if(bullet.overlaps(enemy)) {
+					System.out.println(bullet + ":" + enemy);
+					e.setHealth(e.getHealth() - p.getDamage());
+					System.out.println(e.getHealth());
+					projectiles.remove(i);
+				}*/
+				//p.getBounds().setCenter(new Vector2(p.getSprite().getX(),p.getSprite().getY()));
+				if(p.getBounds().overlaps(e.getBounds())) {
+					e.setHealth(e.getHealth() - p.getDamage());
+					projectiles.remove(i);
+				}
+			}
+		}
+	}
+	
 	public void update(float dt) {
 		Iterator<Projectile> projectileIterator = projectiles.iterator();
 		while(projectileIterator.hasNext()) {
 			Projectile p = projectileIterator.next();
 			if(p.isOutOfRange())
 				projectileIterator.remove();
+			else if (p.getCollide())
+				projectileIterator.remove();
 			else
 				p.update(dt);
 		}
+		handlePlayerProjectileCollision(dt);
 		proc.queryInput();
 		player.update(dt);
-		for(int i = 0; i < getEnemies().size(); i++) {
-			if(!getEnemies().get(i).isDead()) {
-				getEnemies().get(i).update(dt);
+		for(int i = 0; i < enemies.size(); i++) {
+			if(!enemies.get(i).isDead()) {
+				enemies.get(i).update(dt);
 			} else {
-				getEnemies().remove(i);
+				enemies.remove(i);
 			}
 		}
 	}

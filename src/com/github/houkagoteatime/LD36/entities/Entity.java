@@ -38,12 +38,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 		public Rectangle getBounds() {
 			return bounds;
 		}
-
-		/**
-		 * @param bounds the bounds to set
-		 */
-		public void setBounds(Rectangle bounds) {
-			this.bounds = bounds;
+		
+		public void updateBounds() {
+			bounds = new Rectangle(xPosition, yPosition, xPosition + sprite.getWidth() * 0.25f, yPosition +sprite.getHeight() * 0.25f);
 		}
 
 		/* (non-Javadoc)
@@ -70,6 +67,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 		 * @param deltaTime the amount of time that has passed
 		 */
 		public void update(float deltaTime) {
+			updateBounds();
 			//kill the entity
 			if(health == 0)
 				dead = true;
@@ -88,7 +86,6 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 			xMovement = updateMovement(xMovement, xCalculatedMovement) == xMovement ? 0 : xMovement - xCalculatedMovement;
 			yMovement = updateMovement(yMovement, yCalculatedMovement) == yMovement ? 0 : yMovement - yCalculatedMovement;
-			
 			
 		}
 		

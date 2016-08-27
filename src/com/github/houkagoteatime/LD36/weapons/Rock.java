@@ -3,6 +3,7 @@ package com.github.houkagoteatime.LD36.weapons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.levels.Level;
 
@@ -19,12 +20,12 @@ public class Rock implements Weapon{
 
 	@Override
 	public void attack(float angle) {
-		new RockProjectile(rockProjectileSprite, 10, owner.getxPosition(), owner.getyPosition(), angle, RANGE).spawn(level);
+		new RockProjectile(rockProjectileSprite, 10, owner.getxPosition(), owner.getyPosition(), angle, RANGE, true, level).spawn(level);
 	}
 	
 	public class RockProjectile extends Projectile {
-		public RockProjectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range) {
-			super(sprite, damage, xPosition, yPosition, angle, range);
+		public RockProjectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range, boolean isFriendly, Level level) {
+			super(sprite, damage, xPosition, yPosition, angle, range, isFriendly, level.getWallLayer());
 		}
 		
 	}

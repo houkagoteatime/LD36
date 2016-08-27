@@ -82,7 +82,6 @@ public class Enemy extends Entity{
 	
 	@Override
 	public void update(float dt) {
-		
 		super.update(dt);
 		//does not actually stop moving if player exits aggro range, but instead continues the position where player was last aggroed
 		this.stateMachine.update();

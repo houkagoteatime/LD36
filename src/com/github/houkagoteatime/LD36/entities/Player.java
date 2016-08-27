@@ -36,11 +36,12 @@ public class Player extends Entity{
 	@Override
 	public void spawn(int xPos, int yPos) {
 		super.spawn(xPos, yPos);
-		setBounds(new Rectangle(xPos, yPos, sprite.getWidth() - 20, sprite.getHeight() - 20));
+		updateBounds();
 	}
 
 	@Override
 	public void update(float deltaTime) {
+		//System.out.println(this.getxPosition() + "," + this.getyPosition());
 		//kill the entity
 		if(health == 0)
 			dead = true;
@@ -91,6 +92,8 @@ public class Player extends Entity{
 
 	@Override
 	public void attack() {
+
+		System.out.println(this.getxPosition() + "," + this.getyPosition());
 		wep.attack(sprite.getRotation());
 	}
 	
