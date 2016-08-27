@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
 
-
 public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
@@ -25,7 +24,11 @@ public class Enemy extends Entity{
 
 			@Override
 			public void update(Enemy enemy) {
-				
+				if(!enemy.isPlayerNearby()) {
+					enemy.getStateMachine().changeState(SLEEP);
+				} else {
+					enemy.move(enemy.getPlayer().getPosition().x - enemy.getPosition().x, enemy.getPlayer().getPosition().y - enemy.getPosition().y);
+				}
 			}
 			
 		},
@@ -37,7 +40,9 @@ public class Enemy extends Entity{
 
 			@Override
 			public void update(Enemy enemy) {
-				
+				if(enemy.isPlayerNearby()) {
+					enemy.getStateMachine().changeState(AGGRO);
+				} 
 			}
 			
 		};
@@ -67,6 +72,10 @@ public class Enemy extends Entity{
 	public Enemy(int health, int damage, Sprite sprite, Player player) {
 		super(health, damage, sprite);
 		this.player = player;
+	}
+	
+	public boolean isPlayerNearby() {
+		return false;
 	}
 	
 	/**
