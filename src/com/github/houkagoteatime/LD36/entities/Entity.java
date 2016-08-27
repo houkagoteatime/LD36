@@ -193,4 +193,36 @@ import com.badlogic.gdx.math.Vector2;
 		public Vector2 getPosition() {
 			return new Vector2(xPosition, yPosition);
 		}
+		
+		public float getxPosition() {
+			return xPosition;
+		}
+
+		public void setxPosition(float xPosition) {
+			this.xPosition = xPosition;
+		}
+
+		public float getyPosition() {
+			return yPosition;
+		}
+
+		public void setyPosition(float yPosition) {
+			this.yPosition = yPosition;
+		}
+
+		public float getxMovement() {
+			return xMovement;
+		}
+
+		public void setxMovement(float xMovement) {
+			this.xMovement = xMovement;
+		}
+
+		public float getyMovement() {
+			return yMovement;
+		}
+
+		public void setyMovement(float yMovement) {
+			this.yMovement = yMovement;
+		}
 }

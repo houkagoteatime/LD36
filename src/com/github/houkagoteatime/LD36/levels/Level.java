@@ -15,6 +15,7 @@ public abstract class Level {
 	
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
+	private TiledMapTileLayer wallLayer;
 	
 	public MapProperties mapProp;
 	public int mapWidth;
@@ -34,9 +35,10 @@ public abstract class Level {
 		this.tiledMap  = new TmxMapLoader().load(path);
 		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap);
 		this.mapProp = tiledMap.getProperties();
+		this.wallLayer = (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), getWallLayer(tiledMap));
+		this.player = new Player(100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
 	}
 	
 	/**
@@ -64,7 +66,7 @@ public abstract class Level {
 		
 	}
 	
-	public TiledMapTileLayer getWallLayer(TiledMap tiledMap) {
+	public TiledMapTileLayer getWallLayer() {
 		return (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 	}
 	
