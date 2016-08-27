@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Player extends Entity{
 	
-	public static final int PLAYER_SPEED = 500;
+	public static final int PLAYER_SPEED = 50;
 	
 	private int health;
 	private boolean dead = false;

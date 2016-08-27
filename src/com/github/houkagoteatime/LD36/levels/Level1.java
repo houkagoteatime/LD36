@@ -3,7 +3,7 @@ package com.github.houkagoteatime.LD36.levels;
 public class Level1 extends Level{
 
 	public Level1() {
-		super("assets/map.tmx");
+		super("assets/Copyofmap.tmx");
 	}
 
 	@Override
