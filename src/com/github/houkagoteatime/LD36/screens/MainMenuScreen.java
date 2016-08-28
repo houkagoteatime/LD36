@@ -103,7 +103,8 @@ public class MainMenuScreen implements Screen{
 			
 		});
 		//manager.playMusic("assets/music/Ho-kago Tea Time - U&I.mp3");
-		manager.playMusic("assets/music/Yume Miru Kusuri - Girls Are Made of Frosting Cake.mp3");
+		//manager.playMusic("assets/music/Yume Miru Kusuri - Girls Are Made of Frosting Cake.mp3");
+		//manager.playMusic("assets/music/Electric Avenue - Some Brit.mp3");
 	}
 	
 	@Override

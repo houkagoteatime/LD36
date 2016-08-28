@@ -1,6 +1,7 @@
 package com.github.houkagoteatime.LD36.weapons;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.entities.Entity;
 
 public class Melee implements Weapon{

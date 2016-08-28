@@ -40,7 +40,6 @@ public class GameScreen implements Screen{
 		updateCam(level.getPlayer());
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
-		
         level.getTiledMapRenderer().render();
 	}
 	

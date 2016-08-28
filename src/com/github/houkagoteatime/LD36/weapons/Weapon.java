@@ -1,7 +1,9 @@
 package com.github.houkagoteatime.LD36.weapons;
 
-public interface Weapon {
 
+public interface Weapon {
+	
+	
 	/**
 	 * @param angle the angle to attack
 	 */

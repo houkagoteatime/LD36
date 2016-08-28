@@ -3,7 +3,6 @@ package com.github.houkagoteatime.LD36.weapons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.levels.Level;
 
@@ -21,7 +20,7 @@ public class Rock implements Weapon{
 		this.owner = owner;
 		this.level = level;
 	}
-
+	
 	@Override
 	public void attack(float angle) {
 		if(delayCounter >= DELAY) {
