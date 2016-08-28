@@ -43,7 +43,7 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
                         //draw projectiles
 						for(Projectile p : level.getProjectiles()) {
 							//this.getBatch().draw(p.getSprite(), p.getxPosition(), p.getyPosition());
-							this.getBatch().draw(p.getSprite(), p.getxPosition(), p.getyPosition(), p.getSprite().getOriginX(), p.getSprite().getOriginY(), 32f, 32f, 1f, 1f, p.getSprite().getRotation());
+							this.getBatch().draw(p.getSprite(), p.getxPosition(), p.getyPosition(), p.getSprite().getOriginX(), p.getSprite().getOriginY(), 13f, 13f, 1f, 1f, p.getSprite().getRotation());
 						}
 						Iterator<Melee> melee = level.getMeleeWeps().iterator();
 						while(melee.hasNext()) {

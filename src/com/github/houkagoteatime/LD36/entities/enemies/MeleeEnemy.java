@@ -17,7 +17,7 @@ public class MeleeEnemy extends Enemy{
 	public static final int HEALTH = 100;
 	public static final int DAMAGE = 80;
 	public static final int SPEED = 40;
-	public static final int RANGE = 30;
+	public static final int RANGE = 15;
 	public static final int I_FRAME = 30;
 	private Weapon weapon;
 	

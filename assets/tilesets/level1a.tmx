@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="23">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -54,6 +54,30 @@
     <property name="stopProjectile" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 72.7222,6.04545 63.3111,133 -0.855556,127.818 18.8222,108.818 3.42222,111.409 0.855556,121.773 -4.27778,123.5 -4.27778,131.273 -0.855556,132.136"/>
+  </object>
+  <object id="19" x="0" y="448">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 112,0 112,16 0,16"/>
+  </object>
+  <object id="20" x="112" y="448">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,-112 -0.16,-112 0,0 -0.16,0 -0.16,-96"/>
+  </object>
+  <object id="21" x="112" y="288">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,-112 -0.16,-112 0,0 -0.16,0 -0.16,-96"/>
+  </object>
+  <object id="22" x="112" y="128">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,-128 -0.32,-128 0,0 -0.32,0 -0.32,-109.714"/>
   </object>
  </objectgroup>
  <layer name="Tile Layer 1" width="32" height="32">

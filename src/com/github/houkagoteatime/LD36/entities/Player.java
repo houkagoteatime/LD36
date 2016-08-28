@@ -25,8 +25,8 @@ public class Player extends Entity{
 	private Weapon wep;
 	private Weapon meleeWep;
 	private OrthographicCamera cam;
-	public static final float HEIGHT = 30;
-	public static final float WIDTH = 30;
+	public static final float HEIGHT = 15;
+	public static final float WIDTH = 15;
 	private Sprite sword;
 	public MapObjects mapObj;
 	public Weapon getWeapon() {
@@ -37,7 +37,7 @@ public class Player extends Entity{
 		super(level, health, damage, PLAYER_SPEED, sprite);
 		wep = new Rock(this, level);
 		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
-		meleeWep = new Melee(sword, this, 30);
+		meleeWep = new Melee(sword, this, 15);
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 
