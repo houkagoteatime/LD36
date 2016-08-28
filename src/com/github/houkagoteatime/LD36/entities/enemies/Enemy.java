@@ -14,7 +14,7 @@ public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
 	private Player player;
-	public static final float AGGRO_RANGE = 200f;
+	public static final float AGGRO_RANGE = 100f;
 	
 	/**
 	 *States that the enemy should be in
@@ -46,7 +46,7 @@ public class Enemy extends Entity{
 				if(enemy.isPlayerNearby()) {
 					enemy.getStateMachine().changeState(AGGRO);
 				} else {
-					//enemy.move(0,0);
+					enemy.move(0,0);
 				}
 			}
 			
@@ -70,7 +70,6 @@ public class Enemy extends Entity{
 	}
 
 
-	public static Vector2 lastPosition;
 	/**
 	 * @param health health of the enemy
 	 * @param damage how much damage it does
@@ -82,7 +81,6 @@ public class Enemy extends Entity{
 		super(level, health, damage, speed, sprite);
 		this.player = player;
 		this.stateMachine = new DefaultStateMachine<Enemy, EnemyState>(this, EnemyState.SLEEP);
-		lastPosition = new Vector2(0,0);
 	}
 	
 	@Override
@@ -90,13 +88,7 @@ public class Enemy extends Entity{
 		//help me josh
 
 		this.stateMachine.update();
-		if(this.getPosition().x - lastPosition.x > 100 || this.getPosition().y - lastPosition.y > 100) {
-			if(!(dt > 0.05)) {
-				this.move(lastPosition.x, lastPosition.y);
-			}
-		} else {
-			lastPosition = this.getCurrentPosition();
-		}
+		
 		super.update(dt);
 	}
 	/**

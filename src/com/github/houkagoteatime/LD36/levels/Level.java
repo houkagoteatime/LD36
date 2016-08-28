@@ -78,7 +78,6 @@ public abstract class Level {
 	
 
 	public void handleProjectileCollision(float dt) {
-		//enemy position is being set, however, it is not actual at the position yet
 		for(int i = 0; i < projectiles.size(); i++) {
 			Projectile p = projectiles.get(i);
 			//damage player
@@ -89,8 +88,7 @@ public abstract class Level {
 			}
 			//damage enemies
 			for(Enemy e: enemies) {
-				System.out.println("dt: " + dt + " : " + e.getPosition()); 
-				//if(p.getBounds().overlaps(e.getBounds())) {
+				System.out.println(p.getBounds() + ":" +  e.getBounds());
 				if(p.getBounds().overlaps(e.getBounds())) {
 					e.setHealth(e.getHealth() - p.getDamage());
 					System.out.println(e.getHealth());

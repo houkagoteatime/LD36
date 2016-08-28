@@ -40,26 +40,20 @@ public abstract class Projectile{
 		this.damage = damage;
 		this.sprite = sprite;
 		
-		bounds = new Rectangle(xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
+		bounds = new Rectangle(xPosition, yPosition, sprite.getWidth() /2, sprite.getHeight() /2);
 		this.range = range;
 	}
 
 	public boolean isFriendly() {
 		return isFriendly;
 	}
-	/*public void update(float dt) {
-
-		updateBounds();
-		xPosition += Math.sin(Math.toRadians(angle)) * SPEED * dt;
-		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
-	}*/
 
 	public Vector2 getPosition() {
 		return new Vector2(xPosition, yPosition);
 	}
 	
 	public void updateBounds() {
-		bounds = new Rectangle(getPosition().x, getPosition().y, getPosition().x + sprite.getWidth(), getPosition().y +sprite.getHeight());
+		bounds.setPosition(getPosition());
 	}
 	
 	public Rectangle getBounds() {
@@ -186,6 +180,7 @@ public abstract class Projectile{
 	public void update(float dt) {
 		
 		updateBounds();
+		
 		xPosition += Math.sin(Math.toRadians(angle)) * SPEED * dt;
 		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
 		boolean collideX = false;
