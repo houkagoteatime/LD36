@@ -69,7 +69,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 		public void update(float deltaTime) {
 			updateBounds();
 			//kill the entity
-			if(health == 0)
+			if(health <= 0)
 				dead = true;
 			
 			//determine direction of movement

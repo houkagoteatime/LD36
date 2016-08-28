@@ -14,7 +14,9 @@ import com.github.houkagoteatime.LD36.weapons.Weapon;
 public class Player extends Entity{
 	
 	public static final int PLAYER_SPEED = 50;
+	public static final int I_FRAME = 45;
 	
+	public int iFrameCounter;
 	private int health;
 	private boolean dead = false;
 	private Weapon wep;
@@ -22,6 +24,10 @@ public class Player extends Entity{
 	public static final float WIDTH = 30;
 	
 	private TiledMapTileLayer collisionLayer;
+	
+	public Weapon getWeapon() {
+		return wep;
+	}
 	
 	public Player(Level level, int health, int damage, Sprite sprite, TiledMapTileLayer collisionLayer) {
 		super(level, health, damage, PLAYER_SPEED, sprite);

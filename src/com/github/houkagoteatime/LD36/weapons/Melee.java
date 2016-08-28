@@ -20,4 +20,22 @@ public class Melee implements Weapon{
 		extension = new Rectangle(xPos, yPos, xSide, ySide);
 	}
 
+	@Override
+	public void incrementDelayCounter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getDelayCounter() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setDelayCounter(int delay) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

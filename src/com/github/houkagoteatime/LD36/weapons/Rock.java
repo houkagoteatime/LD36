@@ -11,7 +11,11 @@ public class Rock implements Weapon{
 	private Entity owner;
 	private Sprite rockProjectileSprite;
 	private Level level;
+	public int delayCounter;
+	public static final int DAMAGE = 10;
+	public static final int DELAY = 30;
 	public static final float RANGE = 200;
+	
 	public Rock(Entity owner, Level level) {
 		rockProjectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/rockproj.png")));
 		this.owner = owner;
@@ -20,7 +24,10 @@ public class Rock implements Weapon{
 
 	@Override
 	public void attack(float angle) {
-		new RockProjectile(rockProjectileSprite, 10, owner.getxPosition(), owner.getyPosition(), angle, RANGE, true, level).spawn(level);
+		if(delayCounter >= DELAY) {
+			new RockProjectile(rockProjectileSprite, DAMAGE, owner.getxPosition(), owner.getyPosition(), angle, RANGE, true, level).spawn(level);
+			delayCounter = 0;
+		}
 	}
 	
 	public class RockProjectile extends Projectile {
@@ -30,4 +37,18 @@ public class Rock implements Weapon{
 		
 	}
 
+	@Override
+	public void incrementDelayCounter() {
+		delayCounter++;
+	}
+
+	@Override
+	public int getDelayCounter() {
+		return delayCounter;
+	}
+
+	@Override
+	public void setDelayCounter(int delay) {
+		delayCounter = delay;
+	}
 }

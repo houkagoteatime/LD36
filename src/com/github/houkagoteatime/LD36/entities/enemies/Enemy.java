@@ -14,8 +14,10 @@ public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
 	private Player player;
-	public static final float AGGRO_RANGE = 100f;
+	public static final float AGGRO_RANGE = 200f;
 	
+	public static final int I_FRAME = 30;
+	public int iFrameCounter;
 	/**
 	 *States that the enemy should be in
 	 */
@@ -85,10 +87,7 @@ public class Enemy extends Entity{
 	
 	@Override
 	public void update(float dt) {
-		//help me josh
-
 		this.stateMachine.update();
-		
 		super.update(dt);
 	}
 	/**
@@ -141,7 +140,4 @@ public class Enemy extends Entity{
 	public void attack() {
 		
 	}
-	
-	
-
 }

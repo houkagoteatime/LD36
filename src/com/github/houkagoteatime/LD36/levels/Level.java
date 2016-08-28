@@ -64,6 +64,8 @@ public abstract class Level {
 	}
 	
 	public void updateProjectiles(float dt) {
+
+		player.getWeapon().incrementDelayCounter();
 		Iterator<Projectile> projectileIterator = projectiles.iterator();
 		while(projectileIterator.hasNext()) {
 			Projectile p = projectileIterator.next();
@@ -82,15 +84,22 @@ public abstract class Level {
 			Projectile p = projectiles.get(i);
 			//damage player
 			if(!p.isFriendly()) {
+				player.iFrameCounter++;
 				if(p.getBounds().overlaps(this.getPlayer().getBounds())) {
-					player.setHealth(player.getHealth() - p.getDamage());
+					if(player.iFrameCounter > player.I_FRAME) {
+						player.setHealth(player.getHealth() - p.getDamage());
+						player.iFrameCounter = 0;
+					}
 				}
 			}
 			//damage enemies
 			for(Enemy e: enemies) {
-				System.out.println(p.getBounds() + ":" +  e.getBounds());
+				e.iFrameCounter++;
 				if(p.getBounds().overlaps(e.getBounds())) {
-					e.setHealth(e.getHealth() - p.getDamage());
+					if(e.iFrameCounter >= e.I_FRAME) {
+						e.setHealth(e.getHealth() - p.getDamage());
+						e.iFrameCounter = 0;
+					} 
 					System.out.println(e.getHealth());
 					projectiles.remove(i);
 				}
