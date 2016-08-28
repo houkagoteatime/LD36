@@ -14,7 +14,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 		private int speed;
 		private Rectangle bounds;
 		private float xPosition,yPosition, xMovement, yMovement;
-		public static final float DIAG_MULTIPLIER = (float)Math.sqrt(2)/2;
+		public static final float DIAG_MULTIPLIER = (float)(Math.sqrt(2)/4);
 		private boolean dead = false;
 		private Level level;
 		
@@ -30,7 +30,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			this.damage = damage;
 			this.speed = speed;
 			sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
-			bounds = new Rectangle(xPosition, yPosition, sprite.getWidth()/2, sprite.getHeight()/2);
+			bounds = new Rectangle(xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
 		}
 		
 		/**

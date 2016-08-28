@@ -1,12 +1,12 @@
 package com.github.houkagoteatime.LD36.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Rock;
@@ -25,6 +25,7 @@ public class Player extends Entity{
 	private boolean dead = false;
 	private Weapon wep;
 	private Weapon meleeWep;
+	private OrthographicCamera cam;
 	public static final float HEIGHT = 30;
 	public static final float WIDTH = 30;
 	private Sprite sword;
@@ -38,7 +39,8 @@ public class Player extends Entity{
 		super(level, health, damage, PLAYER_SPEED, sprite);
 		this.collisionLayer = collisionLayer;
 		wep = new Rock(this, level);
-		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/slash.png")));
+		
+		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
 		meleeWep = new Melee(sword, this, 30);
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
@@ -101,6 +103,10 @@ public class Player extends Entity{
 			move(PLAYER_SPEED/4,0);
 		}
 		
+	}
+	
+	public Vector3 unproject(Vector3 worldCoord) {
+		return cam.unproject(worldCoord);
 	}
 
 	@Override
@@ -179,6 +185,20 @@ public class Player extends Entity{
 	 */
 	public void setWep(Weapon wep) {
 		this.wep = wep;
+	}
+
+	/**
+	 * @return the cam
+	 */
+	public OrthographicCamera getCam() {
+		return cam;
+	}
+
+	/**
+	 * @param cam the cam to set
+	 */
+	public void setCam(OrthographicCamera cam) {
+		this.cam = cam;
 	}
 
 }

@@ -26,7 +26,7 @@ public class Melee implements Weapon{
 
 		float xPos = owner.getxPosition();
 		float yPos = owner.getyPosition();
-		sprite.setRotation(angle);
+		sprite.setRotation(-angle);
 		extension.setPosition(rectangleOrigin(angle, xPos, yPos));
 	}
 

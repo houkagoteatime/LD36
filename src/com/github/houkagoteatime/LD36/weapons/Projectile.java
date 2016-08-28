@@ -13,7 +13,7 @@ public abstract class Projectile{
 	private float startXPosition, startyPosition;
 	private float angle;
 	private int damage;
-	public static final int SPEED = 50;
+	public static final int SPEED = 90;
 	private Rectangle bounds;
 	private Sprite sprite;
 	private Level level;

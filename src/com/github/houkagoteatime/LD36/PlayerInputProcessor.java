@@ -3,6 +3,7 @@ package com.github.houkagoteatime.LD36;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
 
@@ -25,39 +26,14 @@ public class PlayerInputProcessor {
 	 */
 	public void queryInput() {
 		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+			float x = Gdx.input.getX();
+			float y = Gdx.input.getY();
+			Vector3 unprojectCoord = player.unproject(new Vector3(x, y, 0));
+			float newX = unprojectCoord.x - player.getxPosition();
+			float newY = unprojectCoord.y - player.getyPosition();
+			double angleToShot = Math.atan2(newX, newY);
+			player.rotate((float)Math.toDegrees(angleToShot));
 			
-			int x = Gdx.input.getX();
-			int y = Gdx.input.getY();
-			
-			//(0,0) is top left of screen
-			//(max,max) is bottom right
-			
-			//horizontal
-			if(SCREEN_HALF_HEIGHT - LEEWAY < y  && y < SCREEN_HALF_HEIGHT + LEEWAY) {
-				if(x < SCREEN_HALF_WIDTH) {
-					player.rotate(-90);
-				} else {
-					player.rotate(90);
-				}
-			}  else if(SCREEN_HALF_WIDTH - LEEWAY < x  && x < SCREEN_HALF_WIDTH + LEEWAY) {
-				if(y < SCREEN_HALF_WIDTH) {
-					player.rotate(0);
-				} else {
-					player.rotate(180);
-				}
-			} else if(x < SCREEN_HALF_WIDTH - LEEWAY) {
-				if(y < SCREEN_HALF_WIDTH) {
-					player.rotate(-45);
-				} else {
-					player.rotate(-135);
-				}
-			} else if(x > SCREEN_HALF_WIDTH - LEEWAY) {
-				if(y < SCREEN_HALF_WIDTH) {
-					player.rotate(45);
-				} else {
-					player.rotate(135);
-				}
-			} 
 			player.attack();
 		}
 		
