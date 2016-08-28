@@ -5,7 +5,11 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -23,6 +27,7 @@ public abstract class Level {
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
 	private TiledMapTileLayer wallLayer;
+	int objectLayerId = 5;
 	
 	public MapProperties mapProp;
 	public int mapWidth;
@@ -48,13 +53,17 @@ public abstract class Level {
 		this.wallLayer = (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(this, 100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
+		this.player = new Player(this, 300, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
 		this.game = game;
 	}
 	
+	public MapObjects getMapObjects() {
+		int objectLayerId = 1;
+		return tiledMap.getLayers().get(objectLayerId).getObjects();
+	}
 	/**
 	 * override this to change how the enemies spawn
 	 */
@@ -63,6 +72,7 @@ public abstract class Level {
 	public void update(float dt) {
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
+		handleContactDamage(dt);
 		proc.queryInput();
 		player.update(dt);
 		updateEnemies(dt);
@@ -86,6 +96,17 @@ public abstract class Level {
 		}
 	}
 	
+	public void handleContactDamage(float dt) {
+		for(Enemy e: enemies) {
+			player.iFrameCounter++;
+			if(e.getBounds().overlaps(player.getBounds())) {
+				if(player.iFrameCounter >= player.I_FRAME) {
+					player.setHealth(player.getHealth() - 10);
+					player.iFrameCounter = 0;
+				}
+			}
+		}
+	}
 
 	public void handleProjectileCollision(float dt) {
 		for(int i = 0; i < projectiles.size(); i++) {
@@ -94,14 +115,13 @@ public abstract class Level {
 			if(!p.isFriendly()) {
 				player.iFrameCounter++;
 				if(p.getBounds().overlaps(this.getPlayer().getBounds())) {
-					if(player.iFrameCounter > player.I_FRAME) {
+					if(player.iFrameCounter >= player.I_FRAME) {
 						player.setHealth(player.getHealth() - p.getDamage());
 						player.iFrameCounter = 0;
 					}
 				}
-			}
-			//damage enemies
-			for(Enemy e: enemies) {
+			} else {
+				for(Enemy e: enemies) {
 				e.iFrameCounter++;
 				if(p.getBounds().overlaps(e.getBounds())) {
 					if(e.iFrameCounter >= e.I_FRAME) {
@@ -110,6 +130,7 @@ public abstract class Level {
 					} 
 					System.out.println(e.getHealth());
 					projectiles.remove(i);
+					}
 				}
 			}
 		}

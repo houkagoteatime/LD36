@@ -49,13 +49,9 @@ public class GameScreen implements Screen{
 	 * @param player center the camera around player
 	 */
 	public void updateCam(Player player) {
-		//cam zoom shouldn't be changed much, should make a seperate function to change it
 		float effectiveViewportWidth = cam.viewportWidth * cam.zoom;
         float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
-        //cam.position.x = Gdx.graphics.getWidth() / 2;
-        //cam.position.y = Gdx.graphics.getHeight() / 2;
         player.setCam(cam);
-        //Make sure the camera stays within the range of the map, no black space shown on screen
 		cam.position.x = MathUtils.clamp(player.getPosition().x + player.getSprite().getWidth()/2, effectiveViewportWidth / 2f, level.mapPixelWidth - effectiveViewportWidth / 2f);
 	    cam.position.y = MathUtils.clamp(player.getPosition().y + player.getSprite().getHeight()/2, effectiveViewportHeight / 2f, level.mapPixelHeight - effectiveViewportWidth / 2f);
 	}

@@ -5,6 +5,9 @@ import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.msg.Telegram;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
@@ -16,8 +19,10 @@ public class Enemy extends Entity{
 	private Player player;
 	public static final float AGGRO_RANGE = 200f;
 	
+
 	public static final int I_FRAME = 30;
 	public int iFrameCounter;
+	
 	/**
 	 *States that the enemy should be in
 	 */
@@ -85,10 +90,61 @@ public class Enemy extends Entity{
 		this.stateMachine = new DefaultStateMachine<Enemy, EnemyState>(this, EnemyState.SLEEP);
 	}
 	
+	
+	
 	@Override
 	public void update(float dt) {
+		updateBounds();
 		this.stateMachine.update();
-		super.update(dt);
+		//System.out.println(this.getxPosition() + "," + this.getyPosition());
+		//kill the entity
+		if(this.getHealth() <= 0)
+			this.setDead(true);
+		
+		//determine direction of movement
+		int directionX = (int)Math.signum(this.getxMovement());
+		int directionY = (int)Math.signum(this.getyMovement());
+		//calculate how much the entity needs to move based on speed
+		float xCalculatedMovement = calculateMovement(this.getSpeed(), dt, directionX);
+		float yCalculatedMovement = calculateMovement(this.getSpeed(), dt, directionY);
+		
+		//save old position before the collision
+		float oldX = this.getxPosition();
+		float oldY = this.getyPosition();
+		boolean collideX = false;
+		boolean collideY = false;
+
+		this.setxPosition(this.getxPosition() + updateMovement(this.getxMovement(), xCalculatedMovement));
+		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
+		
+		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
+		this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
+		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
+		
+		for (PolygonMapObject rectangleObject : this.getLevel().getMapObjects().getByType(PolygonMapObject.class)) {
+				if(collidesObj(rectangleObject.getPolygon())) {
+					collideX = true;
+					collideY = true;
+				}
+			}
+			
+		if(collideX) {
+			setxPosition(oldX);
+			setxMovement(0);
+			move(0,this.getSpeed()/4);
+		}
+		
+		if(collideY) {
+			setyPosition(oldY);
+			move(this.getSpeed()/4,0);
+		}
+	}
+	
+	public boolean collidesObj(Polygon p) {
+		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
+		if(p.getBoundingRectangle().overlaps((n)))
+			return true;
+		return false;
 	}
 	/**
 	 * @return true if the player is within the aggro range

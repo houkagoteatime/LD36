@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="38">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="tiles.png" width="512" height="512"/>
   <tile id="30">
@@ -10,12 +10,23 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1KENACAMRNFu0pHYfxsMDjQ98cQzp5r8pKuqFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQp4/pO9AjkR5Z9ACSdd1/6rUxT48semTR478NRewLdQ==
+   eJzt1KENADAMA0FvkpGy/zYlXaCoBgeOW3rJm2QBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDpz/d6BHo306KIH0GzipwB4dwBu9wyV
   </data>
  </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="35" x="0" y="3104">
+   <polygon points="0,0 96,0 96,-32 0,-32"/>
+  </object>
+  <object id="36" x="96" y="2880">
+   <polygon points="0,0 64,0 64,128 0,128"/>
+  </object>
+  <object id="37" x="226" y="3085">
+   <polygon points="0,0 17,14 11,44 -3,48 -17,39 -16,8"/>
+  </object>
+ </objectgroup>
  <layer name="Tile Layer 2" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKQkEMBNDczPvfQG+gN/B3brOFEBYECVO8B6lSDkxI1bdbM8y7r3lUn8feMee55lV9HnvHnPeaq/o89o45+iqLvsqirzJ1efwy/Mfpfshj3ul+yGPe6X7IY56+yqKvspz6inn+8yz+8yz+80zuBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQ7gNp1FH9
+   eJzt1zEKgjEMBtB4Mu9/A72BTjrqpHWoIoSCIPkzvAfpkqXwQUIivu2Tot5h1DHyPGaPOqdR58jzmD3q3EbdI89j9qhjXvViXvViXvWU5fFL8R+r/SGPeqv9IY96q/0hj3rmVS/mVS+reUU993kv7vNe3Oc92R8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0cBl13foTvD1ez27rXwB8PAGD11Tc
   </data>
  </layer>
 </map>
