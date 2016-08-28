@@ -38,6 +38,7 @@ public class Archer extends Enemy{
 					enemy.getStateMachine().changeState(STATIONARY);
 				} else {
 					if(enemy.isPlayerNearby(RANGE)) {
+						//System.out.println("I CAN ATTACK");
 						enemy.attack();
 					}
 					enemy.move(enemy.player.getPosition().x - enemy.getPosition().x, enemy.player.getPosition().y - enemy.getPosition().y);
@@ -118,6 +119,7 @@ public class Archer extends Enemy{
 
 	@Override
 	public void attack() {
+		//System.out.println("I AM ATACKING");
 		weapon.attack(getAngleToPlayer());
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="23">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="45">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -9,6 +9,14 @@
  <tileset firstgid="493" name="tiles_16" tilewidth="16" tileheight="16" tilecount="2652" columns="102">
   <image source="tiles_16.png" width="1632" height="416"/>
  </tileset>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <properties>
+   <property name="Name" value="Ground"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0tkNwjAMBmBLTR5ogQm6CedGlGMFBoEeYqGWYxocKRVW5MKL0wfkh09qoqh/7DgHgFwp9VWZAFSoRo3/HtKfuSVy+RMDkKIMTdGMWTtHYm7k8ndMXsHsPQnJ/JbJ6pi9jf2IXf/S8nsrtBbO5+rn3j9WPjd/7v336EBmLlY+13/3/nf0IDM3Vv+zIKufuZj1036nXngHuj4J10/7XQyg+S/B/EVQW2d49MzWyuVf8F9XVHoVqn9oBPOVUkr9t/PIeW/9rpwG
+  </data>
+ </layer>
  <objectgroup name="Object Layer 1">
   <properties>
    <property name="stopProjectile" type="bool" value="true"/>
@@ -43,11 +51,11 @@
    </properties>
    <polygon points="0,0 86,-1 88,66 2,69"/>
   </object>
-  <object id="10" x="295" y="99">
+  <object id="10" x="297" y="94">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 88,0 87,66 20,49"/>
+   <polygon points="0,0 88,0 87,66 -7,77"/>
   </object>
   <object id="14" x="162" y="347">
    <properties>
@@ -80,14 +88,6 @@
    <polygon points="0,0 0,-128 -0.32,-128 0,0 -0.32,0 -0.32,-109.714"/>
   </object>
  </objectgroup>
- <layer name="Tile Layer 1" width="32" height="32">
-  <properties>
-   <property name="Name" value="Ground"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0kkOwjAMBVBLTRe0wAl6E8YbUYYLQQdxIcpwGhypFVb0CxuHlRdPaqKoP3ZcEFFhjPmqSohq1rC2/x4znLkmevkTR5SxnE3ZDKy9ozB3evk7kFeCvaegmX8DWR3Y26QfsetfpnhvxdbK+ah+9P6x8tH8+fffs4OYuVj5qP/+/e/sIWbuX/3Pg6xh5mLWL/ud9cI7yPVJuX7Z73KEzH8p5i+C2jqHyTPbVC//zP+6sKpXs+aHVjHfGGOM0fQGz76bnQ==
-  </data>
- </layer>
  <layer name="Tile Layer 2" width="32" height="32">
   <properties>
    <property name="Name" value="Path, decorative"/>
@@ -133,4 +133,11 @@
    eJztx1sNgDAUwNAZGEwEDxEwTIB/LasAllyS8deT9KMpSZIkSZLeZJpophL40RZaaaM98KMddFKlK/B/uOn58OprIGcHPA==
   </data>
  </layer>
+ <objectgroup name="Object Layer 2">
+  <object id="44" gid="131" x="80" y="512" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

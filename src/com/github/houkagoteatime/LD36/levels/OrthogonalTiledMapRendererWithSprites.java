@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
@@ -55,6 +56,9 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
                     }
                 } else {
                     for (MapObject object : layer.getObjects()) {
+                    	if(object instanceof TiledMapTileMapObject) {
+                    		this.getBatch().draw(((TiledMapTileMapObject) object).getTextureRegion(), ((TiledMapTileMapObject) object).getX(), ((TiledMapTileMapObject) object).getY());
+                    	}
                         renderObject(object);
                     }
                 }

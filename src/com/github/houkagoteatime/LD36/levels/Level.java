@@ -3,13 +3,19 @@ package com.github.houkagoteatime.LD36.levels;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
@@ -25,7 +31,8 @@ public abstract class Level {
 
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
-	int objectLayerId = 0;
+	public static final int WALL_OBJECT_LAYER_ID = 1;
+	public static final int GAME_OBJECT_LAYER_ID = 8;
 	public MapProperties mapProp;
 	public int mapWidth;
 	public int mapHeight;
@@ -61,9 +68,24 @@ public abstract class Level {
 		}
 	}
 
+	public MapObjects getGameObjects() {
+		return tiledMap.getLayers().get(GAME_OBJECT_LAYER_ID).getObjects();
+	}
+	
+	public void handleGameObjects() {
+			for(TiledMapTileMapObject obj: getGameObjects().getByType(TiledMapTileMapObject.class)) {
+				if(player.getBounds().contains(obj.getX(),obj.getY() + tilePixelHeight/4)) {
+					System.out.println("Overlap");
+					if(obj.getProperties().get("hp10").equals(true)) {
+						player.setHealth(player.getHealth() + 10);
+						System.out.println("hp");
+						getGameObjects().remove(obj);
+					}
+				}
+			}
+	}
 	public MapObjects getMapObjects() {
-		int objectLayerId = 0;
-		return tiledMap.getLayers().get(objectLayerId).getObjects();
+		return tiledMap.getLayers().get(WALL_OBJECT_LAYER_ID).getObjects();
 	}
 	/**
 	 * override this to change how the enemies spawn
@@ -73,6 +95,7 @@ public abstract class Level {
 	public void update(float dt) {
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
+		handleGameObjects();
 		handleContactDamage(dt);
 		proc.queryInput();
 		player.update(dt);
