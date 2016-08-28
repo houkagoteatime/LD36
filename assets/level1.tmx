@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="6">
+ <tileset firstgid="1" name="wood_tileset_2" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="tilesets/wood_tileset_2.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt0acRwEAAxMD/ceSO3LH/Cq0uDlhgsYBqKaVKkiRJ0g/0GDCG+is27KH+jQdvqN+gRRf6MmHGEvpy4MQV+vIBzkoGOA==
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" x="74" y="868">
+   <polygon points="0,0 44,0 42,56 11,62"/>
+  </object>
+  <object id="3" x="105" y="801">
+   <polygon points="0,0 45,8 47,64 8,66"/>
+  </object>
+  <object id="4" x="235" y="867">
+   <polygon points="0,0 44,3 42,58 4,58"/>
+  </object>
+  <object id="5" x="169" y="954">
+   <polygon points="0,0 39,0 43,64 16,67 -9,70"/>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzUEVABAABFHJkAANaKCC6NZBBXsw/705TwgAAAAAfhdVUtn0L6qqZvpP4/++lxq8n3G+j254b9rtCYE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="32" height="32" offsetx="-32" offsety="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENACAIBVEn0w10Ax1UN9Ch/AV21tDcS64mEFICAAAAgBhTrcD5W52g2b/dPe/x293jHlkVK0JVzXo8797VsB6vP7xNUQ79
+  </data>
+ </layer>
+</map>

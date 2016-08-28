@@ -15,7 +15,7 @@ import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRenderer {
-    private int drawSpritesAfterLayer = 1;
+    private int drawSpritesAfterLayer = 7;
     private Level level;
 
     public OrthogonalTiledMapRendererWithSprites(TiledMap map, Level level) {

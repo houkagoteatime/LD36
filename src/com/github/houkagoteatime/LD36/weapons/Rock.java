@@ -28,7 +28,7 @@ public class Rock extends ProjectileBasedWeapon{
 	
 	public class RockProjectile extends Projectile {
 		public RockProjectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range, boolean isFriendly, Level level) {
-			super(sprite, damage, xPosition, yPosition, angle, range, isFriendly, level.getWallLayer());
+			super(sprite, damage, xPosition, yPosition, angle, range, isFriendly);
 		}
 		
 	}

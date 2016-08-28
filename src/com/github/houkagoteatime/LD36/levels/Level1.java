@@ -8,7 +8,7 @@ public class Level1 extends Level{
 
 	
 	public Level1(GameScreen screen) {
-		super("assets/Copyofmap.tmx", screen);
+		super("assets/tilesets/level1a.tmx", screen);
 		EnemySpawner.init(this);
 	}
 

@@ -33,7 +33,7 @@ public class BowAndArrow extends ProjectileBasedWeapon{
 
 		public Arrow(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range,
 				boolean isFriendly) {
-			super(sprite, damage, xPosition, yPosition, angle, range, isFriendly, level.getWallLayer());
+			super(sprite, damage, xPosition, yPosition, angle, range, isFriendly);
 		}
 		
 	}

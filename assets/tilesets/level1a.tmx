@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="19">
+ <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
+  <image source="tiles_packed_1.png" width="368" height="128"/>
+ </tileset>
+ <tileset firstgid="185" name="snow-expansion" tilewidth="16" tileheight="16" tilecount="308" columns="22">
+  <image source="snow-expansion.png" width="352" height="224"/>
+ </tileset>
+ <tileset firstgid="493" name="tiles_16" tilewidth="16" tileheight="16" tilecount="2652" columns="102">
+  <image source="tiles_16.png" width="1632" height="416"/>
+ </tileset>
+ <objectgroup name="Object Layer 1">
+  <properties>
+   <property name="stopProjectile" type="bool" value="true"/>
+  </properties>
+  <object id="1" x="234.25" y="348">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 143.5,0 153.75,121 10.25,72.6 -10.25,121 30.75,121 51.25,84.7 10.25,72.6 -10.25,121"/>
+  </object>
+  <object id="2" x="464" y="32">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 42.7519,0 42.7519,413.268 0,413.268 -28.5013,399.018"/>
+  </object>
+  <object id="7" x="161" y="209">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 87,0 88,90 0,95"/>
+  </object>
+  <object id="8" x="295" y="211">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 88,0 88,91 0,90"/>
+  </object>
+  <object id="9" x="161" y="100">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 86,-1 88,66 2,69"/>
+  </object>
+  <object id="10" x="295" y="99">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 88,0 87,66 20,49"/>
+  </object>
+  <object id="14" x="162" y="347">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 72.7222,6.04545 63.3111,133 -0.855556,127.818 18.8222,108.818 3.42222,111.409 0.855556,121.773 -4.27778,123.5 -4.27778,131.273 -0.855556,132.136"/>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <properties>
+   <property name="Name" value="Ground"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0kkOwjAMBVBLTRe0wAl6E8YbUYYLQQdxIcpwGhypFVb0CxuHlRdPaqKoP3ZcEFFhjPmqSohq1rC2/x4znLkmevkTR5SxnE3ZDKy9ozB3evk7kFeCvaegmX8DWR3Y26QfsetfpnhvxdbK+ah+9P6x8tH8+fffs4OYuVj5qP/+/e/sIWbuX/3Pg6xh5mLWL/ud9cI7yPVJuX7Z73KEzH8p5i+C2jqHyTPbVC//zP+6sKpXs+aHVjHfGGOM0fQGz76bnQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="32" height="32">
+  <properties>
+   <property name="Name" value="Path, decorative"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowA3EAViMQqxOAX261CgFwb0aGT/VyDmYYTgb6P2D2v7LbBgZPsDcKihlv2WODDMflzyw8V+bGAkpb9R+0ftJxdQYv92oN9OUYgXMpJv/0D7f9T+gbH/9Kj9A2o/DAx3+/MIYFcq2O8MxC448EADAHw2PUU=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="32" height="32">
+  <properties>
+   <property name="tree" value="uperlayer"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzdl00OwiAQhelWPYIu/D2BC6PewI16BBdtr9roHbyKQ1IMmQDDJDzb+CUvTX/gSeEN1pgwi8j1X7Efif87cv9JemX0w9tvKmO2pF2Vbpf7/mO/L8aRfE+ks+cfGgvq/V/J90a6C+NH+dfk25Dagfwdzcj9EeRmBo3Ln7QGJA7K53Ozb0HUXz/7fP55HfH9O9s2om/fwn1Lbva5fyn87LfC/CP8NbUavf9K+f/H/V+Tv5K4uhfae2PMe6X60+Lnb4j6Xyt8LwD/jp2n8o/wT8FrQyl/f61o1j9i/Kn9h4PIv2b/QYyf//e0xwkdp0wz0gPg79a/Pw9LOl8xrXuh0MwDgtxvgBCp2qv9FpPg9QrRxwcsvDJ1
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="32" height="32">
+  <properties>
+   <property name="tree firstback" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztlNsNgCAMRWEAH0OIrmAEncHX/rN4P40aCAUlmJ7kfDSh9uO2CvE9jRRCwVYmGA4GzNXQJJo/Y+4C10TzU8P5c/5/y7/3eMv5/y9/Hzh/zj+n/AtYwgrWhDqUBirYwo5Q377nuX8aGjjCiVBfoezfBveA+kxu+xebnP4/1Fuy9fnk77ql2H1XXLcUu+8J2y290fclB75hHXM=
+  </data>
+ </layer>
+ <layer name="Tile Layer 5" width="32" height="32">
+  <properties>
+   <property name="tree thirdback" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx1sNgDAUwNAZGEwEDxEwTIB/LasAllyS8deT9KMpSZIkSXqTaaKZSuBHW2iljfbAj3bQSZWuwP/hpufDS+prtCUHPA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 6" width="32" height="32">
+  <properties>
+   <property name="tree" value="fourthback"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx7kRgDAQwEA3YKAIniLAbgL6rwVlJI7uCLUzClSKJEmSJH0qTTTTEvislTba6Qh81kkXNeqB/8NNT+KlkRdGVQml
+  </data>
+ </layer>
+ <layer name="Tile Layer 7" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztx1sNgDAUwNAZGEwEDxEwTIB/LasAllyS8deT9KMpSZIkSZLeZJpophL40RZaaaM98KMddFKlK/B/uOn58OprIGcHPA==
+  </data>
+ </layer>
+</map>

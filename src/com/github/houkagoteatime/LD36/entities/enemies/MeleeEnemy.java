@@ -14,7 +14,7 @@ public class MeleeEnemy extends Enemy{
 
 	private StateMachine<MeleeEnemy, EnemyState> defaultStateMachine;
 	public static final float AGGRO_RANGE = 200f;
-	public static final int HEALTH = 300;
+	public static final int HEALTH = 100;
 	public static final int DAMAGE = 80;
 	public static final int SPEED = 40;
 	public static final int RANGE = 30;

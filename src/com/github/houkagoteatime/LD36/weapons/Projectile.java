@@ -1,8 +1,10 @@
 package com.github.houkagoteatime.LD36.weapons;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.levels.Level;
@@ -18,7 +20,6 @@ public abstract class Projectile{
 	private Sprite sprite;
 	private Level level;
 	private float range;
-	private TiledMapTileLayer collisionLayer;
 	private boolean collide;
 	/**
 	 * @param sprite the sprite
@@ -27,9 +28,8 @@ public abstract class Projectile{
 	 * @param yPosition the y position of the projectile
 	 * @param angle the angle of the projectile
 	 */
-	public Projectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range, boolean isFriendly, TiledMapTileLayer collisionLayer) {
+	public Projectile(Sprite sprite, int damage, float xPosition, float yPosition, float angle, float range, boolean isFriendly) {
 
-		this.collisionLayer = collisionLayer;
 		this.isFriendly = isFriendly;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
@@ -140,42 +140,6 @@ public abstract class Projectile{
 	public int getDamage() {
 		return damage;
 	}
-
-	private boolean isCellBlocked(float x, float y) {
-		Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
-		if(cell == null)
-			return true;
-		return cell.getTile() != null && cell.getTile().getProperties().containsKey("b");
-	}
-
-	public boolean collidesRight() {
-		for(float step = 0; step < sprite.getHeight(); step += collisionLayer.getTileHeight() / 2)
-			if(isCellBlocked(getxPosition() + sprite.getWidth(), getyPosition() + step))
-				return true;
-		return false;
-	}
-
-	public boolean collidesLeft() {
-		for(float step = 0; step < sprite.getHeight(); step += collisionLayer.getTileHeight() / 2)
-			if(isCellBlocked(getxPosition(), getyPosition() + step))
-				return true;
-		return false;
-	}
-
-	public boolean collidesTop() {
-		for(float step = 0; step < sprite.getWidth(); step += collisionLayer.getTileWidth() / 2)
-			if(isCellBlocked(getxPosition() + step, getyPosition() + sprite.getHeight()))
-				return true;
-		return false;
-
-	}
-
-	public boolean collidesBottom() {
-		for(float step = 0; step < sprite.getWidth(); step += collisionLayer.getTileWidth() / 2)
-			if(isCellBlocked(getxPosition() + step, getyPosition()))
-				return true;
-		return false;
-	}
 	
 	public void update(float dt) {
 		
@@ -183,27 +147,22 @@ public abstract class Projectile{
 		
 		xPosition += Math.sin(Math.toRadians(angle)) * SPEED * dt;
 		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
-		boolean collideX = false;
-		boolean collideY = false;
 		
-		if(Math.sin(Math.toRadians(angle)) * SPEED * dt < 0) {
-			collideX = collidesLeft();
-		} else if(Math.sin(Math.toRadians(angle)) * SPEED * dt > 0) {
-			collideX = collidesRight();
+		for (PolygonMapObject rectangleObject : level.getMapObjects().getByType(PolygonMapObject.class)) {
+			if(collidesObj(rectangleObject.getPolygon())) {
+				if(rectangleObject.getProperties().get("stopProjectile").equals(true)) {
+					collide = true;
+				} else {
+					collide = false;
+				}
+			}
 		}
+	}
 		
-		if(collideX) {
-			collide = true;
-		}
-		
-		if(Math.cos(Math.toRadians(angle)) * SPEED * dt> 0) {
-			collideY = collidesTop();
-		} else if(Math.cos(Math.toRadians(angle)) * SPEED * dt < 0) {
-			collideY = collidesBottom();
-		}
-		if(collideY) {
-			collide = true;
-		}
-		
+	private boolean collidesObj(Polygon p) {
+		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
+		if(p.getBoundingRectangle().overlaps((n)))
+			return true;
+		return false;
 	}
 }
