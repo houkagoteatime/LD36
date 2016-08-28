@@ -93,7 +93,7 @@ public class Player extends Entity{
 	@Override
 	public void attack() {
 
-		System.out.println(this.getxPosition() + "," + this.getyPosition());
+		//System.out.println(this.getxPosition() + "," + this.getyPosition());
 		wep.attack(sprite.getRotation());
 	}
 	

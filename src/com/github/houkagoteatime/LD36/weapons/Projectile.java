@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.levels.Level;
 
 public abstract class Projectile{
@@ -43,6 +44,9 @@ public abstract class Projectile{
 		this.range = range;
 	}
 
+	public boolean isFriendly() {
+		return isFriendly;
+	}
 	/*public void update(float dt) {
 
 		updateBounds();
@@ -50,8 +54,12 @@ public abstract class Projectile{
 		yPosition += Math.cos(Math.toRadians(angle)) * SPEED * dt;
 	}*/
 
+	public Vector2 getPosition() {
+		return new Vector2(xPosition, yPosition);
+	}
+	
 	public void updateBounds() {
-		bounds = new Rectangle(xPosition, yPosition, xPosition + sprite.getWidth() * 0.25f, yPosition +sprite.getHeight() * 0.25f);
+		bounds = new Rectangle(getPosition().x, getPosition().y, getPosition().x + sprite.getWidth(), getPosition().y +sprite.getHeight());
 	}
 	
 	public Rectangle getBounds() {

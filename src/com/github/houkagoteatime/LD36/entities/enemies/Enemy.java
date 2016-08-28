@@ -5,6 +5,7 @@ import com.badlogic.gdx.ai.fsm.State;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.msg.Telegram;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
@@ -13,13 +14,12 @@ public class Enemy extends Entity{
 
 	private StateMachine<Enemy, EnemyState> stateMachine;
 	private Player player;
-	public static final float AGGRO_RANGE = 160f;
+	public static final float AGGRO_RANGE = 200f;
 	
 	/**
 	 *States that the enemy should be in
 	 */
 	public enum EnemyState implements State<Enemy> {
-		
 		/**
 		 *Enemy will attempt to move towards the player until they are out of aggro range
 		 */
@@ -45,7 +45,9 @@ public class Enemy extends Entity{
 			public void update(Enemy enemy) {
 				if(enemy.isPlayerNearby()) {
 					enemy.getStateMachine().changeState(AGGRO);
-				} 
+				} else {
+					//enemy.move(0,0);
+				}
 			}
 			
 		};
@@ -67,6 +69,8 @@ public class Enemy extends Entity{
 		
 	}
 
+
+	public static Vector2 lastPosition;
 	/**
 	 * @param health health of the enemy
 	 * @param damage how much damage it does
@@ -78,13 +82,22 @@ public class Enemy extends Entity{
 		super(level, health, damage, speed, sprite);
 		this.player = player;
 		this.stateMachine = new DefaultStateMachine<Enemy, EnemyState>(this, EnemyState.SLEEP);
+		lastPosition = new Vector2(0,0);
 	}
 	
 	@Override
 	public void update(float dt) {
-		super.update(dt);
-		//does not actually stop moving if player exits aggro range, but instead continues the position where player was last aggroed
+		//help me josh
+
 		this.stateMachine.update();
+		if(this.getPosition().x - lastPosition.x > 100 || this.getPosition().y - lastPosition.y > 100) {
+			if(!(dt > 0.05)) {
+				this.move(lastPosition.x, lastPosition.y);
+			}
+		} else {
+			lastPosition = this.getCurrentPosition();
+		}
+		super.update(dt);
 	}
 	/**
 	 * @return true if the player is within the aggro range

@@ -39,8 +39,12 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			return bounds;
 		}
 		
+		public Vector2 getCurrentPosition() {
+			return(new Vector2(getSprite().getX(), getSprite().getY()));
+		}
+		
 		public void updateBounds() {
-			bounds = new Rectangle(xPosition, yPosition, xPosition + sprite.getWidth() * 0.25f, yPosition +sprite.getHeight() * 0.25f);
+			bounds = new Rectangle(getPosition().x, getPosition().y, getPosition().x + sprite.getWidth(), getPosition().y +sprite.getHeight());
 		}
 
 		/* (non-Javadoc)
@@ -51,12 +55,17 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			this.xPosition = xPos;
 			this.yPosition = yPos;
 		}
-
 		/**
 		 * @param moveX how much the sprite should move relative to its x position
 		 * @param moveY how much the sprite should move relative to its y position
 		 */
 		public void move(float moveX, float moveY) {
+			if(moveX == 0) {
+				xPosition = xPosition;
+			}
+			if(moveY == 0) {
+				yPosition = yPosition;
+			}
 			xMovement = moveX;
 			yMovement = moveY;
 		}
