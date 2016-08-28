@@ -28,8 +28,6 @@ public class Player extends Entity{
 	public static final int I_FRAME = 45;
 	
 	public int iFrameCounter;
-	private int health;
-	private boolean dead = false;
 	private Weapon wep;
 	private Weapon meleeWep;
 	private OrthographicCamera cam;
@@ -60,12 +58,12 @@ public class Player extends Entity{
 
 	@Override
 	public void update(float deltaTime) {
-		updateBounds();
 		//System.out.println(this.getxPosition() + "," + this.getyPosition());
 		//kill the entity
-		if(health == 0)
-			dead = true;
-		
+		if(getHealth() <= 0) {			
+			this.setDead(true);
+		}
+		updateBounds();
 		//determine direction of movement
 		int directionX = (int)Math.signum(this.getxMovement());
 		int directionY = (int)Math.signum(this.getyMovement());
@@ -118,7 +116,7 @@ public class Player extends Entity{
 	
 	public void meleeAttack() {
 		meleeWep.attack(sprite.getRotation());
-		getLevel().handleMelee((Melee)meleeWep);
+		getLevel().handlePlayerMelee((Melee)meleeWep);
 	}
 	
 	public boolean collidesObj(Polygon p) {

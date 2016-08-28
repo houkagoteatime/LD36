@@ -26,6 +26,7 @@ public class GameScreen implements Screen{
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
+		level.spawnEnemies();
 	}
 	
 	public GameScreen() {

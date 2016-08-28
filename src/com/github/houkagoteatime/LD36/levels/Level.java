@@ -5,19 +5,16 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
-import com.github.houkagoteatime.LD36.LD36Game;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.entities.enemies.SleeperEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
@@ -76,8 +73,9 @@ public abstract class Level {
 		proc.queryInput();
 		player.update(dt);
 		updateEnemies(dt);
-		if(enemies.isEmpty() || player.isDead())
+		if(enemies.isEmpty() || player.isDead()) {
 			game.gameOver();
+		}
 			
 	}
 	
@@ -100,7 +98,7 @@ public abstract class Level {
 		for(Enemy e: enemies) {
 			player.iFrameCounter++;
 			if(e.getBounds().overlaps(player.getBounds())) {
-				if(player.iFrameCounter >= player.I_FRAME) {
+				if(player.iFrameCounter >= Player.I_FRAME) {
 					player.setHealth(player.getHealth() - 10);
 					player.iFrameCounter = 0;
 				}
@@ -115,33 +113,40 @@ public abstract class Level {
 			if(!p.isFriendly()) {
 				player.iFrameCounter++;
 				if(p.getBounds().overlaps(this.getPlayer().getBounds())) {
-					if(player.iFrameCounter >= player.I_FRAME) {
+					if(player.iFrameCounter > Player.I_FRAME) {
 						player.setHealth(player.getHealth() - p.getDamage());
 						player.iFrameCounter = 0;
 					}
 				}
-			} else {
-				for(Enemy e: enemies) {
+			}
+			//damage enemies
+			for(Enemy e: enemies) {
 				e.iFrameCounter++;
 				if(p.getBounds().overlaps(e.getBounds())) {
-					if(e.iFrameCounter >= e.I_FRAME) {
+					if(e.iFrameCounter >= SleeperEnemy.I_FRAME) {
 						e.setHealth(e.getHealth() - p.getDamage());
 						e.iFrameCounter = 0;
 					} 
-					System.out.println(e.getHealth());
 					projectiles.remove(i);
 					}
 				}
 			}
 		}
-	}
 	
-	public void handleMelee(Melee melee) {
+	public void handlePlayerMelee(Melee melee) {
 		Rectangle rec = melee.getExtension();
 		for(Enemy enemy : enemies) {
 			if(enemy.getBounds().overlaps(rec)) {
 				enemy.setHealth(enemy.getHealth() - Melee.DAMAGE);
 			}
+		}
+		meleeWeps.add(melee);
+	}
+	
+	public void handleMelee(Melee melee) {
+		Rectangle rec = melee.getExtension();
+		if(player.getBounds().overlaps(rec)) {
+			player.setHealth(player.getHealth() - Melee.DAMAGE);
 		}
 		meleeWeps.add(melee);
 	}
@@ -186,7 +191,7 @@ public abstract class Level {
 		return enemies;
 	}
 	
-	public void addEnemies(Enemy e) {
+	public void addEnemies(SleeperEnemy e) {
 		enemies.add(e);
 	}
 	
