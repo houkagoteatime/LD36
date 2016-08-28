@@ -1,12 +1,17 @@
 package com.github.houkagoteatime.LD36.entities.enemies;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
+import com.github.houkagoteatime.LD36.utils.Node;
+import com.github.houkagoteatime.LD36.utils.PathFinder;
 
 
 /**
@@ -20,6 +25,8 @@ public abstract class Enemy extends Entity{
 	protected Player player;
 	public int iFrameCounter;
 	public static final float DEFAULT_AGGRO_RANGE = 90f;
+	private PathFinder pathFinder;
+	private ArrayList<Node> pathToPlayer;
 	public Enemy(Level level, int health, int damage, int speed, Sprite sprite, Player player) {
 		super(level, health, damage, speed, sprite);
 		this.player = player;
@@ -70,10 +77,26 @@ public abstract class Enemy extends Entity{
 
 		if(collideY) {
 			setyPosition(oldY);
+			setyMovement(0);
 			move(this.getSpeed()/4,0);
 		}
+		
+		System.out.println(getyMovement() + "" + getxMovement());
+		if(getyMovement() == 0 && getxMovement() == 0) {
+			System.out.println("stuck");
+			getPath();
+			followPath(0);
+			
+		}
 	}
-
+	
+	public void followPath(int step) {
+		move(pathToPlayer.get(step).x * 16, pathToPlayer.get(step).y * 16);
+	}
+	
+	public void getPath() {
+		pathToPlayer = pathFinder.findPath(new Vector2(getxPosition(), getyPosition()), player.getPosition());
+	}
 	public boolean collidesObj(Polygon p) {
 		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
 		if(p.getBoundingRectangle().overlaps((n)))
@@ -103,6 +126,24 @@ public abstract class Enemy extends Entity{
 	 */
 	public float pythagoreanize(float side1, float side2) {
 		return (float)Math.sqrt((double)(Math.pow(side1, 2)) + Math.pow(side2, 2));
+	}
+
+
+
+	/**
+	 * @return the pathFinder
+	 */
+	public PathFinder getPathFinder() {
+		return pathFinder;
+	}
+
+
+
+	/**
+	 * @param pathFinder the pathFinder to set
+	 */
+	public void setPathFinder(PathFinder pathFinder) {
+		this.pathFinder = pathFinder;
 	}
 	
 }

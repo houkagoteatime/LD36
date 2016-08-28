@@ -17,6 +17,7 @@ import com.github.houkagoteatime.LD36.entities.enemies.Archer;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.entities.enemies.MeleeEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
+import com.github.houkagoteatime.LD36.utils.PathFinder;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
@@ -42,6 +43,7 @@ public abstract class Level {
 	private PlayerInputProcessor proc;
 	private ArrayList<Melee> meleeWeps;
 	private GameScreen game;
+	private PathFinder finder;
 	public Level(String path, GameScreen game) {
 		this.tiledMap  = new TmxMapLoader().load(path);
 		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap, this);
@@ -53,6 +55,10 @@ public abstract class Level {
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
 		this.game = game;
+		finder = new PathFinder(this, 80);
+		for(Enemy enemy : enemies) {
+			enemy.setPathFinder(finder);
+		}
 	}
 
 	public MapObjects getMapObjects() {

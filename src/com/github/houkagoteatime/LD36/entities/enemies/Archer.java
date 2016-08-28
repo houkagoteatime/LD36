@@ -14,7 +14,7 @@ public class Archer extends Enemy{
 	public static final int DAMAGE = 500;
 	public static final int SPEED = 40;
 	public static final int RANGE = 500;
-	public static final int AGGRO_RANGE = 300;
+	public static final int AGGRO_RANGE = 900;
 	private BowAndArrow weapon;
 	private StateMachine<Archer, ArcherState> stateMachine;
 	
@@ -38,7 +38,6 @@ public class Archer extends Enemy{
 					enemy.getStateMachine().changeState(STATIONARY);
 				} else {
 					if(enemy.isPlayerNearby(RANGE)) {
-						System.out.println("I CAN ATTACK");
 						enemy.attack();
 					}
 					enemy.move(enemy.player.getPosition().x - enemy.getPosition().x, enemy.player.getPosition().y - enemy.getPosition().y);
@@ -119,7 +118,6 @@ public class Archer extends Enemy{
 
 	@Override
 	public void attack() {
-		System.out.println("I AM ATACKING");
 		weapon.attack(getAngleToPlayer());
 	}
 
