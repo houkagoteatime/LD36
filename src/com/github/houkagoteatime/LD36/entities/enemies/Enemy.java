@@ -1,8 +1,5 @@
 package com.github.houkagoteatime.LD36.entities.enemies;
 
-import com.badlogic.gdx.ai.fsm.State;
-import com.badlogic.gdx.ai.fsm.StateMachine;
-import com.badlogic.gdx.ai.msg.Telegram;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.math.Polygon;
@@ -14,7 +11,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 
 /**
  * @param health health of the enemy
- * @param damage how much damage it does
+ * @param defaultDamage how much damage it does
  * @param sprite the enemy sprite
  * @param speed the speed
  * @param player the player playing the game
@@ -107,6 +104,7 @@ public abstract class Enemy extends Entity{
 	public float pythagoreanize(float side1, float side2) {
 		return (float)Math.sqrt((double)(Math.pow(side1, 2)) + Math.pow(side2, 2));
 	}
+	
 }
 
 

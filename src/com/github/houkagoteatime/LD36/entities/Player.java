@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -15,10 +12,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Rock;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.math.Polygon;
 /**
  *
  */

@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
+import com.github.houkagoteatime.LD36.entities.enemies.Archer;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.entities.enemies.SleeperEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
@@ -20,12 +21,12 @@ import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public abstract class Level {
-	
+
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
 	private TiledMapTileLayer wallLayer;
 	int objectLayerId = 5;
-	
+
 	public MapProperties mapProp;
 	public int mapWidth;
 	public int mapHeight;
@@ -33,7 +34,7 @@ public abstract class Level {
 	public int tilePixelHeight;
 	public int mapPixelWidth;
 	public int mapPixelHeight;
-	    
+
 
 	public static final int WALL_LAYER = 0;
 
@@ -50,13 +51,13 @@ public abstract class Level {
 		this.wallLayer = (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(this, 300, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
+		this.player = new Player(this, 75, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
 		this.game = game;
 	}
-	
+
 	public MapObjects getMapObjects() {
 		int objectLayerId = 1;
 		return tiledMap.getLayers().get(objectLayerId).getObjects();
@@ -65,7 +66,7 @@ public abstract class Level {
 	 * override this to change how the enemies spawn
 	 */
 	public abstract void spawnEnemies();
-	
+
 	public void update(float dt) {
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
@@ -76,12 +77,17 @@ public abstract class Level {
 		if(enemies.isEmpty() || player.isDead()) {
 			game.gameOver();
 		}
-			
+
 	}
-	
+
 	public void updateProjectiles(float dt) {
 
 		player.getWeapon().incrementDelayCounter();
+		for(Enemy e: enemies) {
+			if(e instanceof Archer) {
+				((Archer) e).getWeapon().incrementDelayCounter();
+			}
+		}
 		Iterator<Projectile> projectileIterator = projectiles.iterator();
 		while(projectileIterator.hasNext()) {
 			Projectile p = projectileIterator.next();
@@ -93,7 +99,7 @@ public abstract class Level {
 				p.update(dt);
 		}
 	}
-	
+
 	public void handleContactDamage(float dt) {
 		for(Enemy e: enemies) {
 			player.iFrameCounter++;
@@ -118,21 +124,22 @@ public abstract class Level {
 						player.iFrameCounter = 0;
 					}
 				}
-			}
-			//damage enemies
-			for(Enemy e: enemies) {
-				e.iFrameCounter++;
-				if(p.getBounds().overlaps(e.getBounds())) {
-					if(e.iFrameCounter >= SleeperEnemy.I_FRAME) {
-						e.setHealth(e.getHealth() - p.getDamage());
-						e.iFrameCounter = 0;
-					} 
-					projectiles.remove(i);
+			} else {
+				//damage enemies
+				for(Enemy e: enemies) {
+					e.iFrameCounter++;
+					if(p.getBounds().overlaps(e.getBounds())) {
+						if(e.iFrameCounter >= SleeperEnemy.I_FRAME) {
+							e.setHealth(e.getHealth() - p.getDamage());
+							e.iFrameCounter = 0;
+						} 
+						projectiles.remove(i);
 					}
 				}
 			}
 		}
-	
+	}
+
 	public void handlePlayerMelee(Melee melee) {
 		Rectangle rec = melee.getExtension();
 		for(Enemy enemy : enemies) {
@@ -142,7 +149,7 @@ public abstract class Level {
 		}
 		meleeWeps.add(melee);
 	}
-	
+
 	public void handleMelee(Melee melee) {
 		Rectangle rec = melee.getExtension();
 		if(player.getBounds().overlaps(rec)) {
@@ -150,7 +157,7 @@ public abstract class Level {
 		}
 		meleeWeps.add(melee);
 	}
-	
+
 	public void updateEnemies(float dt) {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(!enemies.get(i).isDead()) {
@@ -161,48 +168,48 @@ public abstract class Level {
 		}
 	}
 	public void calcMapProperties(MapProperties mapProp) {
-		
-		 mapWidth = mapProp.get("width", Integer.class);
-	     mapHeight = mapProp.get("height", Integer.class);
-	     tilePixelWidth = mapProp.get("tilewidth", Integer.class);
-	     tilePixelHeight = mapProp.get("tileheight", Integer.class);
 
-	     mapPixelWidth = mapWidth * tilePixelWidth;
-	     mapPixelHeight = mapHeight * tilePixelHeight;
+		mapWidth = mapProp.get("width", Integer.class);
+		mapHeight = mapProp.get("height", Integer.class);
+		tilePixelWidth = mapProp.get("tilewidth", Integer.class);
+		tilePixelHeight = mapProp.get("tileheight", Integer.class);
+
+		mapPixelWidth = mapWidth * tilePixelWidth;
+		mapPixelHeight = mapHeight * tilePixelHeight;
 	}
-	
+
 	public void dispose() {
-		
+
 	}
-	
+
 	public TiledMapTileLayer getWallLayer() {
 		return (TiledMapTileLayer)tiledMap.getLayers().get(WALL_LAYER);
 	}
-	
+
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
+
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
-	
+
 	public void addEnemies(SleeperEnemy e) {
 		enemies.add(e);
 	}
-	
+
 	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
 	}
-	
+
 	public void addProjectile(Projectile proj) {
 		projectiles.add(proj);
 	}
-	
+
 	public void removeProjectile(Projectile proj) {
 		projectiles.remove(proj);
 	}
@@ -223,13 +230,13 @@ public abstract class Level {
 	public TiledMap getTiledMap() {
 		return tiledMap;
 	}
-	
+
 	public OrthogonalTiledMapRendererWithSprites getTiledMapRenderer() {
 		return tiledMapRenderer;
 	}
-	
+
 	public MapProperties getMapProperties() {
 		return mapProp;
-		
+
 	}
 }
