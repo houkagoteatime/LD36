@@ -11,7 +11,7 @@ import com.github.houkagoteatime.LD36.weapons.BowAndArrow;
 
 public class Archer extends Enemy{
 	public static final int HEALTH = 200;
-	public static final int DAMAGE = 500;
+	public static final int DAMAGE = 10;
 	public static final int SPEED = 40;
 	public static final int RANGE = 500;
 	public static final int AGGRO_RANGE = 900;
