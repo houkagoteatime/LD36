@@ -78,7 +78,7 @@ public class PlayerInputProcessor {
 		} else if(Gdx.input.isKeyPressed(Input.Keys.S)) {
 			if(Gdx.input.isKeyPressed(Input.Keys.A)) {
 				player.rotate(-135);
-				player.move(-Player.PLAYER_SPEED, -Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER);
+				player.move(-Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER, -Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER);
 			} else if(Gdx.input.isKeyPressed(Input.Keys.D)) {
 				player.rotate(135);
 				player.move(Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER, -Player.PLAYER_SPEED * Entity.DIAG_MULTIPLIER);
@@ -98,6 +98,8 @@ public class PlayerInputProcessor {
 		
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
 			player.attack();
+		else if(Gdx.input.isKeyPressed(Input.Keys.Q))
+			player.meleeAttack();
 	}
 
 }

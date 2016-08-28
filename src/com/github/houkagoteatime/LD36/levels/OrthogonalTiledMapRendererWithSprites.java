@@ -1,16 +1,16 @@
 package com.github.houkagoteatime.LD36.levels;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRenderer {
@@ -43,6 +43,13 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
 						for(Projectile p : level.getProjectiles()) {
 							this.getBatch().draw(p.getSprite(), p.getxPosition(), p.getyPosition());
 						}
+						Iterator<Melee> melee = level.getMeleeWeps().iterator();
+						while(melee.hasNext()) {
+							Melee meleeSp = melee.next();
+							this.getBatch().draw(meleeSp.getSprite(), meleeSp.getExtension().getX(), meleeSp.getExtension().getY(), meleeSp.getSprite().getOriginX(), meleeSp.getSprite().getOriginY(), 32f, 32f, 1f, 1f, meleeSp.getSprite().getRotation());
+							melee.remove();
+						}
+						
                     }
                 } else {
                     for (MapObject object : layer.getObjects()) {

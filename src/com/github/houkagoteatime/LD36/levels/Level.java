@@ -10,10 +10,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public abstract class Level {
@@ -37,6 +37,7 @@ public abstract class Level {
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Projectile> projectiles;
 	private PlayerInputProcessor proc;
+	private ArrayList<Melee> meleeWeps;
 	
 	public Level(String path) {
 		this.tiledMap  = new TmxMapLoader().load(path);
@@ -48,6 +49,7 @@ public abstract class Level {
 		this.player = new Player(this, 100, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")), wallLayer);
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
+		meleeWeps = new ArrayList<>();
 	}
 	
 	/**
@@ -107,6 +109,16 @@ public abstract class Level {
 		}
 	}
 	
+	public void handleMelee(Melee melee) {
+		Rectangle rec = melee.getExtension();
+		for(Enemy enemy : enemies) {
+			if(enemy.getBounds().overlaps(rec)) {
+				enemy.setHealth(enemy.getHealth() - Melee.DAMAGE);
+			}
+		}
+		meleeWeps.add(melee);
+	}
+	
 	public void updateEnemies(float dt) {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(!enemies.get(i).isDead()) {
@@ -162,6 +174,20 @@ public abstract class Level {
 	public void removeProjectile(Projectile proj) {
 		projectiles.remove(proj);
 	}
+	/**
+	 * @return the meleeWeps
+	 */
+	public ArrayList<Melee> getMeleeWeps() {
+		return meleeWeps;
+	}
+
+	/**
+	 * @param meleeWeps the meleeWeps to set
+	 */
+	public void setMeleeWeps(ArrayList<Melee> meleeWeps) {
+		this.meleeWeps = meleeWeps;
+	}
+
 	public TiledMap getTiledMap() {
 		return tiledMap;
 	}

@@ -1,11 +1,14 @@
 package com.github.houkagoteatime.LD36.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.levels.Level;
+import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Rock;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
 
@@ -21,9 +24,10 @@ public class Player extends Entity{
 	private int health;
 	private boolean dead = false;
 	private Weapon wep;
+	private Weapon meleeWep;
 	public static final float HEIGHT = 30;
 	public static final float WIDTH = 30;
-	
+	private Sprite sword;
 	private TiledMapTileLayer collisionLayer;
 	
 	public Weapon getWeapon() {
@@ -34,6 +38,8 @@ public class Player extends Entity{
 		super(level, health, damage, PLAYER_SPEED, sprite);
 		this.collisionLayer = collisionLayer;
 		wep = new Rock(this, level);
+		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/slash.png")));
+		meleeWep = new Melee(sword, this, 30);
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 
@@ -104,6 +110,11 @@ public class Player extends Entity{
 		wep.attack(sprite.getRotation());
 	}
 	
+	public void meleeAttack() {
+		meleeWep.attack(sprite.getRotation());
+		getLevel().handleMelee((Melee)meleeWep);
+	}
+	
 	private boolean isCellBlocked(float x, float y) {
 		Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()), (int) (y / collisionLayer.getTileHeight()));
 		if(cell == null)
@@ -154,6 +165,20 @@ public class Player extends Entity{
 	
 	public float getHeight() {
 		return sprite.getHeight();
+	}
+
+	/**
+	 * @return the wep
+	 */
+	public Weapon getWep() {
+		return wep;
+	}
+
+	/**
+	 * @param wep the wep to set
+	 */
+	public void setWep(Weapon wep) {
+		this.wep = wep;
 	}
 
 }
