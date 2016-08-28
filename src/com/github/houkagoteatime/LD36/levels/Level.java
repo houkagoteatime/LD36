@@ -15,7 +15,7 @@ import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Archer;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
-import com.github.houkagoteatime.LD36.entities.enemies.SleeperEnemy;
+import com.github.houkagoteatime.LD36.entities.enemies.MeleeEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
@@ -129,7 +129,7 @@ public abstract class Level {
 				for(Enemy e: enemies) {
 					e.iFrameCounter++;
 					if(p.getBounds().overlaps(e.getBounds())) {
-						if(e.iFrameCounter >= SleeperEnemy.I_FRAME) {
+						if(e.iFrameCounter >= MeleeEnemy.I_FRAME) {
 							e.setHealth(e.getHealth() - p.getDamage());
 							e.iFrameCounter = 0;
 						} 
@@ -198,7 +198,7 @@ public abstract class Level {
 		return enemies;
 	}
 
-	public void addEnemies(SleeperEnemy e) {
+	public void addEnemies(MeleeEnemy e) {
 		enemies.add(e);
 	}
 

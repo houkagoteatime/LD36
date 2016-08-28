@@ -73,8 +73,6 @@ public class PlayerInputProcessor {
 		}
 		
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-			player.attack();
-		else if(Gdx.input.isKeyPressed(Input.Keys.Q))
 			player.meleeAttack();
 	}
 

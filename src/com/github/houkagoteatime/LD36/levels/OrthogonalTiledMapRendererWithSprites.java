@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
-import com.github.houkagoteatime.LD36.entities.enemies.SleeperEnemy;
+import com.github.houkagoteatime.LD36.entities.enemies.MeleeEnemy;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 

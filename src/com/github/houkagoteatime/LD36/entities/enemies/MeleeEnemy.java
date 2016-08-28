@@ -10,9 +10,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
 
-public class SleeperEnemy extends Enemy{
+public class MeleeEnemy extends Enemy{
 
-	private StateMachine<SleeperEnemy, EnemyState> defaultStateMachine;
+	private StateMachine<MeleeEnemy, EnemyState> defaultStateMachine;
 	public static final float AGGRO_RANGE = 200f;
 	public static final int HEALTH = 300;
 	public static final int DAMAGE = 80;
@@ -26,14 +26,14 @@ public class SleeperEnemy extends Enemy{
 	/**
 	 *States that the enemy should be in
 	 */
-	private enum EnemyState implements State<SleeperEnemy> {
+	private enum EnemyState implements State<MeleeEnemy> {
 		/**
 		 *Enemy will attempt to move towards the player until they are out of aggro range
 		 */
 		AGGRO() {
 
 			@Override
-			public void update(SleeperEnemy enemy) {
+			public void update(MeleeEnemy enemy) {
 				if(!enemy.isPlayerNearby(AGGRO_RANGE)) {
 					enemy.getStateMachine().changeState(SLEEP);
 				} else {
@@ -52,7 +52,7 @@ public class SleeperEnemy extends Enemy{
 		SLEEP() {
 
 			@Override
-			public void update(SleeperEnemy enemy) {
+			public void update(MeleeEnemy enemy) {
 				if(enemy.isPlayerNearby(AGGRO_RANGE)) {
 					enemy.getStateMachine().changeState(AGGRO);
 				} else {
@@ -63,17 +63,17 @@ public class SleeperEnemy extends Enemy{
 		};
 		
 		@Override
-		public void enter(SleeperEnemy arg0) {
+		public void enter(MeleeEnemy arg0) {
 			
 		}
 
 		@Override
-		public void exit(SleeperEnemy arg0) {
+		public void exit(MeleeEnemy arg0) {
 			
 		}
 
 		@Override
-		public boolean onMessage(SleeperEnemy arg0, Telegram arg1) {
+		public boolean onMessage(MeleeEnemy arg0, Telegram arg1) {
 			return false;
 		}
 		
@@ -87,7 +87,7 @@ public class SleeperEnemy extends Enemy{
 	 * @param speed the speed
 	 * @param player the player playing the game
 	 */
-	public SleeperEnemy(Level level, Sprite sprite, Sprite weaponSprite, Player player) {
+	public MeleeEnemy(Level level, Sprite sprite, Sprite weaponSprite, Player player) {
 		super(level, HEALTH, DAMAGE, SPEED, sprite, player);
 		weapon = new Melee(weaponSprite, this, RANGE);
 	}
@@ -97,7 +97,7 @@ public class SleeperEnemy extends Enemy{
 	 */
 	@Override
 	public void init() {
-		this.defaultStateMachine = new DefaultStateMachine<SleeperEnemy, EnemyState>(this, EnemyState.SLEEP);
+		this.defaultStateMachine = new DefaultStateMachine<MeleeEnemy, EnemyState>(this, EnemyState.SLEEP);
 	}
 	
 	@Override
@@ -110,14 +110,14 @@ public class SleeperEnemy extends Enemy{
 	/**
 	 * @return the stateMachine
 	 */
-	public StateMachine<SleeperEnemy, EnemyState> getStateMachine() {
+	public StateMachine<MeleeEnemy, EnemyState> getStateMachine() {
 		return defaultStateMachine;
 	}
 
 	/**
 	 * @param stateMachine the stateMachine to set
 	 */
-	public void setStateMachine(StateMachine<SleeperEnemy, EnemyState> stateMachine) {
+	public void setStateMachine(StateMachine<MeleeEnemy, EnemyState> stateMachine) {
 		this.defaultStateMachine = stateMachine;
 	}
 
