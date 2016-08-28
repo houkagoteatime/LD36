@@ -3,6 +3,7 @@ package com.github.houkagoteatime.LD36.levels;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.screens.GameScreen;
 
 public class Level1 extends Level{
 
@@ -11,8 +12,8 @@ public class Level1 extends Level{
 	//private final static Enemy[] enemies = new Enemy[]{e1};
 	
 	
-	public Level1() {
-		super("assets/Copyofmap.tmx");
+	public Level1(GameScreen screen) {
+		super("assets/Copyofmap.tmx", screen);
 		this.getEnemies().add(e1);
 	}
 

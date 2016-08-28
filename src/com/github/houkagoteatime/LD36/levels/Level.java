@@ -10,9 +10,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
+import com.github.houkagoteatime.LD36.LD36Game;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.screens.GameScreen;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Projectile;
 
@@ -38,8 +40,8 @@ public abstract class Level {
 	private ArrayList<Projectile> projectiles;
 	private PlayerInputProcessor proc;
 	private ArrayList<Melee> meleeWeps;
-	
-	public Level(String path) {
+	private GameScreen game;
+	public Level(String path, GameScreen game) {
 		this.tiledMap  = new TmxMapLoader().load(path);
 		this.tiledMapRenderer = new OrthogonalTiledMapRendererWithSprites(tiledMap, this);
 		this.mapProp = tiledMap.getProperties();
@@ -50,6 +52,7 @@ public abstract class Level {
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
+		this.game = game;
 	}
 	
 	/**
@@ -63,6 +66,9 @@ public abstract class Level {
 		proc.queryInput();
 		player.update(dt);
 		updateEnemies(dt);
+		if(enemies.isEmpty() || player.isDead())
+			game.gameOver();
+			
 	}
 	
 	public void updateProjectiles(float dt) {

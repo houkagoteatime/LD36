@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
+import com.github.houkagoteatime.LD36.AudioManager;
+import com.github.houkagoteatime.LD36.LD36Game;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.levels.Level1;
@@ -14,14 +16,16 @@ public class GameScreen implements Screen{
 
     private OrthographicCamera cam;
 	private Level level;
-	private Game game;
-	
-	public GameScreen(Game game) {
+	private LD36Game game;
+	private AudioManager manager;
+	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(500, 500);
-		level = new Level1();
+		level = new Level1(this);
 		
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
+		this.manager = manager;
+		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
 	}
 	
 	public GameScreen() {
@@ -91,4 +95,8 @@ public class GameScreen implements Screen{
 		
 	}
 
+	public void gameOver() {
+		game.setScreen(new GameOverScreen(game));
+		dispose();
+	}
 }
