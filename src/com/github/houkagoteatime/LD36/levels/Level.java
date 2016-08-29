@@ -95,13 +95,10 @@ public abstract class Level {
 			for(TiledMapTileMapObject obj: getGameObjects().getByType(TiledMapTileMapObject.class)) {
 				Rectangle r = new Rectangle(obj.getX(), + obj.getY(), tilePixelWidth/2, tilePixelHeight/2);
 				if(player.getBounds().overlaps(r)) {
-					System.out.println("Overlap");
 					if(obj.getProperties().containsKey("hp10") && obj.getProperties().get("hp10").equals(true)) {
 						player.setHealth(player.getHealth() + 10);
-						System.out.println("hp");
 						getGameObjects().remove(obj);
 					} else if(obj.getProperties().containsKey("level") && enemies.isEmpty()) {
-						System.out.println((int)obj.getProperties().get("level"));
 						game.switchLevel(((int)obj.getProperties().get("level")));
 					}
 				}
@@ -115,15 +112,15 @@ public abstract class Level {
 	 * override this to change how the enemies spawn
 	 */
 	public void spawnEnemies() {
-		System.out.println("y");
 		for(RectangleMapObject spawnPoint: getSpawnObjects().getByType(RectangleMapObject.class)) {
-			System.out.println(new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
 			if(spawnPoint.getProperties().containsKey("archer")) {
 				EnemySpawner.getInstance().spawnEnemy("archer", new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
 			} else if(spawnPoint.getProperties().containsKey("swordsman")) {
 				EnemySpawner.getInstance().spawnEnemy("swordsman",  new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
 			} else if(spawnPoint.getProperties().containsKey("lancer")) {
 				EnemySpawner.getInstance().spawnEnemy("lancer",  new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
+			} else if(spawnPoint.getProperties().containsKey("gilgamesh")) {
+				EnemySpawner.getInstance().spawnEnemy("gilgamesh",  new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
 			}
 		}
 		setPathFinder();

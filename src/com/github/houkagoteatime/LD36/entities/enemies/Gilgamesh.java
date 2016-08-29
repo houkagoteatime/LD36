@@ -78,7 +78,7 @@ public class Gilgamesh extends Enemy{
 			@Override
 			public void update(Gilgamesh enemy) {
 				enemy.setStartTime(System.currentTimeMillis());
-				if(enemy.getStartTime() < enemy.getTimer()) {
+				if(enemy.getStartTime() > enemy.getTimer()) {
 					enemy.getMachine().changeState(GilgameshState.PISSED_OFF);
 				}
 				

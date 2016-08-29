@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="86">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="76">
  <tileset firstgid="1" source="tiles_packed_1.tsx"/>
  <tileset firstgid="185" name="snow-expansion" tilewidth="16" tileheight="16" tilecount="308" columns="22">
   <image source="snow-expansion.png" width="352" height="224"/>
@@ -109,13 +109,19 @@
    </properties>
    <polygon points="0,0 0,144 -0.16,77.5385"/>
   </object>
+  <object id="75" x="192" y="304">
+   <properties>
+    <property name="stopProjectiles" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 32,0 32,48 0,48"/>
+  </object>
  </objectgroup>
  <layer name="Tile Layer 2" width="32" height="32">
   <properties>
    <property name="Name" value="Path, decorative"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYEAFsgz0BbxAzAfE/EAsAMQmdLZfBYhVgVgNiNWB2JvO9lsDsQ0Q2wKx3QDYjw7Q7RcFYjEKsTgF9uuQ5nysQI8EtejpD5/9X4GYhxGCv1HJflL8PxztRweDxX4LLBjZ/gAcaqhlvyUODLMflzyp9qOX//S2f6Tnv5Huf1zpj172D6XwJxZQ4v/tQL+dohAvZCTe/sHmf3rbT2//2wLjxg6K7YE4ic72BwPtDIHiUCgGgdN0sh8XGOn2w8Bwtz+PAHalgv3OQOyCAw80AADwxkcL
+   eJzl1T8SwUAUx/Hd3r8Glc6fxqgUDIkClcYMLuAA7uQAtO4Q56H2M3Zn2MniTdZLZN/Mp0rGN49IhHidhuCdIpSgDBXoM/eb0II2dGDB3B/BGAIIU+ibY/arUEuonqDfpV1+7PQI55r337v+BQry4eqoT9k/j31zstIfxHjuLy3nuOoPLXTfdpzaN5//3H3f/3++72+7/7j6Wf/+D3AkfB61b+5/wm6RotuRpNnL7/v/9P7/RZ97/wC/TahMYMvcX6G5VjbKfc5Mfdv43teT9/7ug7mD/hRmFmnPDSWQSCs=
   </data>
  </layer>
  <layer name="Tile Layer 3" width="32" height="32">
@@ -123,7 +129,7 @@
    <property name="tree" value="uperlayer"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzdl00OwiAQhelWPYIu/D2BC6PewI16BBdtr9roHbyKQ1IMmQDDJDzb+CUvTX/gSeEN1pgwi8j1X7Efif87cv9JemX0w9tvKmO2pF2Vbpf7/mO/L8aRfE+ks+cfGgvq/V/J90a6C+NH+dfk25Dagfwdzcj9EeRmBo3Ln7QGJA7K53Ozb0HUXz/7fP55HfH9O9s2om/fwn1Lbva5fyn87LfC/CP8NbUavf9K+f/H/V+Tv5K4uhfae2PMe6X60+Lnb4j6Xyt8LwD/jp2n8o/wT8FrQyl/f61o1j9i/Kn9h4PIv2b/QYyf//e0xwkdp0wz0gPg79a/Pw9LOl8xrXuh0MwDgtxvgBCp2qv9FpPg9QrRxwcsvDJ1
+   eJzdl8sNwjAQRJ0rUAIc+FbAAQEdcAFK4ABpDvqIoAdaYS3FkbXy2t4oAxFPGkX52INjz5oYE2YiXP8W6574v4X7T9Irox/eflEYsyStini73Pcv/T6JLfnuSHvPPzQW1Ps/ku+JdE6MH+V/Jd8bqfyRv+PWc38EuZlB4/KXWgMpNsrnc7NvQdRfP/t8/nkd8f0r21ZQ03fiviU3+9y/K/zsl4n5R/hrajV6/03l/x/3f03+usTVvdDeKzGuFetPi5+/tvX/Tnq0a9rkL4cDwL9i57H8S/4oeG3oyt9fK5r1jxh/bP/hIPKv2X8Q4+f/Pe1xQMch04h0Afi79e/Pw5TOZ0zzWig084Ag9xsgRKz2ar/FUvB6hejjAzyNNSs=
   </data>
  </layer>
  <layer name="Tile Layer 4" width="32" height="32">
@@ -131,7 +137,7 @@
    <property name="tree firstback" value=""/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlNsNgCAMRWEAH0OIrmAEncHX/rN4P40aCAUlmJ7kfDSh9uO2CvE9jRRCwVYmGA4GzNXQJJo/Y+4C10TzU8P5c/5/y7/3eMv5/y9/Hzh/zj+n/AtYwgrWhDqUBirYwo5Q377nuX8aGjjCiVBfoezfBveA+kxu+xebnP4/1Fuy9fnk77ql2H1XXLcUu+8J2y290fclB75hHXM=
+   eJztlEkKgDAMRdMDOBzC4QridAana+oZ/QsXUqXSaC1KHrxF0JjCbyR6n0QRpTBTHoaDEnMrWHua32FuDwdP830j+Uv+f8u/sHhX8v9f/jZI/pI/J/8ZLk5OZCaAIYy2M9CujrXnZ/VdEpjCDOaM+vA9y/tXwRo2sGXUOpz7N8LpRr1H/j/f+f9wd8nUZ5P/1S493adztUtP951h2iUXfW+yApVtH14=
   </data>
  </layer>
  <layer name="Tile Layer 5" width="32" height="32">
@@ -199,38 +205,6 @@
   <object id="74" gid="110" x="496" y="496" width="16" height="16">
    <properties>
     <property name="level" type="int" value="1"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="Object Layer 3">
-  <object id="78" x="96" y="96" width="16" height="16">
-   <properties>
-    <property name="archer" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="81" x="432" y="496" width="16" height="16">
-   <properties>
-    <property name="archer" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="82" x="400" y="496" width="16" height="16">
-   <properties>
-    <property name="archer" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="83" x="128" y="368" width="16" height="16">
-   <properties>
-    <property name="swordsman" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="84" x="272" y="192" width="16" height="16">
-   <properties>
-    <property name="swordsman" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="85" x="464" y="288" width="16" height="16">
-   <properties>
-    <property name="lancer" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
