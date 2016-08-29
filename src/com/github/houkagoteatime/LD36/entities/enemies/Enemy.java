@@ -27,6 +27,7 @@ public abstract class Enemy extends Entity{
 	public static final float DEFAULT_AGGRO_RANGE = 90f;
 	private PathFinder pathFinder;
 	private ArrayList<Node> pathToPlayer;
+	private boolean collidable = true;
 	private int counter;
 	public Enemy(Level level, int health, int damage, int speed, Sprite sprite, Player player) {
 		super(level, health, damage, speed, sprite);
@@ -47,7 +48,7 @@ public abstract class Enemy extends Entity{
 				followPath(counter);
 				counter++;
 			} else {
-				getPath();
+				//getPath();
 			}
 
 		}
@@ -77,7 +78,7 @@ public abstract class Enemy extends Entity{
 			}
 		}
 		
-		if(collideX) {
+		if(collideX && collidable) {
 			setxPosition(oldX);
 			//setxMovement(0);
 			move(0,this.getSpeed()/4);
@@ -93,7 +94,7 @@ public abstract class Enemy extends Entity{
 		}
 
 
-		if(collideY) {
+		if(collideY && collidable) {
 			setyPosition(oldY);
 			//setyMovement(0);
 			move(this.getSpeed()/4,0);
@@ -110,14 +111,13 @@ public abstract class Enemy extends Entity{
 			move(pathToPlayer.get(step).x *16- getxPosition(), pathToPlayer.get(step).y*16-getyPosition());
 
 		} else {
-			getPath();
-			step = 0;
+			//getPath();
+			//step = 0;
 		}
 	}
 
 	public void getPath() {
 		pathToPlayer = pathFinder.findPath(new Vector2(getxPosition()/16, getyPosition()/16), new Vector2(player.getxPosition()/16, player.getyPosition()/16));
-		System.out.println("path");
 	}
 	public boolean collidesObj(Polygon p) {
 		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
@@ -126,6 +126,24 @@ public abstract class Enemy extends Entity{
 		return false;
 	}
 	public abstract void init();
+
+	/**
+	 * @return the collidable
+	 */
+	public boolean isCollidable() {
+		return collidable;
+	}
+
+
+
+	/**
+	 * @param collidable the collidable to set
+	 */
+	protected void setCollidable(boolean collidable) {
+		this.collidable = collidable;
+	}
+
+
 
 	/**
 	 * @return true if the player is within the aggro range

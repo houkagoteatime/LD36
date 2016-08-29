@@ -3,17 +3,11 @@ package com.github.houkagoteatime.LD36.levels;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
@@ -103,8 +97,8 @@ public abstract class Level {
 		proc.queryInput();
 		player.update(dt);
 		updateEnemies(dt);
-		if(enemies.isEmpty() || player.isDead()) {
-			//game.gameOver();
+		if(enemies.isEmpty() && player.isDead()) {
+			game.gameOver();
 		}
 
 	}

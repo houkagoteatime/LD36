@@ -2,7 +2,6 @@ package com.github.houkagoteatime.LD36;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.github.houkagoteatime.LD36.entities.Entity;
 import com.github.houkagoteatime.LD36.entities.Player;
@@ -13,9 +12,6 @@ import com.github.houkagoteatime.LD36.entities.Player;
 public class PlayerInputProcessor {
 
 	private Player player;
-	private static final int SCREEN_HALF_WIDTH = 600/2;
-	private static final int SCREEN_HALF_HEIGHT= 735/2;
-	private static final int LEEWAY = 90;
 	
 	public PlayerInputProcessor(Player player) {
 		this.player = player;

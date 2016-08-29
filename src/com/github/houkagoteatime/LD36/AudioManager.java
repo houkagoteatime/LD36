@@ -1,18 +1,15 @@
 package com.github.houkagoteatime.LD36;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Disposable;
 
 public class AudioManager implements Disposable{
 
-	private AssetManager musicAssets;
 	private float volume;
 	private boolean mute;
 	private String current;
 	
 	public AudioManager() {
-		musicAssets = new AssetManager();
 		volume = 0.5f;
 		mute = false;
 	}

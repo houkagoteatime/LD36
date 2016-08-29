@@ -38,7 +38,7 @@ public class PathFinder {
 		open = new ArrayList<>();
 		closed = new ArrayList<>();
 	}
-	
+
 	public ArrayList<Node> findPath(Vector2 start, Vector2 end) {
 		int startX = (int)start.x;
 		int startY = (int)start.y;
@@ -78,24 +78,25 @@ public class PathFinder {
 							open.add(neighbor);
 						}
 					}
-					
-					
-					
+
+
+
 				}
 			}
 		}
-		
+
 		if(nodes[endX][endY].parent == null)
 			return null;
 		ArrayList<Node> path = new ArrayList<>();
 		Node target = nodes[endX][endY];
 		while(target != nodes[startX][startY]) {
 			path.add(0, target);
-			target = target.parent;
+			if(target.parent != null)
+				target = target.parent;
 		}
 		return path;
 	}
-	
+
 	public float calculateHeurestic(int startX, int startY, int endX, int endY) {	
 		return (float)Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 	}
@@ -103,7 +104,7 @@ public class PathFinder {
 		boolean outOfBounds = xPos < 0 || yPos < 0 || xPos >= nodes.length || yPos >= nodes[0].length;
 		return !(outOfBounds || invalidTile(xPos, yPos));
 	}
-	
+
 	public boolean invalidTile(int xPos, int yPos) {
 		for(PolygonMapObject obj : level.getMapObjects().getByType(PolygonMapObject.class)) {
 			if(collidesObj(obj.getPolygon(), xPos, yPos))
@@ -117,5 +118,5 @@ public class PathFinder {
 			return true;
 		return false;
 	}
-	
+
 }
