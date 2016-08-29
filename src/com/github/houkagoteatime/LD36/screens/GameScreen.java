@@ -1,6 +1,5 @@
 package com.github.houkagoteatime.LD36.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
@@ -47,6 +46,10 @@ public class GameScreen implements Screen{
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
         level.getTiledMapRenderer().render();
+        game.getBatch().begin();
+        game.getFont().draw(game.getBatch(), "Enemies Left: " + level.getEnemies().size(), 75, 25);
+        game.getFont().draw(game.getBatch(), level.getPlayer().getHealth() + "/" + Player.MAX_HEALTH, 75, 40);
+        game.getBatch().end();
 	}
 	
 	/**

@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.MapObjects;
 public class Player extends Entity{
 	
 	public static final int PLAYER_SPEED = 100;
+	public static final int MAX_HEALTH = 150;
 	public static final int I_FRAME = 45;
 	public int iFrameCounter;
 	public float spawnX;
@@ -34,8 +35,8 @@ public class Player extends Entity{
 		return wep;
 	}
 	
-	public Player(Level level, int health, int damage, Sprite sprite) {
-		super(level, health, damage, PLAYER_SPEED, sprite);
+	public Player(Level level, int damage, Sprite sprite) {
+		super(level, MAX_HEALTH, damage, PLAYER_SPEED, sprite);
 		wep = new Rock(this, level);
 		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
 		meleeWep = new Melee(sword, this, 15);

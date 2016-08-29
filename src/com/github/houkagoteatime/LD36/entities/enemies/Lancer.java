@@ -158,7 +158,7 @@ public class Lancer extends Enemy{
 		super.update(dt);
 		stateMachine.update();
 		if(stateMachine.isInState(LancerState.AGGRO)) {
-			sprite.setRotation(getAngleToPlayer());
+			setRotation(getAngleToPlayer());
 		}
 	}
 

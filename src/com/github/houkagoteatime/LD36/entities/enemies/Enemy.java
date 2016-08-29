@@ -28,6 +28,7 @@ public abstract class Enemy extends Entity{
 	private PathFinder pathFinder;
 	private ArrayList<Node> pathToPlayer;
 	private boolean collidable = true;
+	private float rotation = 0;;
 	private int counter;
 	public Enemy(Level level, int health, int damage, int speed, Sprite sprite, Player player) {
 		super(level, health, damage, speed, sprite);
@@ -184,6 +185,22 @@ public abstract class Enemy extends Entity{
 	 */
 	public void setPathFinder(PathFinder pathFinder) {
 		this.pathFinder = pathFinder;
+	}
+
+
+
+	/**
+	 * @return the rotation
+	 */
+	public float getRotation() {
+		return rotation;
+	}
+
+	/**
+	 * @param rotation the rotation to set
+	 */
+	public void setRotation(float rotation) {
+		this.rotation = rotation;
 	}
 
 }
