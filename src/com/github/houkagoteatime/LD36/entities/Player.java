@@ -20,8 +20,9 @@ public class Player extends Entity{
 	
 	public static final int PLAYER_SPEED = 100;
 	public static final int I_FRAME = 45;
-	
 	public int iFrameCounter;
+	public float spawnX;
+	public float spawnY;
 	private Weapon wep;
 	private Weapon meleeWep;
 	private OrthographicCamera cam;

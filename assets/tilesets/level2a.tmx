@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="47">
+ <tileset firstgid="1" source="tiles_packed_1.tsx"/>
+ <tileset firstgid="185" name="tiles-map" tilewidth="16" tileheight="16" tilecount="396" columns="22">
+  <image source="tiles-map.png" width="352" height="288"/>
+ </tileset>
+ <tileset firstgid="581" name="transparent-bg-tiles" tilewidth="16" tileheight="16" tilecount="396" columns="22">
+  <image source="transparent-bg-tiles.png" width="352" height="288"/>
+ </tileset>
+ <tileset firstgid="977" name="snow-expansion" tilewidth="16" tileheight="16" tilecount="308" columns="22">
+  <image source="snow-expansion.png" width="352" height="224"/>
+ </tileset>
+ <tileset firstgid="1285" name="tiles_16" tilewidth="16" tileheight="16" tilecount="2652" columns="102">
+  <image source="tiles_16.png" width="1632" height="416"/>
+ </tileset>
+ <tileset firstgid="3937" name="banana" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="banana.png" width="16" height="16"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzTENAAAIBLEXgjH8G8EEAyQdut5VklrUy71vfwAAALhoAIBYcHs=
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="15" x="64" y="48">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 16,0 16,48 0,48"/>
+  </object>
+  <object id="16" x="0" y="64">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 64,0 64,32 0,32"/>
+  </object>
+  <object id="17" x="112" y="0">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,64 0,64"/>
+  </object>
+  <object id="18" x="128" y="32">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,32 0,32"/>
+  </object>
+  <object id="19" x="160" y="32">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 64,0 64,32 0,32"/>
+  </object>
+  <object id="20" x="208" y="64">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,128 0,144 16,144"/>
+  </object>
+  <object id="21" x="224" y="192">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,256 0,256"/>
+  </object>
+  <object id="22" x="240" y="416">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 208,0 208,32 0,32"/>
+  </object>
+  <object id="23" x="512" y="16">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 0,448 -16,448 -16,0"/>
+  </object>
+  <object id="24" x="256" y="0">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 16,0 16,48 0,48"/>
+  </object>
+  <object id="25" x="288" y="0">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 16,0 16,48 0,48"/>
+  </object>
+  <object id="26" x="256" y="240">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 144,0 144,144 0,144"/>
+  </object>
+  <object id="28" x="400" y="272">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 48,0 48,64 0,64"/>
+  </object>
+  <object id="29" x="400" y="336">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 32,0 32,48 0,48"/>
+  </object>
+  <object id="31" x="352" y="48">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 128,0 144,96 0,96"/>
+  </object>
+  <object id="32" x="304" y="96">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 48,0 48,48 0,48"/>
+  </object>
+  <object id="33" x="0" y="144">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 32,0 32,320 0,320"/>
+  </object>
+  <object id="34" x="32" y="496">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 80,0 80,16 0,16"/>
+  </object>
+  <object id="35" x="144" y="0">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,64 0,64"/>
+  </object>
+  <object id="36" x="128" y="64">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 48,0 48,32 0,32"/>
+  </object>
+  <object id="37" x="144" y="96">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,64 0,80"/>
+  </object>
+  <object id="38" x="144" y="160">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 -64,0 -64,16 0,16"/>
+  </object>
+  <object id="39" x="80" y="176">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,48 0,48"/>
+  </object>
+  <object id="40" x="80" y="224">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 128,0 128,192 128,208 0,208"/>
+  </object>
+  <object id="41" x="128" y="432">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object id="42" x="128" y="480">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzll7tOwzAUhm2ygNiQaNWFJ6iq8gzAA/AGMLTpDpSBihGJ20pHbs/A7RmAMjIBQoWhQ4qEmBBC/FZjdHJwLjROAfFL31DX8ecTO24qRHg8KcQCWARL4HXoax/VNumYv4vLO67JCTN5378ONsAmeJa9656kHT+vg6YEHLTtwrUH9sEwPo+jfScDP4/yFzDmEVzH4ARM4HMR7U0Z7Fu0q/70l+E7h+sCXIKWHKxf5R6uDmgTZ5Pd/yz9KnesXpv1z2H+84a9w/1vpI9Nfx3jLvv7epoww/w0Nv1bcG/HrGGW/gO4D5n/BuO/EG5D/PqZT+M/xRhnzM/r5VF+egZOieDahZE3jNWC+6oPfy66izFqnvps13mA+5H5Ry2fpTwlQ1tg/UEFNVaBK3tnoGYW1GLuj01/xcB/8ru/1H+dYg5RfnWmKD+/99UB12/yu8TvpZjD2h/ya6/7A37utu2neziufr7/bPi9lP5un3PQ+98hvzPaP4a2FYzb8NHr0CCsWnr+TPXXZZARv/4aaUubqPp5qN9WtL9A/GHvMHrfJ3m/SYp+t03yny2L+r8T5e9k6P4AgiCYeQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlk0OgjAQhUFEvQKiXsHfe3gF3XkCjXfQS+gl9BJ6CV248HfNwtfYhqYB0uIAifKSF9JJO19n2jRYVja62jR57nb4FdaRU7GsKuzCNbjOx3Js5pjtxeVrdeRhXhP24Rbc5mM5tgT/xmt6wE/4lVCfz9fq9LaLeT24Dw/gIR/LMcZXe9RIqI+t8zT5OmJ8tUcdjf5S8tUejXLmp1HJ/x3+BPdtqvmmCDmG85P4c+RaGOYTbxsFf4U86xS5KM6A8TdgbyP4Fzv8qqbk78DeF8g/gH2M4ceZkn8C+1wgP04yqwh+FFfmU8iUL2LfKqiY8+UYU17nH8enkA6f9aqI+uU9ZHX/TNhyrNT/aMxd6qOA6N9P6A3NnnO2
+  </data>
+ </layer>
+ <layer name="Tile Layer 5" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlVsOgjAQRZvZKOoeUFmDD9bggzX4YA0+WAMq2/B+dD6a1Elp2iYYTnLCJMBkchsGpcKTkVITOIUzoY5Fjt5zuIBLoY7FCr3XcAO3Qh2LHXrv4QEehTo0me55wvUML/Aq1LG4ofcdPuBTqGPRovcLvuFHqEf+i1Y4U+neUBnKni8izeC650thBs7JB9c9X+kZbHBOPrju+VrPYINz8sF1zzd6Bhuckw+ue77TM9jgnHzIerzX/XiWc/IhD/BdcU4jI30J/U8tyDQ1JZmmpiLT1NRkmpqGTFPTkWkKvqhQgBA=
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlllKQ0EQRTtph2xBo67BGPeifjnkW/wymjUkZg9Oa3DYg8MeHMAPNe7A+8AijwtVodMFQngHDnU/HlXdFDQvhIpZYLcewh7chweUuaawFUPYhjvR/u4YfbvwBJ5S5ppyjkPM/aiFcDRhfh/9BvAMDilzlXN4co5+F/ASXlHmKufw5Ab9buEdvKfMVc7hyQP6PcIn+EyZq5zDkxf0e4Vv8J0yVznHfyHnqKjIwXrzteyJ9eZr2RPrzdeyJ9abr2VGdpPKZ81+87XMyG5SiXX7zdcyI7uZZr715muZkd1MM98D2U0qxf5z6cTxblLxuH8vjneTSnH/L/gNR/DnzxFV/qZMZ8I/pUVx/zk4X6oLRl6EDbpnL2P+EnotwyZcgaul2lTymuP8gnX0a8EN2C7VlpI3af515vyKfH4BXB6X0Q==
+  </data>
+ </layer>
+ <layer name="Tile Layer 6" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztk8cNAkAQA080SuiBVAOpBlINpBpINZDaYD5+WjqBFj47kmV/bvce3lKSJEmSJEmSWpqNUlqojTomyyPoMreH+mhgsnwY8IcRM8dogqYmy2cB++fMXKAlWpksXwfs3zBzi3Zob7L8YPZ/048j707ojC4my69mh/rxCTfe3dEDPU2Wv8wO9eNfqB8R91GD+hFxHzWoHxH3UYP64e7jV7j7+BXuPqJ5AygwQt0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 7" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 2">
+  <object id="1" gid="3937" x="0" y="496" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="2" gid="3937" x="16" y="496" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="3" gid="3937" x="16" y="512" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" gid="3937" x="0" y="512" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="6" gid="3937" x="256" y="496" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7" gid="3937" x="464" y="192" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8" gid="3937" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" gid="3937" x="304" y="32" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="10" gid="3937" x="304" y="48" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="11" gid="3937" x="304" y="16" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="12" gid="3937" x="240" y="16" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="13" gid="3937" x="240" y="32" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="14" gid="3937" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="hp10" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="43" gid="773" x="272" y="16" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="45" gid="795" x="272" y="32" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="46" x="352" y="16">
+   <properties>
+    <property name="stopProjectile" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 144,0 144,32 0,32"/>
+  </object>
+ </objectgroup>
+</map>

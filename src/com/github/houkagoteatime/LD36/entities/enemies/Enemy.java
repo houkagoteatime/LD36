@@ -43,7 +43,7 @@ public abstract class Enemy extends Entity{
 		//kill the entity
 		if(this.getHealth() <= 0)
 			this.setDead(true);
-		if(getyMovement() == 0 && getxMovement() == 0) {
+		/*if(getyMovement() == 0 || getxMovement() == 0) {
 			if(pathToPlayer != null) {
 				followPath(counter);
 				counter++;
@@ -51,7 +51,7 @@ public abstract class Enemy extends Entity{
 				//getPath();
 			}
 
-		}
+		}*/
 		//determine direction of movement
 		int directionX = (int)Math.signum(this.getxMovement());
 		int directionY = (int)Math.signum(this.getyMovement());

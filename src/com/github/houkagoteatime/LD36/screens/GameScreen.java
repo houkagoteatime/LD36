@@ -11,6 +11,8 @@ import com.github.houkagoteatime.LD36.LD36Game;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.levels.Level1;
+import com.github.houkagoteatime.LD36.levels.Level2;
+import com.github.houkagoteatime.LD36.levels.Level3;
 
 public class GameScreen implements Screen{
 
@@ -22,6 +24,7 @@ public class GameScreen implements Screen{
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
 		level = new Level1(this);
+		//level = new Level2(this);
 		
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		this.manager = manager;
@@ -90,6 +93,21 @@ public class GameScreen implements Screen{
 	public void show() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void switchLevel(int level) {
+		if(level < 1 || level > 3) {
+			throw new IllegalArgumentException("Invalid level");
+		}
+		this.level.dispose();
+		switch(level) {
+		case 1:
+			this.level = new Level2(this);
+			break;
+		case 2:
+			this.level = new Level3(this);
+			break;
+		}
 	}
 
 	public void gameOver() {

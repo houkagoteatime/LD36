@@ -71,16 +71,21 @@ public abstract class Level {
 	
 	public void handleGameObjects() {
 			for(TiledMapTileMapObject obj: getGameObjects().getByType(TiledMapTileMapObject.class)) {
-				if(player.getBounds().contains(obj.getX(),obj.getY() + tilePixelHeight/4)) {
+				Rectangle r = new Rectangle(obj.getX(), + obj.getY(), tilePixelWidth/2, tilePixelHeight/2);
+				if(player.getBounds().overlaps(r)) {
 					System.out.println("Overlap");
-					if(obj.getProperties().get("hp10").equals(true)) {
+					if(obj.getProperties().containsKey("hp10") && obj.getProperties().get("hp10").equals(true)) {
 						player.setHealth(player.getHealth() + 10);
 						System.out.println("hp");
 						getGameObjects().remove(obj);
+					} else if(obj.getProperties().containsKey("level")) {
+						System.out.println((int)obj.getProperties().get("level"));
+						game.switchLevel(((int)obj.getProperties().get("level")));
 					}
 				}
 			}
 	}
+	
 	public MapObjects getMapObjects() {
 		return tiledMap.getLayers().get(WALL_OBJECT_LAYER_ID).getObjects();
 	}
