@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" nextobjectid="12">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -85,5 +85,26 @@
    eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAACAtwFAAAAB
   </data>
  </layer>
- <objectgroup name="Object Layer 2"/>
+ <objectgroup name="Object Layer 2">
+  <object id="8" gid="1973" x="544" y="176" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="9" gid="1903" x="544" y="160" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="10" gid="1974" x="560" y="176" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="11" gid="1904" x="560" y="160" width="16" height="16">
+   <properties>
+    <property name="level" type="int" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

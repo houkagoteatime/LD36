@@ -14,9 +14,36 @@
    eJy90McJgFAQRdGPLVmAsQXj0q2xBWMLpma9IoIMfyXo4jA8mAfDZIZS2Q9MdU0LNhy48ET2H7v3DBAiQoxE5FTTyVGgRIVa5EbTadGhx4BR5EnTmbFgxYZd5HNPdt787evOX3cdVhA7pQ==
   </data>
  </layer>
+ <objectgroup name="Object Layer 1"/>
  <layer name="Tile Layer 2" width="13" height="12">
   <data encoding="base64" compression="zlib">
    eJxjYKA/4GfELi6OQxwEhBixY2E8ekgBjESaw4ykjpNIPdxE6MkA4kwgzoJiYvTUA3EdENdCaWL04HObII4wxobJBQCSigV6
   </data>
  </layer>
+ <layer name="Tile Layer 3" width="13" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+AAACcAAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="13" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+AAACcAAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 5" width="13" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+AAACcAAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 6" width="13" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+AAACcAAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 7" width="13" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+AAACcAAB
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 2"/>
 </map>
