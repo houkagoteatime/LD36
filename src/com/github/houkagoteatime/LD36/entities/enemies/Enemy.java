@@ -77,6 +77,13 @@ public abstract class Enemy extends Entity{
 			}
 		}
 		
+		if(collideX) {
+			setxPosition(oldX);
+			//setxMovement(0);
+			move(0,this.getSpeed()/4);
+		}
+		
+		
 		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
 		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
 		for (PolygonMapObject rectangleObject : this.getLevel().getMapObjects().getByType(PolygonMapObject.class)) {
@@ -84,11 +91,7 @@ public abstract class Enemy extends Entity{
 				collideY = true;
 			}
 		}
-		if(collideX) {
-			setxPosition(oldX);
-			//setxMovement(0);
-			move(0,this.getSpeed()/4);
-		}
+
 
 		if(collideY) {
 			setyPosition(oldY);
