@@ -126,6 +126,9 @@ public abstract class Level {
 		setPathFinder();
 	}
 
+	public PlayerInputProcessor getPlayerInputProcessor() {
+		return proc;
+	}
 	public void update(float dt) {
 		if(player.isGod) {
 			proc.queryInput();
@@ -143,7 +146,7 @@ public abstract class Level {
 		if(player.isDead()) {
 			//game.gameOver();
 		}
-		if(enemies.isEmpty() || player.isDead()) {
+		if(enemies.isEmpty()) {
 			//game.gameOver();
 			if(level == 3) {
 				player.setSprite(new Sprite(new Texture("assets/pictures/gorillagod.png")));
@@ -152,9 +155,6 @@ public abstract class Level {
 			}
 		}
 		
-		if(enemies.isEmpty())
-			nextLevel();
-
 	}
 
 	public void updateProjectiles(float dt) {

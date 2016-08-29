@@ -11,15 +11,10 @@ public class Level4 extends Level{
 		super("assets/tilesets/level4a.tmx", screen);
 		//this.setLevel(4);
 		EnemySpawner.init(this);
-		this.getPlayer().setxPosition(0);
-		this.getPlayer().setyPosition(0);
+		this.getPlayer().setxPosition(70);
+		this.getPlayer().setyPosition(63);
 	}
-
-	@Override
-	public void spawnEnemies() {
-		
-	}
-
+	
 	@Override
 	public void nextLevel() {
 		// TODO Auto-generated method stub
