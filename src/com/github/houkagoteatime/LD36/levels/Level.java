@@ -7,15 +7,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Archer;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
 import com.github.houkagoteatime.LD36.entities.enemies.Gilgamesh;
+import com.github.houkagoteatime.LD36.entities.enemies.EnemySpawner;
 import com.github.houkagoteatime.LD36.entities.enemies.MeleeEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
 import com.github.houkagoteatime.LD36.utils.PathFinder;
@@ -24,10 +27,12 @@ import com.github.houkagoteatime.LD36.weapons.Projectile;
 
 public abstract class Level {
 
+	public int level;
 	private TiledMap tiledMap;
 	private OrthogonalTiledMapRendererWithSprites tiledMapRenderer;
 	public static final int WALL_OBJECT_LAYER_ID = 1;
 	public static final int GAME_OBJECT_LAYER_ID = 8;
+	public static final int SPAWN_OBJECT_LAYER_ID = 9;
 	public MapProperties mapProp;
 	public int mapWidth;
 	public int mapHeight;
@@ -59,11 +64,25 @@ public abstract class Level {
 		this.game = game;
 		finder = new PathFinder(this, 80);
 	}
+
 	
 	public abstract void nextLevel();
 	
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+
 	public MapObjects getGameObjects() {
 		return tiledMap.getLayers().get(GAME_OBJECT_LAYER_ID).getObjects();
+	}
+	
+	public MapObjects getSpawnObjects() {
+		return tiledMap.getLayers().get(SPAWN_OBJECT_LAYER_ID).getObjects();
 	}
 	
 	public void setPathFinder() {
@@ -95,9 +114,28 @@ public abstract class Level {
 	/**
 	 * override this to change how the enemies spawn
 	 */
-	public abstract void spawnEnemies();
+	public void spawnEnemies() {
+		System.out.println("y");
+		for(RectangleMapObject spawnPoint: getSpawnObjects().getByType(RectangleMapObject.class)) {
+			System.out.println(new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
+			if(spawnPoint.getProperties().containsKey("archer")) {
+				EnemySpawner.getInstance().spawnEnemy("archer", new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
+			} else if(spawnPoint.getProperties().containsKey("swordsman")) {
+				EnemySpawner.getInstance().spawnEnemy("swordsman",  new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
+			} else if(spawnPoint.getProperties().containsKey("lancer")) {
+				EnemySpawner.getInstance().spawnEnemy("lancer",  new Vector2((float)spawnPoint.getProperties().get("x"),(float)spawnPoint.getProperties().get("y")));
+			}
+		}
+		setPathFinder();
+	}
 
 	public void update(float dt) {
+		if(player.isGod) {
+			proc.queryInput();
+			player.fly(dt);
+			handleGameObjects();
+			return;
+		}
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
 		handleGameObjects();
@@ -107,6 +145,14 @@ public abstract class Level {
 		updateEnemies(dt);
 		if(player.isDead()) {
 			//game.gameOver();
+		}
+		if(enemies.isEmpty() || player.isDead()) {
+			//game.gameOver();
+			if(level == 3) {
+				player.setSprite(new Sprite(new Texture("assets/pictures/gorillagod.png")));
+				player.setSpeed((int)(player.getSpeed() * 3));
+				player.isGod = true;
+			}
 		}
 		
 		if(enemies.isEmpty())

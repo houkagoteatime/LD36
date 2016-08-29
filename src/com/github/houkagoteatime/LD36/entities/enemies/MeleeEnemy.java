@@ -13,7 +13,7 @@ import com.github.houkagoteatime.LD36.weapons.Weapon;
 public class MeleeEnemy extends Enemy{
 
 	private StateMachine<MeleeEnemy, EnemyState> defaultStateMachine;
-	public static final float AGGRO_RANGE = 200f;
+	public static final float AGGRO_RANGE = 100f;
 	public static final int HEALTH = 100;
 	public static final int DAMAGE = 80;
 	public static final int SPEED = 40;

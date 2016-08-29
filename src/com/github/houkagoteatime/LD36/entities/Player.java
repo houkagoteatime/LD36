@@ -18,6 +18,7 @@ import com.badlogic.gdx.maps.MapObjects;
  */
 public class Player extends Entity{
 	
+	public boolean isGod;
 	public static final int PLAYER_SPEED = 100;
 	public static final int MAX_HEALTH = 150;
 	public static final int I_FRAME = 45;
@@ -43,6 +44,9 @@ public class Player extends Entity{
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 
+	public void fly(float dt) {
+		super.update(dt);
+	}
 	/* (non-Javadoc)
 	 * @see com.github.houkagoteatime.LD36.entities.Entity#spawn(int, int)
 	 */

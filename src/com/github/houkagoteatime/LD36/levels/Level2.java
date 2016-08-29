@@ -11,13 +11,10 @@ public class Level2 extends Level{
 		super("assets/tilesets/level2a.tmx", screen);
 		EnemySpawner.init(this);
 		this.getPlayer().setxPosition(0);
-		this.getPlayer().setyPosition(500);
+		this.getPlayer().setyPosition(480);
 	}
 
-	@Override
-	public void spawnEnemies() {
-		
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.github.houkagoteatime.LD36.levels.Level#nextLevel()

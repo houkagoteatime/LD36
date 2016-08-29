@@ -13,6 +13,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.levels.Level1;
 import com.github.houkagoteatime.LD36.levels.Level2;
 import com.github.houkagoteatime.LD36.levels.Level3;
+import com.github.houkagoteatime.LD36.levels.Level4;
 
 public class GameScreen implements Screen{
 
@@ -23,9 +24,10 @@ public class GameScreen implements Screen{
 	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
-		level = new Level1(this);
-		//level = new Level2(this);
 		//level = new Level1(this);
+		//level = new Level2(this);
+		level = new Level1(this);
+		//level = new Level4(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
@@ -113,6 +115,11 @@ public class GameScreen implements Screen{
 			break;
 		case 2:
 			this.level = new Level3(this);
+			break;
+		case 3:
+			this.level = new Level4(this);
+			this.cam = new OrthographicCamera(this.level.mapPixelWidth, this.level.mapPixelHeight);
+			cam.zoom = 0.9f;
 			break;
 		}
 		this.level.spawnEnemies();

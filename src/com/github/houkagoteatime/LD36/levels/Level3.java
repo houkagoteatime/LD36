@@ -9,12 +9,13 @@ public class Level3 extends Level{
 	
 	public Level3(GameScreen screen) {
 		super("assets/tilesets/level3a.tmx", screen);
+		this.setLevel(3);
 		EnemySpawner.init(this);
-		this.getPlayer().setxPosition(450);
-		this.getPlayer().setyPosition(450);
+		this.getPlayer().setxPosition(512);
+		this.getPlayer().setyPosition(136);
 	}
 
-	@Override
+	/*@Override
 	public void spawnEnemies() {
 		EnemySpawner.getInstance().spawnEnemy("gilgamesh", new Vector2(400, 400));
 	}
@@ -27,5 +28,4 @@ public class Level3 extends Level{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

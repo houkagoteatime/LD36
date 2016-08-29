@@ -13,7 +13,7 @@ import com.github.houkagoteatime.LD36.weapons.Weapon;
 public class Lancer extends Enemy{
 
 	public static final float RANGE = 25;
-	public static final float AGGRO_RANGE = 100;
+	public static final float AGGRO_RANGE = 175;
 	public static final float TIME_PATROL = 20;
 	private int tick = 0;
 	

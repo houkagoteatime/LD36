@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="12" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="12" tilewidth="16" tileheight="16" nextobjectid="5">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -14,7 +14,14 @@
    eJy90McJgFAQRdGPLVmAsQXj0q2xBWMLpma9IoIMfyXo4jA8mAfDZIZS2Q9MdU0LNhy48ET2H7v3DBAiQoxE5FTTyVGgRIVa5EbTadGhx4BR5EnTmbFgxYZd5HNPdt787evOX3cdVhA7pQ==
   </data>
  </layer>
- <objectgroup name="Object Layer 1"/>
+ <objectgroup name="Object Layer 1">
+  <object id="4" x="48" y="48">
+   <properties>
+    <property name="stopProjectile" type="int" value="0"/>
+   </properties>
+   <polygon points="0,0 112,0 112,16 0,16"/>
+  </object>
+ </objectgroup>
  <layer name="Tile Layer 2" width="13" height="12">
   <data encoding="base64" compression="zlib">
    eJxjYKA/4GfELi6OQxwEhBixY2E8ekgBjESaw4ykjpNIPdxE6MkA4kwgzoJiYvTUA3EdENdCaWL04HObII4wxobJBQCSigV6
@@ -46,4 +53,21 @@
   </data>
  </layer>
  <objectgroup name="Object Layer 2"/>
+ <objectgroup name="Object Layer 3">
+  <object id="1" x="80" y="128" width="16" height="16">
+   <properties>
+    <property name="swordsman" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="2" x="80" y="32" width="16" height="16">
+   <properties>
+    <property name="swordsman" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="3" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="archer" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

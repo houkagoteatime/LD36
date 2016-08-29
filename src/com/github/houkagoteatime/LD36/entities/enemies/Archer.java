@@ -14,7 +14,7 @@ public class Archer extends Enemy{
 	public static final int DAMAGE = 10;
 	public static final int SPEED = 40;
 	public static final int RANGE = 500;
-	public static final int AGGRO_RANGE = 900;
+	public static final int AGGRO_RANGE = 120;
 	private BowAndArrow weapon;
 	private StateMachine<Archer, ArcherState> stateMachine;
 	
@@ -75,9 +75,9 @@ public class Archer extends Enemy{
 				if(enemy.isPlayerNearby(AGGRO_RANGE)) {
 					enemy.getStateMachine().changeState(AGGRO);
 				} else {
-					if(enemy.isPlayerNearby(RANGE)) {
+					/*if(enemy.isPlayerNearby(RANGE)) {
 						enemy.attack();
-					}
+					}*/
 					enemy.move(0,0);
 				}
 			}
