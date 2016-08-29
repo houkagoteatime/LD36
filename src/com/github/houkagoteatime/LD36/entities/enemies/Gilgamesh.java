@@ -103,7 +103,6 @@ public class Gilgamesh extends Enemy{
 	}
 	@Override
 	public void attack() {
-		System.out.println("attack");
 		gateOfBabylon.attack(getAngleToPlayer());
 	}
 	/**

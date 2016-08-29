@@ -27,7 +27,7 @@ public class GameScreen implements Screen{
 		level = new Level1(this);
 		//level = new Level2(this);
 		//level = new Level1(this);
-		level = new Level3(this);
+		//level = new Level3(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
