@@ -11,13 +11,14 @@ public class Melee implements Weapon{
 	private Rectangle extension;
 	private float range;
 	private Sprite sprite;
-	public static final int DAMAGE = 100;
-	public Melee(Sprite sprite, Entity owner, float range) {
+	private int damage;
+	public Melee(Sprite sprite, Entity owner, float range, int damage) {
 		this.owner = owner;
 		this.range = range;
 		extension = new Rectangle(owner.getxPosition(), owner.getyPosition(), sprite.getWidth(), sprite.getHeight());
 		this.sprite = sprite;
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
+		this.damage = damage;
 	}
 
 	@Override
@@ -115,6 +116,20 @@ public class Melee implements Weapon{
 	 */
 	public void setRange(float range) {
 		this.range = range;
+	}
+
+	/**
+	 * @return the damage
+	 */
+	public int getDamage() {
+		return damage;
+	}
+
+	/**
+	 * @param damage the damage to set
+	 */
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 	
 	

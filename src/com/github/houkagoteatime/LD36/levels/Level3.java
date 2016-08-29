@@ -2,7 +2,6 @@ package com.github.houkagoteatime.LD36.levels;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 import com.github.houkagoteatime.LD36.entities.enemies.EnemySpawner;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
 
@@ -15,6 +14,7 @@ public class Level3 extends Level{
 		EnemySpawner.init(this);
 		this.getPlayer().setxPosition(512);
 		this.getPlayer().setyPosition(136);
+		screen.getManager().playMusic("assets/music/Kuroko No Basket OST - 20.  Misdirection.mp3");
 	}
 	public void update(float dt) {
 		if(this.getPlayer().isGod) {

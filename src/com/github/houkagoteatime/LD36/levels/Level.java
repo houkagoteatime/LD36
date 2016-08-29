@@ -146,7 +146,7 @@ public abstract class Level {
 		if(player.isDead()) {
 			//game.gameOver();
 		}
-		if(enemies.isEmpty()) {
+		if(enemies.isEmpty() && player.isDead()) {
 			//game.gameOver();
 			if(level == 3) {
 				player.setSprite(new Sprite(new Texture("assets/pictures/gorillagod.png")));
@@ -203,6 +203,7 @@ public abstract class Level {
 					if(player.iFrameCounter > Player.I_FRAME) {
 						player.setHealth(player.getHealth() - p.getDamage());
 						player.iFrameCounter = 0;
+						projectiles.remove(i);
 					}
 				}
 			} else {
@@ -217,6 +218,7 @@ public abstract class Level {
 						projectiles.remove(i);
 					}
 				}
+			
 			}
 		}
 	}
@@ -225,7 +227,7 @@ public abstract class Level {
 		Rectangle rec = melee.getExtension();
 		for(Enemy enemy : enemies) {
 			if(enemy.getBounds().overlaps(rec)) {
-				enemy.setHealth(enemy.getHealth() - Melee.DAMAGE);
+				enemy.setHealth(enemy.getHealth() - melee.getDamage());
 			}
 		}
 		meleeWeps.add(melee);
@@ -234,7 +236,7 @@ public abstract class Level {
 	public void handleMelee(Melee melee) {
 		Rectangle rec = melee.getExtension();
 		if(player.getBounds().overlaps(rec)) {
-			player.setHealth(player.getHealth() - Melee.DAMAGE);
+			player.setHealth(player.getHealth() - melee.getDamage());
 		}
 		meleeWeps.add(melee);
 	}

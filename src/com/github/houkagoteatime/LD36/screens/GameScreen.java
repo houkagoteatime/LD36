@@ -24,13 +24,15 @@ public class GameScreen implements Screen{
 	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
+		this.manager = manager;
+		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
 		//level = new Level1(this);
 		//level = new Level2(this);
 		//level = new Level1(this);
 		level = new Level3(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
-		this.manager = manager;
-		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
+		
+		
 		level.spawnEnemies();
 	}
 	
@@ -120,6 +122,7 @@ public class GameScreen implements Screen{
 			this.level = new Level4(this);
 			this.cam = new OrthographicCamera(this.level.mapPixelWidth, this.level.mapPixelHeight);
 			cam.zoom = 0.9f;
+			manager.playMusic("assets/music/Kuroko No Basket OST - 20.  Misdirection.mp3");
 			break;
 		}
 		this.level.spawnEnemies();
@@ -142,5 +145,19 @@ public class GameScreen implements Screen{
 	 */
 	public void setLevel(Level level) {
 		this.level = level;
+	}
+
+	/**
+	 * @return the manager
+	 */
+	public AudioManager getManager() {
+		return manager;
+	}
+
+	/**
+	 * @param manager the manager to set
+	 */
+	public void setManager(AudioManager manager) {
+		this.manager = manager;
 	}
 }

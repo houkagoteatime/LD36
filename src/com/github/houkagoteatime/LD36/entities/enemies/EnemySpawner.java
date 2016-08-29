@@ -57,9 +57,9 @@ public class EnemySpawner {
 			throw new IllegalArgumentException("No enemy of that name");
 		}
 		if(newEnemy != null) {
-			newEnemy.init();
 			newEnemy.setxPosition(pos.x);
 			newEnemy.setyPosition(pos.y);
+			newEnemy.init();
 			level.getEnemies().add(newEnemy);
 
 		}

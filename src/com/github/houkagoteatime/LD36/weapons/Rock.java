@@ -8,7 +8,7 @@ import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
 
 public class Rock extends ProjectileBasedWeapon{
-	public int defaultDamage = 10;
+	public int defaultDamage = 30;
 	public static final int DELAY = 30;
 	
 	public Rock(Entity owner, Level level) {
