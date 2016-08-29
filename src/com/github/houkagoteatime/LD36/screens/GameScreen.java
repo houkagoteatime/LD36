@@ -23,7 +23,7 @@ public class GameScreen implements Screen{
 	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
-		level = new Level3(this);
+		level = new Level1(this);
 		//level = new Level2(this);
 		//level = new Level1(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
