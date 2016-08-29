@@ -13,6 +13,9 @@ public class EnemySpawner {
 	private Sprite rockproj = new Sprite(new Texture(Gdx.files.internal("assets/pictures/arrow.png")));
 	private Sprite sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
 	private Sprite spear = new Sprite(new Texture(Gdx.files.internal("assets/pictures/spear.png")));
+	private Sprite lancer = new Sprite(new Texture(Gdx.files.internal("assets/pictures/lancer.png")));
+	private Sprite archer = new Sprite(new Texture(Gdx.files.internal("assets/pictures/archer.png")));
+	private Sprite swordsman = new Sprite(new Texture(Gdx.files.internal("assets/pictures/swordsman.png")));
 	private EnemySpawner() {
 	}
 
@@ -36,14 +39,14 @@ public class EnemySpawner {
 		Enemy newEnemy;
 		switch (enemy) {
 		case "archer":
-			newEnemy = new Archer(level, rock, rockproj, level.getPlayer());
+			newEnemy = new Archer(level, archer, rockproj, level.getPlayer());
 			break;
 		case "swordsman":
-			newEnemy = new MeleeEnemy(level, rock, sword, level.getPlayer());
+			newEnemy = new MeleeEnemy(level, swordsman, sword, level.getPlayer());
 
 			break;
 		case "lancer":
-			newEnemy  = new Lancer(level, rock, spear, level.getPlayer());
+			newEnemy  = new Lancer(level, lancer, spear, level.getPlayer());
 			newEnemy.setCollidable(false);
 			break;
 		default:

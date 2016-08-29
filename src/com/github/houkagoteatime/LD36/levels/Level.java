@@ -51,7 +51,7 @@ public abstract class Level {
 		this.mapProp = tiledMap.getProperties();
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(this, 75, 10, new Sprite(new Texture("assets/pictures/harambe.jpg")));
+		this.player = new Player(this, 75, 10, new Sprite(new Texture("assets/pictures/gorilla.png")));
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
