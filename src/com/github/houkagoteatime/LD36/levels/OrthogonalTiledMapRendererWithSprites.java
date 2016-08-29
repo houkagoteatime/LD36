@@ -36,7 +36,7 @@ public class OrthogonalTiledMapRendererWithSprites extends OrthogonalTiledMapRen
                     if(currentLayer == drawSpritesAfterLayer){
                     	//draw player
 						this.getBatch().draw(level.getPlayer().getSprite(), level.getPlayer().getPosition().x, level.getPlayer().getPosition().y, level.getPlayer().getSprite().getOriginX(), level.getPlayer().getSprite().getOriginY(), Player.HEIGHT, Player.WIDTH, 1f, 1f, level.getPlayer().getSprite().getRotation());
-
+					
                     	//draw enemies
                         for(Enemy enemy: level.getEnemies()) {
                         	this.getBatch().draw(enemy.getSprite(), enemy.getPosition().x, enemy.getPosition().y, enemy.getSprite().getOriginX(), enemy.getSprite().getOriginY(), 16f, 16f, 1f, 1f, enemy.getRotation());

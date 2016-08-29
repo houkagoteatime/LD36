@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="12" tilewidth="16" tileheight="16" nextobjectid="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="12" tilewidth="16" tileheight="16" nextobjectid="6">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -15,11 +15,11 @@
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="4" x="48" y="48">
+  <object id="5" x="48" y="32">
    <properties>
-    <property name="stopProjectile" type="int" value="0"/>
+    <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 112,0 112,16 0,16"/>
+   <polygon points="0,0 0,16 32,16 32,0"/>
   </object>
  </objectgroup>
  <layer name="Tile Layer 2" width="13" height="12">

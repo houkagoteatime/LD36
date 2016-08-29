@@ -203,6 +203,7 @@ public abstract class Level {
 					if(player.iFrameCounter > Player.I_FRAME) {
 						player.setHealth(player.getHealth() - p.getDamage());
 						player.iFrameCounter = 0;
+						p.remove();
 					}
 				}
 			} else {

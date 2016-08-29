@@ -226,17 +226,17 @@
   </object>
   <object id="80" x="96" y="112" width="16" height="16">
    <properties>
-    <property name="swordsman" type="bool" value="false"/>
+    <property name="archer" type="bool" value="false"/>
    </properties>
   </object>
   <object id="81" x="416" y="496" width="16" height="16">
    <properties>
-    <property name="swordsman" type="bool" value="false"/>
+    <property name="archer" type="bool" value="false"/>
    </properties>
   </object>
   <object id="82" x="400" y="496" width="16" height="16">
    <properties>
-    <property name="swordsman" type="bool" value="false"/>
+    <property name="archer" type="bool" value="false"/>
    </properties>
   </object>
   <object id="83" x="464" y="320" width="16" height="16">

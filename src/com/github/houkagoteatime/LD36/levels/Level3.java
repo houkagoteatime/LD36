@@ -34,12 +34,10 @@ public class Level3 extends Level{
 			//game.gameOver();
 		}
 		if(this.getEnemies().isEmpty()) {
-			//game.gameOver();
-			if(level == 3) {
+			
 				this.getPlayer().setSprite(new Sprite(new Texture("assets/pictures/gorillagod.png")));
 				this.getPlayer().setSpeed((int)(this.getPlayer().getSpeed() * 3));
 				this.getPlayer().isGod = true;
-			}
 		}
 		
 	}

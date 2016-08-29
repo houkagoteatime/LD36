@@ -27,6 +27,7 @@ public class MeleeEnemy extends Enemy{
 	 *States that the enemy should be in
 	 */
 	private enum EnemyState implements State<MeleeEnemy> {
+		
 		/**
 		 *Enemy will attempt to move towards the player until they are out of aggro range
 		 */
@@ -46,6 +47,14 @@ public class MeleeEnemy extends Enemy{
 			
 		},
 		
+		FALLINTOPLACE() {
+
+			@Override
+			public void update(MeleeEnemy enemy) {
+				enemy.move(enemy.getPlayer().getxPosition() + 16, enemy.getPlayer().getyPosition());
+				
+			}
+		},
 		/**
 		 *An enemy that is sleeping will only attack if the player is nearby
 		 */

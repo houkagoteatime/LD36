@@ -33,7 +33,6 @@ public abstract class Projectile{
 		this.yPosition = yPosition;
 		this.startXPosition = xPosition;
 		this.startyPosition = yPosition; 
-		//System.out.print(startXPosition + "" + startyPosition);
 		this.angle = angle;
 		this.damage = damage;
 		this.sprite = sprite;
