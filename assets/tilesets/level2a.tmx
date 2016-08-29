@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="47">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" nextobjectid="59">
  <tileset firstgid="1" source="tiles_packed_1.tsx"/>
  <tileset firstgid="185" name="tiles-map" tilewidth="16" tileheight="16" tilecount="396" columns="22">
   <image source="tiles-map.png" width="352" height="288"/>
@@ -40,23 +40,23 @@
    </properties>
    <polygon points="0,0 16,0 16,64 0,64"/>
   </object>
-  <object id="18" x="128" y="32">
+  <object id="18" x="123" y="32">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 16,0 16,32 0,32"/>
   </object>
-  <object id="19" x="160" y="32">
+  <object id="19" x="169" y="33">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 64,0 64,32 0,32"/>
+   <polygon points="0,0 55,0 55,32 0,32"/>
   </object>
   <object id="20" x="208" y="64">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 16,0 16,128 0,144 16,144"/>
+   <polygon points="0,0 16,0 16,113.778 0,128 16,128"/>
   </object>
   <object id="21" x="224" y="192">
    <properties>
@@ -130,17 +130,11 @@
    </properties>
    <polygon points="0,0 80,0 80,16 0,16"/>
   </object>
-  <object id="35" x="144" y="0">
+  <object id="36" x="127.92" y="64">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 16,0 16,64 0,64"/>
-  </object>
-  <object id="36" x="128" y="64">
-   <properties>
-    <property name="stopProjectile" type="bool" value="false"/>
-   </properties>
-   <polygon points="0,0 48,0 48,32 0,32"/>
+   <polygon points="0,0 0.08,0 0.08,32 0,32"/>
   </object>
   <object id="37" x="144" y="96">
    <properties>
@@ -164,19 +158,37 @@
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
-   <polygon points="0,0 128,0 128,192 128,208 0,208"/>
+   <polygon points="0,0 112,0 112,192 112,208 0,208"/>
   </object>
-  <object id="41" x="128" y="432">
+  <object id="41" x="128" y="416">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 32,0 32,32 0,32"/>
   </object>
-  <object id="42" x="128" y="480">
+  <object id="42" x="128" y="496">
    <properties>
     <property name="stopProjectile" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object id="55" x="128" y="96">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0 16,0.16 0,0.16"/>
+  </object>
+  <object id="56" x="160" y="96">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 16,0.16 16,0 0,0.16"/>
+  </object>
+  <object id="57" x="176" y="64">
+   <properties>
+    <property name="stopProjectile" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0.16,0 0.16,32 0,32"/>
   </object>
  </objectgroup>
  <layer name="Tile Layer 2" width="32" height="32">
@@ -275,7 +287,7 @@
     <property name="hp10" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="43" gid="773" x="272" y="16" width="16" height="16">
+  <object id="43" gid="773" x="272" y="64" width="16" height="16">
    <properties>
     <property name="level" type="int" value="2"/>
    </properties>
@@ -290,6 +302,9 @@
     <property name="stopProjectile" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 144,0 144,32 0,32"/>
+  </object>
+  <object id="51" x="128" y="64">
+   <polygon points="0,0 0,32 -0.16,32 -0.16,0"/>
   </object>
  </objectgroup>
 </map>
