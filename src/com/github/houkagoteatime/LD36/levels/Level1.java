@@ -16,6 +16,7 @@ public class Level1 extends Level{
 	public void spawnEnemies() {
 		EnemySpawner.getInstance().spawnEnemy("archer", new Vector2(300, 300));
 		EnemySpawner.getInstance().spawnEnemy("swordsman", new Vector2(250, 190));
+		setPathFinder();
 	}
 
 }

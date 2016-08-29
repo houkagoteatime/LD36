@@ -63,13 +63,16 @@ public abstract class Level {
 		meleeWeps = new ArrayList<>();
 		this.game = game;
 		finder = new PathFinder(this, 80);
-		for(Enemy enemy : enemies) {
-			enemy.setPathFinder(finder);
-		}
 	}
 
 	public MapObjects getGameObjects() {
 		return tiledMap.getLayers().get(GAME_OBJECT_LAYER_ID).getObjects();
+	}
+	
+	public void setPathFinder() {
+		for(Enemy e : enemies) {
+			e.setPathFinder(finder);
+		}
 	}
 	
 	public void handleGameObjects() {
@@ -101,7 +104,7 @@ public abstract class Level {
 		player.update(dt);
 		updateEnemies(dt);
 		if(enemies.isEmpty() || player.isDead()) {
-			game.gameOver();
+			//game.gameOver();
 		}
 
 	}

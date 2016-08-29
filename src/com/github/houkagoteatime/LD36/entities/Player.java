@@ -18,7 +18,7 @@ import com.badlogic.gdx.maps.MapObjects;
  */
 public class Player extends Entity{
 	
-	public static final int PLAYER_SPEED = 50;
+	public static final int PLAYER_SPEED = 100;
 	public static final int I_FRAME = 45;
 	
 	public int iFrameCounter;

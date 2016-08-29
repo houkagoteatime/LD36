@@ -27,6 +27,7 @@ public abstract class Enemy extends Entity{
 	public static final float DEFAULT_AGGRO_RANGE = 90f;
 	private PathFinder pathFinder;
 	private ArrayList<Node> pathToPlayer;
+	private int counter;
 	public Enemy(Level level, int health, int damage, int speed, Sprite sprite, Player player) {
 		super(level, health, damage, speed, sprite);
 		this.player = player;
@@ -41,7 +42,15 @@ public abstract class Enemy extends Entity{
 		//kill the entity
 		if(this.getHealth() <= 0)
 			this.setDead(true);
+		if(getyMovement() == 0 && getxMovement() == 0) {
+			if(pathToPlayer != null) {
+				followPath(counter);
+				counter++;
+			} else {
+				getPath();
+			}
 
+		}
 		//determine direction of movement
 		int directionX = (int)Math.signum(this.getxMovement());
 		int directionY = (int)Math.signum(this.getyMovement());
@@ -56,46 +65,56 @@ public abstract class Enemy extends Entity{
 		boolean collideY = false;
 
 		this.setxPosition(this.getxPosition() + updateMovement(this.getxMovement(), xCalculatedMovement));
-		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
+		
 
 		//set the desired movement equal to 0 if the amount moved is equal to the desired movements else decrement the desired movement by how much the entity moved
 		this.setxMovement(updateMovement(this.getxMovement(), xCalculatedMovement) == this.getxMovement() ? 0 : this.getxMovement() - xCalculatedMovement);
-		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
+		
 
 		for (PolygonMapObject rectangleObject : this.getLevel().getMapObjects().getByType(PolygonMapObject.class)) {
 			if(collidesObj(rectangleObject.getPolygon())) {
 				collideX = true;
+			}
+		}
+		
+		this.setyPosition(this.getyPosition() + updateMovement(this.getyMovement(), yCalculatedMovement));
+		this.setyMovement(updateMovement(this.getyMovement(), yCalculatedMovement) == this.getyMovement() ? 0 : this.getyMovement() - yCalculatedMovement);
+		for (PolygonMapObject rectangleObject : this.getLevel().getMapObjects().getByType(PolygonMapObject.class)) {
+			if(collidesObj(rectangleObject.getPolygon())) {
 				collideY = true;
 			}
 		}
-
 		if(collideX) {
 			setxPosition(oldX);
-			setxMovement(0);
+			//setxMovement(0);
 			move(0,this.getSpeed()/4);
 		}
 
 		if(collideY) {
 			setyPosition(oldY);
-			setyMovement(0);
+			//setyMovement(0);
 			move(this.getSpeed()/4,0);
 		}
+
+		//System.out.println(getyMowvement() + "" + getxMovement());
 		
-		System.out.println(getyMovement() + "" + getxMovement());
-		if(getyMovement() == 0 && getxMovement() == 0) {
-			System.out.println("stuck");
+	}
+
+	public void followPath(int step) {
+		if(step < pathToPlayer.size()) {
+			//setxPosition(pathToPlayer.get(step).x * 16);
+			//setyPosition( pathToPlayer.get(step).y * 16);
+			move(pathToPlayer.get(step).x *16- getxPosition(), pathToPlayer.get(step).y*16-getyPosition());
+
+		} else {
 			getPath();
-			followPath(0);
-			
+			step = 0;
 		}
 	}
-	
-	public void followPath(int step) {
-		move(pathToPlayer.get(step).x * 16, pathToPlayer.get(step).y * 16);
-	}
-	
+
 	public void getPath() {
-		pathToPlayer = pathFinder.findPath(new Vector2(getxPosition(), getyPosition()), player.getPosition());
+		pathToPlayer = pathFinder.findPath(new Vector2(getxPosition()/16, getyPosition()/16), new Vector2(player.getxPosition()/16, player.getyPosition()/16));
+		System.out.println("path");
 	}
 	public boolean collidesObj(Polygon p) {
 		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
@@ -145,7 +164,7 @@ public abstract class Enemy extends Entity{
 	public void setPathFinder(PathFinder pathFinder) {
 		this.pathFinder = pathFinder;
 	}
-	
+
 }
 
 
