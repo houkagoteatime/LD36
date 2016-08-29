@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" nextobjectid="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="16" tileheight="16" nextobjectid="20">
  <tileset firstgid="1" name="tiles_packed_1" tilewidth="16" tileheight="16" tilecount="184" columns="23">
   <image source="tiles_packed_1.png" width="368" height="128"/>
  </tileset>
@@ -116,6 +116,11 @@
   <object id="15" x="416" y="688" width="16" height="16">
    <properties>
     <property name="lancer" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="19" x="512" y="592" width="16" height="16">
+   <properties>
+    <property name="gilgamesh" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
