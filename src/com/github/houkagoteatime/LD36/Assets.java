@@ -11,6 +11,7 @@ public class Assets {
 		manager.load("assets/music/Yume Miru Kusuri - Girls Are Made of Frosting Cake.mp3", Music.class);
 		manager.load("assets/music/Electric Avenue - Some Brit.mp3", Music.class);
 		manager.load("assets/music/America fuck yeah-team america.mp3", Music.class);
+		manager.load("assets/music/Kuroko No Basket OST - 20.  Misdirection.mp3", Music.class);
 	}
 	
 	

@@ -98,7 +98,7 @@ public class MeleeEnemy extends Enemy{
 	 */
 	public MeleeEnemy(Level level, Sprite sprite, Sprite weaponSprite, Player player) {
 		super(level, HEALTH, DAMAGE, SPEED, sprite, player);
-		weapon = new Melee(weaponSprite, this, RANGE);
+		weapon = new Melee(weaponSprite, this, RANGE, 10);
 	}
 	
 	/* (non-Javadoc)

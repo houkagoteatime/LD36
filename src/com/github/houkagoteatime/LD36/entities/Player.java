@@ -40,7 +40,7 @@ public class Player extends Entity{
 		super(level, MAX_HEALTH, damage, PLAYER_SPEED, sprite);
 		wep = new Rock(this, level);
 		sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
-		meleeWep = new Melee(sword, this, 15);
+		meleeWep = new Melee(sword, this, 15, 10);
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 

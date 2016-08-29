@@ -23,7 +23,7 @@ public class Lancer extends Enemy{
 		super(level, 50, 200, 60, sprite, player);
 		//it rides a pegasus and pegasi can fly over terrain
 		setCollidable(false);
-		wep = new Melee(wepSprite, this, 50);
+		wep = new Melee(wepSprite, this, 50, 80);
 	}
 	
 	private enum LancerState implements State<Lancer> {
