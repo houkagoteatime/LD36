@@ -27,8 +27,8 @@ public class Player extends Entity{
 	private Weapon wep;
 	private Weapon meleeWep;
 	private OrthographicCamera cam;
-	public static final float HEIGHT = 15;
-	public static final float WIDTH = 15;
+	public static final float HEIGHT = 10;
+	public static final float WIDTH = 10;
 	private Sprite sword;
 	public MapObjects mapObj;
 	public Weapon getWeapon() {

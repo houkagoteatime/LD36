@@ -19,4 +19,12 @@ public class Level2 extends Level{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.levels.Level#nextLevel()
+	 */
+	@Override
+	public void nextLevel() {
+		
+	}
+
 }

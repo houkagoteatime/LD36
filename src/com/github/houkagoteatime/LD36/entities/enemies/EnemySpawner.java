@@ -16,6 +16,7 @@ public class EnemySpawner {
 	private Sprite lancer = new Sprite(new Texture(Gdx.files.internal("assets/pictures/lancer.png")));
 	private Sprite archer = new Sprite(new Texture(Gdx.files.internal("assets/pictures/archer.png")));
 	private Sprite swordsman = new Sprite(new Texture(Gdx.files.internal("assets/pictures/swordsman.png")));
+	private Sprite gilgamesh = new Sprite(new Texture(Gdx.files.internal("assets/pictures/realgilg.png")));
 	private EnemySpawner() {
 	}
 
@@ -43,10 +44,13 @@ public class EnemySpawner {
 			break;
 		case "swordsman":
 			newEnemy = new MeleeEnemy(level, swordsman, sword, level.getPlayer());
-
 			break;
 		case "lancer":
 			newEnemy  = new Lancer(level, lancer, spear, level.getPlayer());
+			newEnemy.setCollidable(false);
+			break;
+		case "gilgamesh":
+			newEnemy = new Gilgamesh(level, gilgamesh, sword, level.getPlayer());
 			newEnemy.setCollidable(false);
 			break;
 		default:

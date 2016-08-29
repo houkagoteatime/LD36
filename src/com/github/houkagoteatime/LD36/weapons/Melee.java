@@ -1,6 +1,5 @@
 package com.github.houkagoteatime.LD36.weapons;
 
-import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,7 +11,7 @@ public class Melee implements Weapon{
 	private Rectangle extension;
 	private float range;
 	private Sprite sprite;
-	public static final int DAMAGE = 300;
+	public static final int DAMAGE = 100;
 	public Melee(Sprite sprite, Entity owner, float range) {
 		this.owner = owner;
 		this.range = range;

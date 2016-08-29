@@ -15,6 +15,7 @@ import com.github.houkagoteatime.LD36.PlayerInputProcessor;
 import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.entities.enemies.Archer;
 import com.github.houkagoteatime.LD36.entities.enemies.Enemy;
+import com.github.houkagoteatime.LD36.entities.enemies.Gilgamesh;
 import com.github.houkagoteatime.LD36.entities.enemies.MeleeEnemy;
 import com.github.houkagoteatime.LD36.screens.GameScreen;
 import com.github.houkagoteatime.LD36.utils.PathFinder;
@@ -58,7 +59,9 @@ public abstract class Level {
 		this.game = game;
 		finder = new PathFinder(this, 80);
 	}
-
+	
+	public abstract void nextLevel();
+	
 	public MapObjects getGameObjects() {
 		return tiledMap.getLayers().get(GAME_OBJECT_LAYER_ID).getObjects();
 	}
@@ -78,7 +81,7 @@ public abstract class Level {
 						player.setHealth(player.getHealth() + 10);
 						System.out.println("hp");
 						getGameObjects().remove(obj);
-					} else if(obj.getProperties().containsKey("level")) {
+					} else if(obj.getProperties().containsKey("level") && enemies.isEmpty()) {
 						System.out.println((int)obj.getProperties().get("level"));
 						game.switchLevel(((int)obj.getProperties().get("level")));
 					}
@@ -102,9 +105,12 @@ public abstract class Level {
 		proc.queryInput();
 		player.update(dt);
 		updateEnemies(dt);
-		if(enemies.isEmpty() || player.isDead()) {
-			game.gameOver();
+		if(player.isDead()) {
+			//game.gameOver();
 		}
+		
+		if(enemies.isEmpty())
+			nextLevel();
 
 	}
 
@@ -114,6 +120,10 @@ public abstract class Level {
 		for(Enemy e: enemies) {
 			if(e instanceof Archer) {
 				((Archer) e).getWeapon().incrementDelayCounter();
+			}
+			
+			if(e instanceof Gilgamesh) {
+				((Gilgamesh) e).getGateOfBabylon().incrementDelayCounter();
 			}
 		}
 		Iterator<Projectile> projectileIterator = projectiles.iterator();

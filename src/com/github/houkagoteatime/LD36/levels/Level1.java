@@ -22,4 +22,20 @@ public class Level1 extends Level{
 		setPathFinder();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.levels.Level#nextLevel()
+	 */
+	@Override
+	public void nextLevel() {
+		this.dispose();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.levels.Level#update(float)
+	 */
+	@Override
+	public void update(float dt) {
+		super.update(dt);
+	}
+
 }

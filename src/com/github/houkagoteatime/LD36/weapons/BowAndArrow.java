@@ -26,7 +26,6 @@ public class BowAndArrow extends ProjectileBasedWeapon{
 	public void fireProjectile(float angle) {
 		projectileSprite.setRotation(-angle);
 		new Arrow(projectileSprite, owner.getDamage(), owner.getxPosition(), owner.getyPosition(), angle, range, friendly).spawn(level);
-
 	}
 	
 	public class Arrow extends Projectile {

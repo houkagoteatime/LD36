@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.github.houkagoteatime.LD36.AudioManager;
 import com.github.houkagoteatime.LD36.LD36Game;
 import com.github.houkagoteatime.LD36.entities.Player;
+import com.github.houkagoteatime.LD36.entities.enemies.Gilgamesh;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.levels.Level1;
 import com.github.houkagoteatime.LD36.levels.Level2;
@@ -22,9 +23,9 @@ public class GameScreen implements Screen{
 	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
-		level = new Level1(this);
+		level = new Level3(this);
 		//level = new Level2(this);
-		
+		//level = new Level1(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
@@ -49,6 +50,9 @@ public class GameScreen implements Screen{
         game.getBatch().begin();
         game.getFont().draw(game.getBatch(), "Enemies Left: " + level.getEnemies().size(), 75, 25);
         game.getFont().draw(game.getBatch(), level.getPlayer().getHealth() + "/" + Player.MAX_HEALTH, 75, 40);
+        if(level instanceof Level3 && !level.getEnemies().isEmpty()) {
+        	game.getFont().draw(game.getBatch(), "Gilgamesh Health: " + level.getEnemies().get(0).getHealth() + "/" + Gilgamesh.MAX_HEALTH, 75, 55);
+        }
         game.getBatch().end();
 	}
 	
@@ -111,10 +115,25 @@ public class GameScreen implements Screen{
 			this.level = new Level3(this);
 			break;
 		}
+		this.level.spawnEnemies();
 	}
 
 	public void gameOver() {
 		game.setScreen(new GameOverScreen(game));
 		dispose();
+	}
+
+	/**
+	 * @return the level
+	 */
+	public Level getLevel() {
+		return level;
+	}
+
+	/**
+	 * @param level the level to set
+	 */
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 }
