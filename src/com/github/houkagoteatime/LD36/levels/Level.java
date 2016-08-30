@@ -144,7 +144,7 @@ public abstract class Level {
 		player.update(dt);
 		updateEnemies(dt);
 		if(player.isDead()) {
-			//game.gameOver();
+			game.gameOver();
 		}
 		if(enemies.isEmpty() && player.isDead()) {
 			//game.gameOver();

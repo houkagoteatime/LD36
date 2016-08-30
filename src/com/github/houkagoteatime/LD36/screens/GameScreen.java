@@ -17,7 +17,7 @@ import com.github.houkagoteatime.LD36.levels.Level4;
 
 public class GameScreen implements Screen{
 
-    private OrthographicCamera cam;
+	private OrthographicCamera cam;
 	private Level level;
 	private LD36Game game;
 	private AudioManager manager;
@@ -31,17 +31,17 @@ public class GameScreen implements Screen{
 		//level = new Level2(this);
 		//level = new Level1(this);
 		//level = new Level3(this);
-		level = new Level4(this);
+		//level = new Level4(this);
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
-		
-		
+
+
 		level.spawnEnemies();
 	}
-	
+
 	public GameScreen() {
 		cam = new OrthographicCamera(500, 500);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.badlogic.gdx.Screen#render(float)
 	 */
@@ -52,62 +52,65 @@ public class GameScreen implements Screen{
 		updateCam(level.getPlayer());
 		cam.update();
 		level.getTiledMapRenderer().setView(cam);
-        level.getTiledMapRenderer().render();
-        game.getBatch().begin();
-        game.getFont().draw(game.getBatch(), "Enemies Left: " + level.getEnemies().size(), 75, 25);
-        game.getFont().draw(game.getBatch(), level.getPlayer().getHealth() + "/" + Player.MAX_HEALTH, 75, 40);
-        if(level instanceof Level3 && !level.getEnemies().isEmpty()) {
-        	game.getFont().draw(game.getBatch(), "Gilgamesh Health: " + level.getEnemies().get(0).getHealth() + "/" + Gilgamesh.MAX_HEALTH, 75, 55);
-        }
-        game.getBatch().end();
+		level.getTiledMapRenderer().render();
+		game.getBatch().begin();
+		game.getFont().draw(game.getBatch(), "Enemies Left: " + level.getEnemies().size(), 75, 25);
+		game.getFont().draw(game.getBatch(), level.getPlayer().getHealth() + "/" + Player.MAX_HEALTH, 75, 40);
+		if(level.getEnemies().isEmpty()) {
+			game.getFont().draw(game.getBatch(), "Find the passage to the next level", 75, 55);
+		}
+		if(level instanceof Level3 && !level.getEnemies().isEmpty()) {
+			game.getFont().draw(game.getBatch(), "Gilgamesh Health: " + level.getEnemies().get(0).getHealth() + "/" + Gilgamesh.MAX_HEALTH, 75, 55);
+		}
+		game.getBatch().end();
 	}
-	
+
 	/**
 	 * @param player center the camera around player
 	 */
 	public void updateCam(Player player) {
 		float effectiveViewportWidth = cam.viewportWidth * cam.zoom;
-        float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
-        player.setCam(cam);
+		float effectiveViewportHeight = cam.viewportHeight * cam.zoom;
+		player.setCam(cam);
 		cam.position.x = MathUtils.clamp(player.getPosition().x + player.getSprite().getWidth()/2, effectiveViewportWidth / 2f, level.mapPixelWidth - effectiveViewportWidth / 2f);
-	    cam.position.y = MathUtils.clamp(player.getPosition().y + player.getSprite().getHeight()/2, effectiveViewportHeight / 2f, level.mapPixelHeight - effectiveViewportWidth / 2f);
+		cam.position.y = MathUtils.clamp(player.getPosition().y + player.getSprite().getHeight()/2, effectiveViewportHeight / 2f, level.mapPixelHeight - effectiveViewportWidth / 2f);
 	}
-	
+
 	@Override
 	public void dispose() {
-		
+
 	}
 
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resize(int arg0, int arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void switchLevel(int level) {
 		if(level < 1 || level > 3) {
 			throw new IllegalArgumentException("Invalid level");
