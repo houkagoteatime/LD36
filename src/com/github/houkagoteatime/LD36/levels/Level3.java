@@ -31,7 +31,7 @@ public class Level3 extends Level{
 		this.getPlayer().fly(dt);
 		updateEnemies(dt);
 		if(this.getPlayer().isDead()) {
-			//game.gameOver();
+			getGame().gameOver();
 		}
 		if(this.getEnemies().isEmpty()) {
 			

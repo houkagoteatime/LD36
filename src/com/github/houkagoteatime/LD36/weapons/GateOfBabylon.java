@@ -54,7 +54,6 @@ public class GateOfBabylon extends ProjectileBasedWeapon{
 	public void fireProjectile(float angle, float xPos, float yPos) {
 		projectileSprite.setRotation(-angle);
 		new SwordProjectile(projectileSprite, owner.getDamage(), xPos, yPos, angle, range, friendly).spawn(level);
-		System.out.println("attack");
 	}
 	
 	public class SwordProjectile extends Projectile {
