@@ -35,7 +35,7 @@ public class Gilgamesh extends Enemy{
 		gateOfBabylon = new GateOfBabylon(this, getLevel(), wep);
 		startTime = System.currentTimeMillis();
 		timer = startTime + 120000;
-		ea = new Melee(new Sprite(new Texture(Gdx.files.internal("assets/pictures/Ea.png"))), this, 30, 50);
+		ea = new Melee(new Sprite(new Texture(Gdx.files.internal("assets/pictures/ea.png"))), this, 30, 50);
 		getBounds().set(new Rectangle(getxPosition(), getyPosition(), 32, 32));
 	}
 	
