@@ -7,7 +7,7 @@ public class Assets {
 	
 	public static AssetManager manager = new AssetManager();
 	public static void load() {
-		manager.load("assets/music/Ho-kago Tea Time - U&I.mp3", Music.class);
+		//manager.load("assets/music/Ho-kago Tea Time - U&I.mp3", Music.class);
 		manager.load("assets/music/Yume Miru Kusuri - Girls Are Made of Frosting Cake.mp3", Music.class);
 		manager.load("assets/music/Electric Avenue - Some Brit.mp3", Music.class);
 		manager.load("assets/music/America fuck yeah-team america.mp3", Music.class);
