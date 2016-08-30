@@ -15,6 +15,7 @@ public class Level4 extends Level{
 
 	boolean attacked = false;
 	Sprite projectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/arrow.png")));
+	private int tick = 0;
 	
 	public Level4(GameScreen screen) {
 		super("assets/tilesets/level4a.tmx", screen);
@@ -26,6 +27,7 @@ public class Level4 extends Level{
 	}
 	
 	public void update(float dt) {
+		tick++;
 		if(!attacked) {
 			this.getPlayer().iFrameCounter = 9001;
 			new BowAndArrow(this.getEnemies().get(2), this).fireProjectile(190);
@@ -37,8 +39,12 @@ public class Level4 extends Level{
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
 		handleGameObjects();
+		//dont judge
+		if(tick > 70) {
+			getPlayer().setHealth(0);
+		}
 		if(this.getPlayer().isDead()) {
-			
+			getGame().gameOver();
 		}
 	}
 	@Override

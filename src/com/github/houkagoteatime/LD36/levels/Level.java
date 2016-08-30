@@ -313,4 +313,20 @@ public abstract class Level {
 		return tiledMapRenderer;
 	}
 
+
+	/**
+	 * @return the game
+	 */
+	public GameScreen getGame() {
+		return game;
+	}
+
+
+	/**
+	 * @param game the game to set
+	 */
+	public void setGame(GameScreen game) {
+		this.game = game;
+	}
+
 }
