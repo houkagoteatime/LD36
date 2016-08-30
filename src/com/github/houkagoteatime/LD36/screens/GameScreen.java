@@ -24,10 +24,9 @@ public class GameScreen implements Screen{
 	public GameScreen(LD36Game game, AudioManager manager) {
 		this.game = game;
 		cam = new OrthographicCamera(300, 300);
-		level = new Level1(this);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
-
+		level = new Level1(this);
 		//level = new Level2(this);
 		//level = new Level1(this);
 		//level = new Level3(this);
