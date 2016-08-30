@@ -57,7 +57,7 @@ public abstract class Level {
 		this.mapProp = tiledMap.getProperties();
 		calcMapProperties(mapProp);
 		this.enemies = new ArrayList<Enemy>();
-		this.player = new Player(this, 10, new Sprite(new Texture("assets/pictures/gorilla.png")));
+		this.player = new Player(this, 25, new Sprite(new Texture("assets/pictures/gorilla.png")));
 		projectiles = new ArrayList<>();
 		proc = new PlayerInputProcessor(player);
 		meleeWeps = new ArrayList<>();
@@ -203,7 +203,8 @@ public abstract class Level {
 					if(player.iFrameCounter > Player.I_FRAME) {
 						player.setHealth(player.getHealth() - p.getDamage());
 						player.iFrameCounter = 0;
-						projectiles.remove(i);
+						p.remove();
+						//projectiles.remove(i);
 					}
 				}
 			} else {
@@ -214,8 +215,9 @@ public abstract class Level {
 						if(e.iFrameCounter >= MeleeEnemy.I_FRAME) {
 							e.setHealth(e.getHealth() - p.getDamage());
 							e.iFrameCounter = 0;
+							p.remove();
 						} 
-						projectiles.remove(i);
+						//projectiles.remove(i);
 					}
 				}
 			
