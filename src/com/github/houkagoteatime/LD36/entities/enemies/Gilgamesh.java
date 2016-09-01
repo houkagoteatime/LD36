@@ -22,6 +22,8 @@ public class Gilgamesh extends Enemy{
 	public static final int MAX_HEALTH = 1500;
 	public static final int DAMAGE = 15;
 	public static final int SPEED = 50;
+	public static final int TP = 6;
+	public static int tpCounter;
 	private Weapon gateOfBabylon;
 	private StateMachine<Gilgamesh, State<Gilgamesh>> machine;
 	public static final float RANGE = 500f;
@@ -95,6 +97,10 @@ public class Gilgamesh extends Enemy{
 
 			@Override
 			public void update(Gilgamesh enemy) {
+				tpCounter++;
+				if(tpCounter % (TP * 60) == 0) { 
+					enemy.randomTeleport();
+				}
 				enemy.setStartTime(System.currentTimeMillis());
 				if(enemy.getStartTime() > enemy.getTimer()) {
 					enemy.teleportToPlayer();

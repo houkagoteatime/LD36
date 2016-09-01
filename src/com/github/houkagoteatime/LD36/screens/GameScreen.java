@@ -26,7 +26,7 @@ public class GameScreen implements Screen{
 		cam = new OrthographicCamera(300, 300);
 		this.manager = manager;
 		manager.playMusic("assets/music/America fuck yeah-team america.mp3");
-		level = new Level4(this);
+		level = new Level3(this);
 		//level = new Level2(this);
 		//level = new Level1(this);
 		//level = new Level3(this);

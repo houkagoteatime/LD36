@@ -13,7 +13,7 @@ public class GateOfBabylon extends ProjectileBasedWeapon{
 		super(owner, level);
 		range = 1000;
 		projectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
-		delay = 30;
+		delay = 37;
 		friendly = false;
 		swordsFired = 3;
 	}
