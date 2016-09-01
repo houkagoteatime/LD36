@@ -37,7 +37,7 @@ public class Level4 extends Level{
 					190, 500, false));*/
 			attacked = true;
 		}
-		this.getPlayerInputProcessor().queryInput();
+		//this.getPlayerInputProcessor().queryInput();
 		this.getPlayer().update(dt);
 		updateProjectiles(dt);
 		handleProjectileCollision(dt);
