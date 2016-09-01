@@ -13,9 +13,9 @@ public class GateOfBabylon extends ProjectileBasedWeapon{
 		super(owner, level);
 		range = 1000;
 		projectileSprite = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
-		delay = 70;
+		delay = 30;
 		friendly = false;
-		swordsFired = 1;
+		swordsFired = 3;
 	}
 
 	/* (non-Javadoc)
@@ -42,11 +42,23 @@ public class GateOfBabylon extends ProjectileBasedWeapon{
 		float yPos2 = startY;
 		fireProjectile(angle, xPos1, yPos1);
 		for(int i = 0; i<swordsFired; i++) {
-			xPos1 += xInc * TILE_SIZE;
-			yPos1 += yInc * TILE_SIZE;
+			int r = (int) (Math.random() * 3);
+			if(r == 1) {
+				xPos1 += xInc * (TILE_SIZE * 1.5);
+				yPos1 += yInc * (TILE_SIZE * 1.5);
+			} else {
+			xPos1 += xInc * TILE_SIZE * 3;
+			yPos1 += yInc * TILE_SIZE * 3;
+			}
 			fireProjectile(angle, xPos1, yPos1);
-			xPos2 -= xInc * TILE_SIZE;
-			yPos2 -= yInc * TILE_SIZE;
+			
+			if(r == 1) {
+				xPos2 -= xInc * (TILE_SIZE * 1.5);
+				yPos2 -= yInc * (TILE_SIZE * 1.5);
+			} else {
+			xPos2 -= xInc * TILE_SIZE * 3;
+			yPos2 -= yInc * TILE_SIZE * 3;
+			}
 			fireProjectile(angle, xPos2, yPos2);
 		}
 	}

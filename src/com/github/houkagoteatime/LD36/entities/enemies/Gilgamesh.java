@@ -20,7 +20,7 @@ import com.github.houkagoteatime.LD36.weapons.Weapon;
 
 public class Gilgamesh extends Enemy{
 	public static final int MAX_HEALTH = 1500;
-	public static final int DAMAGE = 30;
+	public static final int DAMAGE = 15;
 	public static final int SPEED = 50;
 	private Weapon gateOfBabylon;
 	private StateMachine<Gilgamesh, State<Gilgamesh>> machine;

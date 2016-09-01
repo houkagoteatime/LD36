@@ -37,7 +37,7 @@ public abstract class Projectile{
 		this.damage = damage;
 		this.sprite = sprite;
 		
-		bounds = new Rectangle(xPosition, yPosition, sprite.getWidth() /2, sprite.getHeight() /2);
+		bounds = new Rectangle(xPosition, yPosition, sprite.getWidth() /4, sprite.getHeight() /4);
 		this.range = range;
 	}
 

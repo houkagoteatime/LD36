@@ -30,7 +30,7 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			this.damage = damage;
 			this.speed = speed;
 			sprite.setOrigin(sprite.getWidth()/2,sprite.getHeight()/2);
-			bounds = new Rectangle(xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
+			bounds = new Rectangle(xPosition, yPosition, sprite.getWidth()/2, sprite.getHeight()/2);
 		}
 		
 		/**

@@ -108,16 +108,6 @@
   </object>
  </objectgroup>
  <objectgroup>
-  <object id="14" x="672" y="688" width="16" height="16">
-   <properties>
-    <property name="lancer" type="int" value="0"/>
-   </properties>
-  </object>
-  <object id="15" x="416" y="688" width="16" height="16">
-   <properties>
-    <property name="lancer" type="int" value="0"/>
-   </properties>
-  </object>
   <object id="19" x="512" y="592" width="16" height="16">
    <properties>
     <property name="gilgamesh" type="int" value="0"/>
