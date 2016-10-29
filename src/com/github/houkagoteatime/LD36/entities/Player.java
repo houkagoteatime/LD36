@@ -13,8 +13,9 @@ import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Rock;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
 import com.badlogic.gdx.maps.MapObjects;
+
 /**
- *
+ * User controlled entity
  */
 public class Player extends Entity{
 	
@@ -32,10 +33,19 @@ public class Player extends Entity{
 	public static final float WIDTH = 10;
 	private Sprite sword;
 	public MapObjects mapObj;
+	
+	/**
+	 * @return the weapon
+	 */
 	public Weapon getWeapon() {
 		return wep;
 	}
 	
+	/**
+	 * @param level current level
+	 * @param damage entity damage
+	 * @param sprite entity sprite
+	 */
 	public Player(Level level, int damage, Sprite sprite) {
 		super(level, MAX_HEALTH, damage, PLAYER_SPEED, sprite);
 		wep = new Rock(this, level);
@@ -44,9 +54,13 @@ public class Player extends Entity{
 		sprite.setOrigin(HEIGHT / 2f, WIDTH / 2f);
 	}
 
+	/**
+	 * @param dt delta time
+	 */
 	public void fly(float dt) {
 		super.update(dt);
 	}
+	
 	/* (non-Javadoc)
 	 * @see com.github.houkagoteatime.LD36.entities.Entity#spawn(int, int)
 	 */
@@ -56,6 +70,9 @@ public class Player extends Entity{
 		updateBounds();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#update(float)
+	 */
 	@Override
 	public void update(float deltaTime) {
 		//System.out.println(this.getxPosition() + "," + this.getyPosition());
@@ -103,10 +120,17 @@ public class Player extends Entity{
 		}
 	}
 	
+	/**
+	 * @param worldCoord
+	 * @return
+	 */
 	public Vector3 unproject(Vector3 worldCoord) {
 		return cam.unproject(worldCoord);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#attack()
+	 */
 	@Override
 	public void attack() {
 
@@ -114,17 +138,25 @@ public class Player extends Entity{
 		wep.attack(sprite.getRotation());
 	}
 	
+	/**
+	 * Attach without range
+	 */
 	public void meleeAttack() {
 		meleeWep.attack(sprite.getRotation());
 		getLevel().handlePlayerMelee((Melee)meleeWep);
 	}
 	
+	/**
+	 * @param p the bounding polygon
+	 * @return true if there is collision false otherwise
+	 */
 	public boolean collidesObj(Polygon p) {
 		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
 		if(p.getBoundingRectangle().overlaps((n)))
 			return true;
 		return false;
 	}
+	
 	/* (non-Javadoc)
 	 * @see com.github.houkagoteatime.LD36.entities.Entity#rotate(float)
 	 */
@@ -133,10 +165,16 @@ public class Player extends Entity{
 		sprite.setRotation(degrees);
 	}
 
+	/**
+	 * @return the width
+	 */
 	public float getWidth() {
 		return sprite.getWidth();
 	}
 	
+	/**
+	 * @return the height
+	 */
 	public float getHeight() {
 		return sprite.getHeight();
 	}
