@@ -9,6 +9,9 @@ import com.github.houkagoteatime.LD36.entities.Player;
 import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.BowAndArrow;
 
+/**
+ * Enemy archer
+ */
 public class Archer extends Enemy{
 	public static final int HEALTH = 200;
 	public static final int DAMAGE = 10;
@@ -18,11 +21,18 @@ public class Archer extends Enemy{
 	private BowAndArrow weapon;
 	private StateMachine<Archer, ArcherState> stateMachine;
 	
+	/**
+	 * @param level current level
+	 * @param sprite Entity sprite
+	 * @param weaponSprite sprite for the weapon
+	 * @param player player entity
+	 */
 	public Archer(Level level,Sprite sprite, Sprite weaponSprite, Player player) {
 		super(level, HEALTH, DAMAGE, SPEED, sprite, player);
 		weapon = new BowAndArrow(this, getLevel());
 		weapon.setRange(500);
 	}
+	
 	/**
 	 *States that the enemy should be in
 	 */
@@ -45,21 +55,27 @@ public class Archer extends Enemy{
 				}
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+			 */
 			@Override
 			public void enter(Archer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+			 */
 			@Override
 			public void exit(Archer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+			 */
 			@Override
 			public boolean onMessage(Archer arg0, Telegram arg1) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			
@@ -82,27 +98,36 @@ public class Archer extends Enemy{
 				}
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+			 */
 			@Override
 			public void enter(Archer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+			 */
 			@Override
 			public void exit(Archer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+			 */
 			@Override
 			public boolean onMessage(Archer arg0, Telegram arg1) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			
 		};
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.enemies.Enemy#init()
+	 */
 	@Override
 	public void init() {
 		stateMachine = new DefaultStateMachine<Archer, ArcherState>(this, ArcherState.STATIONARY);
@@ -117,9 +142,11 @@ public class Archer extends Enemy{
 		stateMachine.update();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#attack()
+	 */
 	@Override
 	public void attack() {
-		//System.out.println("I AM ATACKING");
 		weapon.attack(getAngleToPlayer());
 	}
 

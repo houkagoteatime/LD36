@@ -10,6 +10,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
 
+/**
+ * Enemy with a lance
+ */
 public class Lancer extends Enemy{
 
 	public static final float RANGE = 25;
@@ -19,6 +22,13 @@ public class Lancer extends Enemy{
 	
 	private StateMachine<Lancer, LancerState> stateMachine;
 	private Weapon wep;
+	
+	/**
+	 * @param level current level
+	 * @param sprite entity sprite
+	 * @param wepSprite weapon sprite
+	 * @param player player entity
+	 */
 	public Lancer(Level level, Sprite sprite, Sprite wepSprite, Player player) {
 		super(level, 50, 200, 60, sprite, player);
 		//it rides a pegasus and pegasi can fly over terrain
@@ -26,12 +36,18 @@ public class Lancer extends Enemy{
 		wep = new Melee(wepSprite, this, 50, 80);
 	}
 	
+	/**
+	 * State enumeration
+	 */
 	private enum LancerState implements State<Lancer> {
 		/**
 		 *Enemy will attempt to move towards the player until they are out of aggro range
 		 */
 		AGGRO() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(Lancer enemy) {
 				if(!enemy.isPlayerNearby(AGGRO_RANGE)) {
@@ -44,45 +60,60 @@ public class Lancer extends Enemy{
 				}
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+			 */
 			@Override
 			public void enter(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+			 */
 			@Override
 			public void exit(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+			 */
 			@Override
 			public boolean onMessage(Lancer arg0, Telegram arg1) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			
 		},
 		PATROL_BACK() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+			 */
 			@Override
 			public void enter(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+			 */
 			@Override
 			public void exit(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+			 */
 			@Override
 			public boolean onMessage(Lancer arg0, Telegram arg1) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(Lancer enemy) {
 				if(enemy.isPlayerNearby(AGGRO_RANGE)) {
@@ -107,6 +138,9 @@ public class Lancer extends Enemy{
 		 */
 		PATROL_FORWARD() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(Lancer enemy) {
 				if(enemy.isPlayerNearby(AGGRO_RANGE)) {
@@ -124,27 +158,36 @@ public class Lancer extends Enemy{
 				}
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+			 */
 			@Override
 			public void enter(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+			 */
 			@Override
 			public void exit(Lancer arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+			 */
 			@Override
 			public boolean onMessage(Lancer arg0, Telegram arg1) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			
 		};
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.enemies.Enemy#init()
+	 */
 	@Override
 	public void init() {
 		stateMachine = new DefaultStateMachine<Lancer, Lancer.LancerState>(this, LancerState.PATROL_FORWARD);
@@ -162,6 +205,9 @@ public class Lancer extends Enemy{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#attack()
+	 */
 	@Override
 	public void attack() {
 		wep.attack(getAngleToPlayer());

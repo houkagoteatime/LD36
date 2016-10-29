@@ -9,7 +9,6 @@ import com.github.houkagoteatime.LD36.levels.Level;
 public class EnemySpawner {
 	private Level level;
 	private static EnemySpawner INSTANCE = null;
-	private Sprite rock = new Sprite(new Texture("assets/pictures/rock.png"));
 	private Sprite rockproj = new Sprite(new Texture(Gdx.files.internal("assets/pictures/arrow.png")));
 	private Sprite sword = new Sprite(new Texture(Gdx.files.internal("assets/pictures/sword1.png")));
 	private Sprite spear = new Sprite(new Texture(Gdx.files.internal("assets/pictures/spear.png")));
@@ -17,14 +16,23 @@ public class EnemySpawner {
 	private Sprite archer = new Sprite(new Texture(Gdx.files.internal("assets/pictures/archer.png")));
 	private Sprite swordsman = new Sprite(new Texture(Gdx.files.internal("assets/pictures/swordsman.png")));
 	private Sprite gilgamesh = new Sprite(new Texture(Gdx.files.internal("assets/pictures/realgilg.png")));
+	
+	/**
+	 * Private default constructor
+	 */
 	private EnemySpawner() {
 	}
 
+	/**
+	 * Initialize object
+	 * @param level current level
+	 */
 	public static void init(Level level) {
 		if(INSTANCE == null)
 			INSTANCE = new EnemySpawner();
 		INSTANCE.setLevel(level);
 	}
+	
 	/**
 	 * @param level the level to set
 	 */
@@ -32,10 +40,17 @@ public class EnemySpawner {
 		this.level = level;
 	}
 
+	/**
+	 * @return singleton instance
+	 */
 	public static EnemySpawner getInstance() {
 		return INSTANCE;
 	}
 
+	/**
+	 * @param enemy enemy name
+	 * @param pos position
+	 */
 	public void spawnEnemy(String enemy, Vector2 pos) {
 		Enemy newEnemy;
 		switch (enemy) {

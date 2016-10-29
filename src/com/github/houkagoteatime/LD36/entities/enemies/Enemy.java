@@ -29,7 +29,6 @@ public abstract class Enemy extends Entity{
 	private ArrayList<Node> pathToPlayer;
 	private boolean collidable = true;
 	private float rotation = 0;;
-	private int counter;
 	public Enemy(Level level, int health, int damage, int speed, Sprite sprite, Player player) {
 		super(level, health, damage, speed, sprite);
 		this.player = player;
@@ -37,6 +36,9 @@ public abstract class Enemy extends Entity{
 
 
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#update(float)
+	 */
 	@Override
 	public void update(float dt) {
 		updateBounds();
@@ -105,6 +107,10 @@ public abstract class Enemy extends Entity{
 		
 	}
 
+	/**
+	 * Walk toward player's position
+	 * @param step passed to pathToPlayer.get(int)
+	 */
 	public void followPath(int step) {
 		if(step < pathToPlayer.size()) {
 			//setxPosition(pathToPlayer.get(step).x * 16);
@@ -117,15 +123,27 @@ public abstract class Enemy extends Entity{
 		}
 	}
 
+	/**
+	 * Looks are deceiving. This is not an accessor.
+	 */
 	public void getPath() {
 		pathToPlayer = pathFinder.findPath(new Vector2(getxPosition()/16, getyPosition()/16), new Vector2(player.getxPosition()/16, player.getyPosition()/16));
 	}
+	
+	/**
+	 * @param p bounding polygon
+	 * @return if there is collision
+	 */
 	public boolean collidesObj(Polygon p) {
 		Rectangle n = new Rectangle(this.getxPosition(), this.getyPosition(), this.getSprite().getWidth(), this.getSprite().getHeight());
 		if(p.getBoundingRectangle().overlaps((n)))
 			return true;
 		return false;
 	}
+	
+	/**
+	 * Initialize
+	 */
 	public abstract void init();
 
 	/**
@@ -154,6 +172,9 @@ public abstract class Enemy extends Entity{
 		return Math.abs(distance) <= aggro;
 	}
 
+	/**
+	 * @return the angle
+	 */
 	public float getAngleToPlayer() {
 		float angle = (float)Math.toDegrees(Math.atan2(player.getxPosition() - getxPosition(), player.getyPosition() - getyPosition()));
 		return angle;

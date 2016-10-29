@@ -10,6 +10,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 import com.github.houkagoteatime.LD36.weapons.Melee;
 import com.github.houkagoteatime.LD36.weapons.Weapon;
 
+/**
+ * Enemy that just melees
+ */
 public class MeleeEnemy extends Enemy{
 
 	private StateMachine<MeleeEnemy, EnemyState> defaultStateMachine;
@@ -33,6 +36,9 @@ public class MeleeEnemy extends Enemy{
 		 */
 		AGGRO() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(MeleeEnemy enemy) {
 				if(!enemy.isPlayerNearby(AGGRO_RANGE)) {
@@ -49,6 +55,9 @@ public class MeleeEnemy extends Enemy{
 		
 		FALLINTOPLACE() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(MeleeEnemy enemy) {
 				enemy.move(enemy.getPlayer().getxPosition() + 16, enemy.getPlayer().getyPosition());
@@ -60,6 +69,9 @@ public class MeleeEnemy extends Enemy{
 		 */
 		SLEEP() {
 
+			/* (non-Javadoc)
+			 * @see com.badlogic.gdx.ai.fsm.State#update(java.lang.Object)
+			 */
 			@Override
 			public void update(MeleeEnemy enemy) {
 				if(enemy.isPlayerNearby(AGGRO_RANGE)) {
@@ -71,16 +83,25 @@ public class MeleeEnemy extends Enemy{
 			
 		};
 		
+		/* (non-Javadoc)
+		 * @see com.badlogic.gdx.ai.fsm.State#enter(java.lang.Object)
+		 */
 		@Override
 		public void enter(MeleeEnemy arg0) {
 			
 		}
 
+		/* (non-Javadoc)
+		 * @see com.badlogic.gdx.ai.fsm.State#exit(java.lang.Object)
+		 */
 		@Override
 		public void exit(MeleeEnemy arg0) {
 			
 		}
 
+		/* (non-Javadoc)
+		 * @see com.badlogic.gdx.ai.fsm.State#onMessage(java.lang.Object, com.badlogic.gdx.ai.msg.Telegram)
+		 */
 		@Override
 		public boolean onMessage(MeleeEnemy arg0, Telegram arg1) {
 			return false;
@@ -109,6 +130,9 @@ public class MeleeEnemy extends Enemy{
 		this.defaultStateMachine = new DefaultStateMachine<MeleeEnemy, EnemyState>(this, EnemyState.SLEEP);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.enemies.Enemy#update(float)
+	 */
 	@Override
 	public void update(float dt) {
 		this.defaultStateMachine.update();
@@ -144,6 +168,9 @@ public class MeleeEnemy extends Enemy{
 		this.player = player;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.github.houkagoteatime.LD36.entities.Entity#attack()
+	 */
 	@Override
 	public void attack() {
 		weapon.attack(getAngleToPlayer());

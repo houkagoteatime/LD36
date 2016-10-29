@@ -13,6 +13,9 @@ public class PlayerInputProcessor {
 
 	private Player player;
 	
+	/**
+	 * @param player the player to set
+	 */
 	public PlayerInputProcessor(Player player) {
 		this.player = player;
 	}

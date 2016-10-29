@@ -40,6 +40,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			return bounds;
 		}
 		
+		/**
+		 * Update the position of the bounds
+		 */
 		public void updateBounds() {
 			bounds.setPosition(getPosition());
 		}
@@ -61,6 +64,9 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			yMovement = moveY;
 		}
 		
+		/**
+		 * Attack another entity
+		 */
 		public abstract void attack();
 		
 		/**Update the entity
@@ -203,38 +209,65 @@ import com.github.houkagoteatime.LD36.levels.Level;
 			this.dead = dead;
 		}
 
+		/**
+		 * @return a 2D vector for the position
+		 */
 		public Vector2 getPosition() {
 			return new Vector2(xPosition, yPosition);
 		}
 		
+		/**
+		 * @return xPosition
+		 */
 		public float getxPosition() {
 			return xPosition;
 		}
 
+		/**
+		 * @param xPosition the xPosition to set
+		 */
 		public void setxPosition(float xPosition) {
 			this.xPosition = xPosition;
 		}
 
+		/**
+		 * @return the yPosition
+		 */
 		public float getyPosition() {
 			return yPosition;
 		}
 
+		/**
+		 * @param yPosition the yPosition to set
+		 */
 		public void setyPosition(float yPosition) {
 			this.yPosition = yPosition;
 		}
 
+		/**
+		 * @return the xMovement
+		 */
 		public float getxMovement() {
 			return xMovement;
 		}
 
+		/**
+		 * @param xMovement the xMovement to set
+		 */
 		public void setxMovement(float xMovement) {
 			this.xMovement = xMovement;
 		}
 
+		/**
+		 * @return the yMovement
+		 */
 		public float getyMovement() {
 			return yMovement;
 		}
 
+		/**
+		 * @param yMovement the yMovement to set
+		 */
 		public void setyMovement(float yMovement) {
 			this.yMovement = yMovement;
 		}
