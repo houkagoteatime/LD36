@@ -121,8 +121,8 @@ public class Player extends Entity{
 	}
 	
 	/**
-	 * @param worldCoord
-	 * @return
+	 * @param worldCoord the world coordinate
+	 * @return 3D vector
 	 */
 	public Vector3 unproject(Vector3 worldCoord) {
 		return cam.unproject(worldCoord);
